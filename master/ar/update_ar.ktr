@@ -95,8 +95,8 @@
     </notepad>
     <notepad>
       <note>TODO&#x3a; &#xd;&#xa;- Update customer master &#xd;&#xa;with last transaction date</note>
-      <xloc>372</xloc>
-      <yloc>60</yloc>
+      <xloc>354</xloc>
+      <yloc>40</yloc>
       <width>188</width>
       <heigth>70</heigth>
       <fontname>Segoe UI</fontname>
@@ -161,6 +161,30 @@
     </attributes>
   </connection>
   <connection>
+    <name>GQL</name>
+    <server/>
+    <type>ORACLERDB</type>
+    <access>ODBC</access>
+    <database>LII_SALESDB</database>
+    <port>1521</port>
+    <username>DBTEST_XXX</username>
+    <password>Encrypted 2be98afc86aa7f2e48d3080248fc78cf6</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>MASTER_DATA</name>
     <server/>
     <type>GENERIC</type>
@@ -174,7 +198,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;Integration&#x5c;db&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -200,7 +224,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;Integration&#x5c;db&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -213,271 +237,10 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Closed Items</from><to>Update Open</to><enabled>Y</enabled> </hop>
-  <hop> <from>Closed Items</from><to>Add To Closed</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add To Closed</from><to>Delete From Open</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Timestamp</from><to>Closed Items</to><enabled>Y</enabled> </hop>
   <hop> <from>Query CODA</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Parameters</from><to>Query CODA</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Timestamp</from><to>Update Master</to><enabled>Y</enabled> </hop>
   </order>
-  <step>
-    <name>Add To Closed</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>MASTER_DATA</connection>
-    <commit>100</commit>
-    <update_bypassed>Y</update_bypassed>
-    <lookup>
-      <schema>MASTER_DATA</schema>
-      <table>AR_ITEM_CLOSED</table>
-      <key>
-        <name>CMPCODE</name>
-        <field>CMPCODE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>DOCTYPE</name>
-        <field>DOCTYPE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>DOCNUM</name>
-        <field>DOCNUM</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>CUSTID</name>
-        <field>CUSTID</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>CMPCODE</name>
-        <rename>CMPCODE</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>CUSTID</name>
-        <rename>CUSTID</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>DOCTYPE</name>
-        <rename>DOCTYPE</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>DOCSUBTYPE</name>
-        <rename>DOCSUBTYPE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DOCNUM</name>
-        <rename>DOCNUM</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>SOURCESYS</name>
-        <rename>SOURCESYS</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>INVOICEREF</name>
-        <rename>INVOICEREF</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>GLACCT</name>
-        <rename>GLACCT</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DOCDATE</name>
-        <rename>DOCDATE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>POSTDATE</name>
-        <rename>POSTDATE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CLEARDATE</name>
-        <rename>CLEARDATE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DOCDESC</name>
-        <rename>DOCDESC</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>XACTREF</name>
-        <rename>XACTREF</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CUSTREF</name>
-        <rename>CUSTREF</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>EXTREF5</name>
-        <rename>EXTREF5</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DOCCURR</name>
-        <rename>DOCCURR</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>HOMECURR</name>
-        <rename>HOMECURR</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ALTCURR</name>
-        <rename>ALTCURR</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ORGVAL_DOC</name>
-        <rename>ORGVAL_DOC</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ORGVAL_HOME</name>
-        <rename>ORGVAL_HOME</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ORGVAL_ALT</name>
-        <rename>ORGVAL_ALT</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ORGVAL_NORM</name>
-        <rename>ORGVAL_NORM</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>OPENVAL_DOC</name>
-        <rename>OPENVAL_DOC</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>OPENVAL_HOME</name>
-        <rename>OPENVAL_HOME</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>OPENVAL_ALT</name>
-        <rename>OPENVAL_ALT</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>OPENVAL_NORM</name>
-        <rename>OPENVAL_NORM</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>738</xloc>
-      <yloc>92</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Closed Items</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Add To Closed</send_true_to>
-<send_false_to>Update Open</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>CLEARDATE</leftvalue>
- <function>IS NOT NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>574</xloc>
-      <yloc>168</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Delete From Open</name>
-    <type>Delete</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>MASTER_DATA</connection>
-    <commit>100</commit>
-    <lookup>
-      <schema>MASTER_DATA</schema>
-      <table>AR_ITEM_MASTER</table>
-      <key>
-        <name>CMPCODE</name>
-        <field>CMPCODE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>DOCTYPE</name>
-        <field>DOCTYPE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>DOCNUM</name>
-        <field>DOCNUM</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>CUSTID</name>
-        <field>CUSTID</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>910</xloc>
-      <yloc>91</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step>
     <name>Get Parameters</name>
     <type>TableInput</type>
@@ -1209,7 +972,7 @@ private List getProcParams(String procName)
     </step>
 
   <step>
-    <name>Update Open</name>
+    <name>Update Master</name>
     <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
@@ -1250,140 +1013,140 @@ private List getProcParams(String procName)
         <name2/>
       </key>
       <value>
-        <name>CMPCODE</name>
-        <rename>CMPCODE</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>CUSTID</name>
-        <rename>CUSTID</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>DOCTYPE</name>
-        <rename>DOCTYPE</rename>
-        <update>N</update>
-      </value>
-      <value>
         <name>DOCSUBTYPE</name>
         <rename>DOCSUBTYPE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DOCNUM</name>
-        <rename>DOCNUM</rename>
         <update>N</update>
       </value>
       <value>
         <name>SOURCESYS</name>
         <rename>SOURCESYS</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>INVOICEREF</name>
         <rename>INVOICEREF</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>GLACCT</name>
         <rename>GLACCT</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>DOCDATE</name>
         <rename>DOCDATE</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>POSTDATE</name>
         <rename>POSTDATE</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>CLEARDATE</name>
         <rename>CLEARDATE</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>DOCDESC</name>
         <rename>DOCDESC</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>XACTREF</name>
         <rename>XACTREF</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>CUSTREF</name>
         <rename>CUSTREF</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>EXTREF5</name>
         <rename>EXTREF5</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>DOCCURR</name>
         <rename>DOCCURR</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>HOMECURR</name>
         <rename>HOMECURR</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>ALTCURR</name>
         <rename>ALTCURR</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>ORGVAL_DOC</name>
         <rename>ORGVAL_DOC</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>ORGVAL_HOME</name>
         <rename>ORGVAL_HOME</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>ORGVAL_ALT</name>
         <rename>ORGVAL_ALT</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>ORGVAL_NORM</name>
         <rename>ORGVAL_NORM</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>OPENVAL_DOC</name>
         <rename>OPENVAL_DOC</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>OPENVAL_HOME</name>
         <rename>OPENVAL_HOME</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>OPENVAL_ALT</name>
         <rename>OPENVAL_ALT</rename>
-        <update>Y</update>
+        <update>N</update>
       </value>
       <value>
         <name>OPENVAL_NORM</name>
         <rename>OPENVAL_NORM</rename>
-        <update>Y</update>
+        <update>N</update>
+      </value>
+      <value>
+        <name>PAYVAL_DOC</name>
+        <rename>PAYVAL_DOC</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>PAYVAL_HOME</name>
+        <rename>PAYVAL_HOME</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>PAYVAL_ALT</name>
+        <rename>PAYVAL_ALT</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>PAYVAL_NORM</name>
+        <rename>PAYVAL_NORM</rename>
+        <update>N</update>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>738</xloc>
-      <yloc>290</yloc>
+      <xloc>613</xloc>
+      <yloc>167</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

@@ -4,3 +4,4 @@ Custom jdbcodbc.jar installed
 jdbcodbc.dll installed in libswt/<arch>
 ojdbc.jar installed in lib
 Latest H2 driver in lib
+JRE 7 (for zip functionality)
