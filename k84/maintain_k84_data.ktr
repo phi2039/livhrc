@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>update_k84</name>
+    <name>maintain_k84_data</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -10,14 +10,9 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
-            <name>sourcePath</name>
-            <default_value/>
-            <description>Directory containing raw K84 files</description>
-        </parameter>
-        <parameter>
-            <name>transDate</name>
-            <default_value/>
-            <description>Date of transactions &#x5b;yyyy-mm-dd&#x5d;</description>
+            <name>monthsHistory</name>
+            <default_value>6</default_value>
+            <description>Months of K84 history to keep</description>
         </parameter>
     </parameters>
     <log>
@@ -77,59 +72,17 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;04&#x2f;14 19&#x3a;38&#x3a;55.701</created_date>
+  <created_date>2015&#x2f;05&#x2f;05 08&#x3a;51&#x3a;42.677</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;04&#x2f;14 19&#x3a;38&#x3a;55.701</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;05 08&#x3a;51&#x3a;42.677</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>Local Variables&#x3a;&#xd;&#xa;sourceFile &#x5b;String&#x5d;&#xd;&#xa;transDate &#x5b;Date&#x5d;</note>
-      <xloc>187</xloc>
-      <yloc>57</yloc>
-      <width>129</width>
-      <heigth>70</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Retrieve source &#xd;&#xa;directory from &#xd;&#xa;parent in&#x3a;&#xd;&#xa;sourcePath</note>
-      <xloc>41</xloc>
-      <yloc>38</yloc>
-      <width>116</width>
+      <note>Delete records from the&#xd;&#xa;master table older than&#xd;&#xa;the specified number of &#xd;&#xa;months</note>
+      <xloc>19</xloc>
+      <yloc>22</yloc>
+      <width>173</width>
       <heigth>90</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Parse all &#x22;AK20&#x22;&#xd;&#xa;lines in input&#xd;&#xa;file&#xd;&#xa;TODO&#x3a; Parse header&#xd;&#xa;for date&#x2f;securityId</note>
-      <xloc>316</xloc>
-      <yloc>231</yloc>
-      <width>144</width>
-      <heigth>110</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -208,7 +161,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -234,7 +187,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -247,15 +200,45 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Set Variables</from><to>Parse Raw K84 File</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Path</from><to>Set Variables</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add Security Id</from><to>Concat Fields</to><enabled>Y</enabled> </hop>
-  <hop> <from>Parse Raw K84 File</from><to>Add Security Id</to><enabled>Y</enabled> </hop>
-  <hop> <from>Concat Fields</from><to>Write Output File</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Date</from><to>Get History Length</to><enabled>Y</enabled> </hop>
+  <hop> <from>Calc Min Date</from><to>Trim Master</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get History Length</from><to>Invert History</to><enabled>Y</enabled> </hop>
+  <hop> <from>Invert History</from><to>Calc Min Date</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Add Security Id</name>
-    <type>Constant</type>
+    <name>Trim Master</name>
+    <type>Delete</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MASTER_DATA</connection>
+    <commit>100</commit>
+    <lookup>
+      <schema>MASTER_DATA</schema>
+      <table>K84_MASTER</table>
+      <key>
+        <name>minDate</name>
+        <field>ACCTDATE</field>
+        <condition>&#x3c;</condition>
+        <name2/>
+      </key>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>742</xloc>
+      <yloc>146</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Date</name>
+    <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -266,29 +249,21 @@
            </partitioning>
     <fields>
       <field>
-        <name>securityId</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>10827</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
+        <name>today</name>
+        <type>system date &#x28;fixed&#x29;</type>
+        </field>
+      </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>500</xloc>
-      <yloc>163</yloc>
+      <xloc>134</xloc>
+      <yloc>146</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Concat Fields</name>
-    <type>ConcatFields</type>
+    <name>Get History Length</name>
+    <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -297,368 +272,83 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <separator/>
-    <enclosure/>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>N</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>file</name>
-      <is_command>N</is_command>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
     <fields>
       <field>
-        <name>securityId</name>
-        <type>String</type>
+        <name>monthsHistory</name>
+        <variable>&#x24;&#x7b;monthsHistory&#x7d;</variable>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
         <length>-1</length>
         <precision>-1</precision>
-      </field>
-      <field>
-        <name>Transaction</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
         <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <ConcatFields>
-<targetFieldName>transactionRef</targetFieldName>
-<targetFieldLength>0</targetFieldLength>
-<removeSelectedFields>N</removeSelectedFields>
-    </ConcatFields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>640</xloc>
-      <yloc>163</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Path</name>
-    <type>GetFileNames</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <filter>
-      <filterfiletype>all_files</filterfiletype>
-    </filter>
-    <doNotFailIfNoFile>N</doNotFailIfNoFile>
-    <rownum>N</rownum>
-    <isaddresult>N</isaddresult>
-    <filefield>N</filefield>
-    <rownum_field/>
-    <filename_Field/>
-    <wildcard_Field/>
-    <exclude_wildcard_Field/>
-    <dynamic_include_subfolders>N</dynamic_include_subfolders>
-    <limit>0</limit>
-    <file>
-      <name>&#x24;&#x7b;sourcePath&#x7d;</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>84</xloc>
-      <yloc>162</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Parse Raw K84 File</name>
-    <type>TextFileInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <accept_filenames>Y</accept_filenames>
-    <passing_through_fields>Y</passing_through_fields>
-    <accept_field>sourceFile</accept_field>
-    <accept_stepname>Set Variables</accept_stepname>
-    <separator/>
-    <enclosure>&#x22;</enclosure>
-    <enclosure_breaks>N</enclosure_breaks>
-    <escapechar/>
-    <header>Y</header>
-    <nr_headerlines>1</nr_headerlines>
-    <footer>N</footer>
-    <nr_footerlines>1</nr_footerlines>
-    <line_wrapped>N</line_wrapped>
-    <nr_wraps>1</nr_wraps>
-    <layout_paged>N</layout_paged>
-    <nr_lines_per_page>80</nr_lines_per_page>
-    <nr_lines_doc_header>0</nr_lines_doc_header>
-    <noempty>Y</noempty>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <rownumByFile>N</rownumByFile>
-    <rownum_field/>
-    <format>DOS</format>
-    <encoding/>
-    <add_to_result_filenames>N</add_to_result_filenames>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <type>Fixed</type>
-      <compression>None</compression>
-    </file>
-    <filters>
-      <filter>
-        <filter_string>Base64&#x3a; QUsyMA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
-    </filters>
-    <fields>
-      <field>
-        <name>LineType</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>0</position>
-        <length>4</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>ClientName</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>4</position>
-        <length>24</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>ImporterId</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>28</position>
-        <length>15</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>Transaction</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>43</position>
-        <length>9</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <error_ignored>N</error_ignored>
-    <skip_bad_files>N</skip_bad_files>
-    <file_error_field/>
-    <file_error_message_field/>
-    <error_line_skipped>N</error_line_skipped>
-    <error_count_field/>
-    <error_fields_field/>
-    <error_text_field/>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <date_format_lenient>Y</date_format_lenient>
-    <date_format_locale>en_US</date_format_locale>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>353</xloc>
-      <yloc>162</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set Variables</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Initialize</jsScript_name>
-        <jsScript_script>var transDateString &#x3d; getVariable&#x28;&#x22;transDate&#x22;,&#x22;&#x22;&#x29;&#x3b; &#x2f;&#x2f; Format should be yyyy-mm-dd&#xd;&#xa;&#xd;&#xa;&#x2f;&#x2f; Parse&#x2f;validate target transaction date&#xd;&#xa;var format &#x3d; new java.text.SimpleDateFormat&#x28;&#x22;yyyy-MM-dd&#x22;&#x29;&#x3b;&#xd;&#xa;var transDate &#x3d; format.parse&#x28;transDateString&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x2f;&#x2f; The report date is one &#x28;business&#x29; day after the transaction date, so add one day to the date&#xd;&#xa;&#x2f;&#x2f; TODO&#x3a; Handle mondays and weekends&#xd;&#xa;var fileDate &#x3d; new java.util.Date&#x28;&#x29;&#x3b;&#xd;&#xa;fileDate.setDate&#x28;transDate.getDate&#x28;&#x29; &#x2b; 1&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x2f;&#x2f; Properly terminate source path&#xd;&#xa;var sourcePath &#x3d; filename&#x3b;&#xd;&#xa;if &#x28;&#x28;sourcePath&#x5b;0&#x5d; &#x21;&#x3d; &#x27;&#x2f;&#x27;&#x29; &#x26;&#x26; &#x28;sourcePath&#x5b;0&#x5d; &#x21;&#x3d; &#x27;&#x5c;&#x5c;&#x27;&#x29;&#x29;&#xd;&#xa;&#x7b;&#xd;&#xa;	sourcePath &#x2b;&#x3d; &#x22;&#x2f;&#x22;&#x3b;&#xd;&#xa;&#x7d;&#xd;&#xa;&#xd;&#xa;var filePrefix &#x3d; &#x22;lik84&#x22;&#x3b;&#xd;&#xa;var fileSuffix &#x3d; new java.text.SimpleDateFormat&#x28;&#x22;MMdd&#x22;&#x29;.format&#x28;fileDate&#x29;&#x3b;&#xd;&#xa;var sourceFile &#x3d; sourcePath &#x2b; filePrefix &#x2b; fileSuffix &#x2b; &#x22;.txt&#x22;&#xd;&#xa;&#xd;&#xa;setVariable&#x28;&#x22;sourceFile&#x22;,sourceFile,&#x22;p&#x22;&#x29;&#x3b;&#xd;&#xa;transDateString &#x3d; format.format&#x28;transDate&#x29;&#x3b;&#xd;&#xa;writeToLog&#x28;&#x22;m&#x22;, &#x22;Transaction date&#x3a; &#x22; &#x2b; transDateString &#x2b; &#x22; - Source file&#x3a; &#x22; &#x2b; sourceFile&#x29;&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>sourceFile</name>
-        <rename>sourceFile</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>transDate</name>
-        <rename>transDate</rename>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>220</xloc>
-      <yloc>162</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Write Output File</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <separator>&#x7c;</separator>
-    <enclosure/>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding>windows-1252</encoding>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField>outputFile</fileNameField>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>&#x24;&#x7b;destPath&#x7d;&#x5c;&#x24;&#x7b;destName&#x7d;_&#x24;&#x7b;transDate&#x7d;</name>
-      <is_command>N</is_command>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-      <field>
-        <name>transactionRef</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>transDate</name>
-        <type>String</type>
-        <format>MM&#x2f;dd&#x2f;yyyy</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
       </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>787</xloc>
-      <yloc>163</yloc>
+      <xloc>286</xloc>
+      <yloc>147</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Calc Min Date</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>minDate</field_name>
+<calc_type>ADD_MONTHS</calc_type>
+<field_a>today</field_a>
+<field_b>invMonths</field_b>
+<field_c/>
+<value_type>Date</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>580</xloc>
+      <yloc>147</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Invert History</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>invMonths</field_name>
+<formula_string>-1 &#x2a; &#x5b;monthsHistory&#x5d;</formula_string>
+<value_type>Integer</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>431</xloc>
+      <yloc>147</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
