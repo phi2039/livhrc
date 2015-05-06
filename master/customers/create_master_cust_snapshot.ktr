@@ -198,7 +198,7 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <sql>SELECT &#x2a;&#xd;&#xa;FROM MASTER_DATA.CUSTOMERS&#xd;&#xa;</sql>
+    <sql>SELECT &#x2a;&#xd;&#xa;FROM MASTER_DATA.CUSTOMER_MASTER&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

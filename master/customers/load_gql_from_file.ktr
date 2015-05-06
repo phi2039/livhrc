@@ -771,7 +771,7 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <schema>MASTER_DATA</schema>
+    <schema>STAGING</schema>
     <table>CUST_OVER_LOAD</table>
     <commit>1000</commit>
     <truncate>Y</truncate>

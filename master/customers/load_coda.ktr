@@ -98,6 +98,30 @@
     </attributes>
   </connection>
   <connection>
+    <name>GQL</name>
+    <server/>
+    <type>ORACLERDB</type>
+    <access>ODBC</access>
+    <database>LII_SALESDB</database>
+    <port>1521</port>
+    <username>DBTEST_XXX</username>
+    <password>Encrypted 2be98afc86aa7f2e48d3080248fc78cf6</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>MASTER_DATA</name>
     <server/>
     <type>GENERIC</type>
@@ -111,7 +135,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;Integration&#x5c;db&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -137,7 +161,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;Integration&#x5c;db&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -164,12 +188,12 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <schema>MASTER_DATA</schema>
+    <schema>STAGING</schema>
     <table>CUST_EXT_LOAD</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
+    <use_batch>N</use_batch>
     <specify_fields>N</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>

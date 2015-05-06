@@ -198,7 +198,7 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <sql>SELECT&#xd;&#xa;  CMPCODE&#xd;&#xa;, CUSTID&#xd;&#xa;, DOCTYPE&#xd;&#xa;, DOCSUBTYPE&#xd;&#xa;, DOCNUM&#xd;&#xa;, SOURCESYS&#xd;&#xa;, INVOICEREF&#xd;&#xa;, GLACCT&#xd;&#xa;, DOCDATE&#xd;&#xa;, POSTDATE&#xd;&#xa;, CLEARDATE&#xd;&#xa;, DOCDESC&#xd;&#xa;, XACTREF&#xd;&#xa;, CUSTREF&#xd;&#xa;, EXTREF5&#xd;&#xa;, DOCCURR&#xd;&#xa;, HOMECURR&#xd;&#xa;, ALTCURR&#xd;&#xa;, ORGVAL_DOC&#xd;&#xa;, ORGVAL_HOME&#xd;&#xa;, ORGVAL_ALT&#xd;&#xa;, ORGVAL_NORM&#xd;&#xa;, OPENVAL_DOC&#xd;&#xa;, OPENVAL_HOME&#xd;&#xa;, OPENVAL_ALT&#xd;&#xa;, OPENVAL_NORM&#xd;&#xa;, LASTMOD&#xd;&#xa;, PAYVAL_DOC&#xd;&#xa;, PAYVAL_HOME&#xd;&#xa;, PAYVAL_ALT&#xd;&#xa;, PAYVAL_NORM&#xd;&#xa;, K84ACCTDATE&#xd;&#xa;, DUEDATE&#xd;&#xa;FROM MASTER_DATA.AR_ITEM_MASTER&#xd;&#xa;WHERE POSTDATE &#x3c; TRUNC&#x28;SYSDATE&#x29;&#xd;&#xa;</sql>
+    <sql>SELECT &#x2a;&#xd;&#xa;FROM MASTER_DATA.AR_ITEM_MASTER&#xd;&#xa;WHERE POSTDATE &#x3c; TRUNC&#x28;SYSDATE&#x29;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

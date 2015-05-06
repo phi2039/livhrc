@@ -177,7 +177,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -203,7 +203,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -275,12 +275,12 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <schema>MASTER_DATA</schema>
+    <schema>STAGING</schema>
     <table>CUST_OVER_LOAD</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
+    <use_batch>N</use_batch>
     <specify_fields>N</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>

@@ -294,7 +294,7 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <sql>SELECT &#x2a; FROM MASTER_DATA.CUST_EXT_LOAD&#xd;&#xa;ORDER BY CUSTID</sql>
+    <sql>SELECT &#x2a; FROM STAGING.CUST_EXT_LOAD&#xd;&#xa;ORDER BY CUSTID</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -345,7 +345,7 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <sql>SELECT&#xd;&#xa;  CUSTID&#xd;&#xa;, NAME&#xd;&#xa;, ADD1&#xd;&#xa;, ADD2&#xd;&#xa;, ADD3&#xd;&#xa;, CITY&#xd;&#xa;, STATEPROV&#xd;&#xa;, COUNTRY&#xd;&#xa;, POSTCODE&#xd;&#xa;, CREATEDATE&#xd;&#xa;, TERMS&#xd;&#xa;, CREDITLIM&#xd;&#xa;, TTMREV&#xd;&#xa;, SFID&#xd;&#xa;, CORPCODE&#xd;&#xa;, CRLIMDATE&#xd;&#xa;, ACCTSTAT&#xd;&#xa;, ACCTTYPE&#xd;&#xa;, BONDTYPE&#xd;&#xa;, PREVCO&#xd;&#xa;, SIC&#xd;&#xa;, CST&#xd;&#xa;, CSM&#xd;&#xa;, MSD&#xd;&#xa;, SC&#xd;&#xa;, WAIVERTYPE&#xd;&#xa;, INVCURR&#xd;&#xa;, CREDITCODE&#xd;&#xa;, LANGUAGE&#xd;&#xa;, PARENT&#xd;&#xa;, REMITTO&#xd;&#xa;, REMARKS1&#xd;&#xa;, REMARKS2&#xd;&#xa;FROM MASTER_DATA.CUSTOMERS&#xd;&#xa;ORDER BY CUSTID&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  CUSTID&#xd;&#xa;, NAME&#xd;&#xa;, ADD1&#xd;&#xa;, ADD2&#xd;&#xa;, ADD3&#xd;&#xa;, CITY&#xd;&#xa;, STATEPROV&#xd;&#xa;, COUNTRY&#xd;&#xa;, POSTCODE&#xd;&#xa;, CREATEDATE&#xd;&#xa;, TERMS&#xd;&#xa;, CREDITLIM&#xd;&#xa;, TTMREV&#xd;&#xa;, SFID&#xd;&#xa;, CORPCODE&#xd;&#xa;, CRLIMDATE&#xd;&#xa;, ACCTSTAT&#xd;&#xa;, ACCTTYPE&#xd;&#xa;, BONDTYPE&#xd;&#xa;, PREVCO&#xd;&#xa;, SIC&#xd;&#xa;, CST&#xd;&#xa;, CSM&#xd;&#xa;, MSD&#xd;&#xa;, SC&#xd;&#xa;, WAIVERTYPE&#xd;&#xa;, INVCURR&#xd;&#xa;, CREDITCODE&#xd;&#xa;, LANGUAGE&#xd;&#xa;, PARENT&#xd;&#xa;, REMITTO&#xd;&#xa;, REMARKS1&#xd;&#xa;, REMARKS2&#xd;&#xa;FROM MASTER_DATA.CUSTOMER_MASTER&#xd;&#xa;ORDER BY CUSTID&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -382,7 +382,7 @@
     <order_delete/>
     <lookup>
       <schema>MASTER_DATA</schema>
-      <table>CUSTOMERS</table>
+      <table>CUSTOMER_MASTER</table>
       <key>
         <name>CUSTID</name>
         <field>CUSTID</field>

@@ -37,6 +37,30 @@
     </attributes>
   </connection>
   <connection>
+    <name>GQL</name>
+    <server/>
+    <type>ORACLERDB</type>
+    <access>ODBC</access>
+    <database>LII_SALESDB</database>
+    <port>1521</port>
+    <username>DBTEST_XXX</username>
+    <password>Encrypted 2be98afc86aa7f2e48d3080248fc78cf6</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>MASTER_DATA</name>
     <server/>
     <type>GENERIC</type>
@@ -50,7 +74,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -76,7 +100,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -137,8 +161,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>559</xloc>
-      <yloc>377</yloc>
+      <xloc>655</xloc>
+      <yloc>321</yloc>
       </entry>
     <entry>
       <name>Update Customer Master</name>
@@ -172,22 +196,6 @@
       <nr>0</nr>
       <xloc>509</xloc>
       <yloc>162</yloc>
-      </entry>
-    <entry>
-      <name>Truncate Extracts</name>
-      <description/>
-      <type>SQL</type>
-      <sql>TRUNCATE TABLE MASTER_DATA.CUST_EXT_LOAD&#x3b;&#xd;&#xa;TRUNCATE TABLE MASTER_DATA.CUST_OVER_LOAD&#x3b;</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>MASTER_DATA</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>350</xloc>
-      <yloc>375</yloc>
       </entry>
     <entry>
       <name>Load CODA</name>
@@ -288,26 +296,41 @@
       <xloc>194</xloc>
       <yloc>158</yloc>
       </entry>
+    <entry>
+      <name>Truncate tables</name>
+      <description/>
+      <type>TRUNCATE_TABLES</type>
+      <connection>MASTER_DATA</connection>
+      <arg_from_previous>N</arg_from_previous>
+      <fields>
+        <field>
+          <name>CUST_EXT_LOAD</name>
+          <schemaname>STAGING</schemaname>
+        </field>
+        <field>
+          <name>CUST_OVER_LOAD</name>
+          <schemaname>STAGING</schemaname>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>346</xloc>
+      <yloc>319</yloc>
+      </entry>
+    <entry>
+      <name>Abort job</name>
+      <description/>
+      <type>ABORT</type>
+      <message/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>509</xloc>
+      <yloc>316</yloc>
+      </entry>
   </entries>
   <hops>
-    <hop>
-      <from>Update Customer Master</from>
-      <to>Truncate Extracts</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Truncate Extracts</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>Load CODA</from>
       <to>Merge Extracts</to>
@@ -336,39 +359,12 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Merge Extracts</from>
-      <to>Truncate Extracts</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Load CODA</from>
-      <to>Truncate Extracts</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Load GQL</from>
       <to>Merge Extracts</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Load GQL</from>
-      <to>Truncate Extracts</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
@@ -379,6 +375,60 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Load GQL</from>
+      <to>Truncate tables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Load CODA</from>
+      <to>Truncate tables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Merge Extracts</from>
+      <to>Truncate tables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Update Customer Master</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Truncate tables</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Update Customer Master</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
@@ -447,8 +497,8 @@
     </notepad>
     <notepad>
       <note>Shrink database</note>
-      <xloc>308</xloc>
-      <yloc>439</yloc>
+      <xloc>305</xloc>
+      <yloc>387</yloc>
       <width>115</width>
       <heigth>30</heigth>
       <fontname/>
