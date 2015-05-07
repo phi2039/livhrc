@@ -78,10 +78,10 @@
   </info>
   <notepads>
     <notepad>
-      <note>Delete closed items from &#xd;&#xa;the master table that were&#xd;&#xa;closed more than &#x24;&#x5b;daysHistory&#x7d;&#xd;&#xa;days ago</note>
+      <note>Delete closed items and settlements &#xd;&#xa;from the master table that were&#xd;&#xa;closed more than &#x24;&#x5b;daysHistory&#x7d;&#xd;&#xa;days ago</note>
       <xloc>41</xloc>
       <yloc>25</yloc>
-      <width>224</width>
+      <width>255</width>
       <heigth>90</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -161,7 +161,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -204,12 +204,13 @@
   <hop> <from>Get Date</from><to>Get History Length</to><enabled>Y</enabled> </hop>
   <hop> <from>Get History Length</from><to>Invert History</to><enabled>Y</enabled> </hop>
   <hop> <from>Invert History</from><to>Calc Min Date</to><enabled>Y</enabled> </hop>
+  <hop> <from>Calc Min Date</from><to>Trim Settlements</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Calc Min Date</name>
     <type>Calculator</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -232,8 +233,8 @@
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>602</xloc>
-      <yloc>150</yloc>
+      <xloc>519</xloc>
+      <yloc>164</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -257,8 +258,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>156</xloc>
-      <yloc>149</yloc>
+      <xloc>73</xloc>
+      <yloc>163</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -290,8 +291,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>308</xloc>
-      <yloc>150</yloc>
+      <xloc>225</xloc>
+      <yloc>164</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -316,8 +317,8 @@
 </formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>453</xloc>
-      <yloc>150</yloc>
+      <xloc>370</xloc>
+      <yloc>164</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -347,8 +348,39 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>757</xloc>
-      <yloc>151</yloc>
+      <xloc>674</xloc>
+      <yloc>95</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Trim Settlements</name>
+    <type>Delete</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MASTER_DATA</connection>
+    <commit>100</commit>
+    <lookup>
+      <schema>MASTER_DATA</schema>
+      <table>AR_SETTLEMENT_MASTER</table>
+      <key>
+        <name>minDate</name>
+        <field>PAYDATE</field>
+        <condition>&#x3c;</condition>
+        <name2/>
+      </key>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>673</xloc>
+      <yloc>226</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
