@@ -11,7 +11,7 @@
     <parameters>
         <parameter>
             <name>k84Path</name>
-            <default_value>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;K84 Daily</default_value>
+            <default_value/>
             <description>Path to k84 files</description>
         </parameter>
         <parameter>
@@ -644,7 +644,7 @@
  <negated>Y</negated>
  <leftvalue>lastmodifiedtime</leftvalue>
  <function>&#x3c;</function>
- <rightvalue>lastk84</rightvalue>
+ <rightvalue>minDate</rightvalue>
  </condition>
     </compare>
      <cluster_schema/>

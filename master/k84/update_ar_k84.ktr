@@ -415,26 +415,8 @@
       <schema>MASTER_DATA</schema>
       <table>AR_ITEM_MASTER</table>
       <key>
-        <name>CMPCODE</name>
-        <field>CMPCODE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-        </key>
-      <key>
-        <name>DOCTYPE</name>
-        <field>DOCTYPE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-        </key>
-      <key>
-        <name>DOCNUM</name>
-        <field>DOCNUM</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-        </key>
-      <key>
-        <name>CUSTID</name>
-        <field>CUSTID</field>
+        <name>xactRef</name>
+        <field>XACTREF</field>
         <condition>&#x3d;</condition>
         <name2/>
         </key>
