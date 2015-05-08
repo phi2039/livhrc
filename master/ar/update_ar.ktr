@@ -1013,9 +1013,29 @@ private List getProcParams(String procName)
         <name2/>
       </key>
       <value>
+        <name>CMPCODE</name>
+        <rename>CMPCODE</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>CUSTID</name>
+        <rename>CUSTID</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>DOCTYPE</name>
+        <rename>DOCTYPE</rename>
+        <update>N</update>
+      </value>
+      <value>
         <name>DOCSUBTYPE</name>
         <rename>DOCSUBTYPE</rename>
         <update>Y</update>
+      </value>
+      <value>
+        <name>DOCNUM</name>
+        <rename>DOCNUM</rename>
+        <update>N</update>
       </value>
       <value>
         <name>SOURCESYS</name>
