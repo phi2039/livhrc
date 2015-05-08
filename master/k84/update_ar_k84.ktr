@@ -219,7 +219,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -380,7 +380,7 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <sql>SELECT&#xd;&#xa;  XACTID&#xd;&#xa;, RPTDATE&#xd;&#xa;, ACCTDATE&#xd;&#xa;, SECID&#xd;&#xa;, L2.DOCCOUNT&#xd;&#xa;FROM MASTER_DATA.K84_MASTER&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  XACTID&#xd;&#xa;, RPTDATE&#xd;&#xa;, ACCTDATE&#xd;&#xa;, SECID&#xd;&#xa;FROM MASTER_DATA.K84_MASTER&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
