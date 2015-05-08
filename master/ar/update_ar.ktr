@@ -198,7 +198,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -280,7 +280,7 @@
            </partitioning>
     <fields>
       <field>
-        <name>today</name>
+        <name>LASTMOD</name>
         <type>system date &#x28;variable&#x29;</type>
         </field>
       </fields>
@@ -1015,132 +1015,137 @@ private List getProcParams(String procName)
       <value>
         <name>DOCSUBTYPE</name>
         <rename>DOCSUBTYPE</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>SOURCESYS</name>
         <rename>SOURCESYS</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>INVOICEREF</name>
         <rename>INVOICEREF</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>GLACCT</name>
         <rename>GLACCT</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>DOCDATE</name>
         <rename>DOCDATE</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>POSTDATE</name>
         <rename>POSTDATE</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>CLEARDATE</name>
         <rename>CLEARDATE</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>DOCDESC</name>
         <rename>DOCDESC</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>XACTREF</name>
         <rename>XACTREF</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>CUSTREF</name>
         <rename>CUSTREF</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>EXTREF5</name>
         <rename>EXTREF5</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>DOCCURR</name>
         <rename>DOCCURR</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>HOMECURR</name>
         <rename>HOMECURR</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>ALTCURR</name>
         <rename>ALTCURR</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>ORGVAL_DOC</name>
         <rename>ORGVAL_DOC</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>ORGVAL_HOME</name>
         <rename>ORGVAL_HOME</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>ORGVAL_ALT</name>
         <rename>ORGVAL_ALT</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>ORGVAL_NORM</name>
         <rename>ORGVAL_NORM</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>OPENVAL_DOC</name>
         <rename>OPENVAL_DOC</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>OPENVAL_HOME</name>
         <rename>OPENVAL_HOME</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>OPENVAL_ALT</name>
         <rename>OPENVAL_ALT</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>OPENVAL_NORM</name>
         <rename>OPENVAL_NORM</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>PAYVAL_DOC</name>
         <rename>PAYVAL_DOC</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>PAYVAL_HOME</name>
         <rename>PAYVAL_HOME</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>PAYVAL_ALT</name>
         <rename>PAYVAL_ALT</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>PAYVAL_NORM</name>
         <rename>PAYVAL_NORM</rename>
-        <update>N</update>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>LASTMOD</name>
+        <rename>LASTMOD</rename>
+        <update>Y</update>
       </value>
     </lookup>
      <cluster_schema/>
