@@ -224,11 +224,12 @@ pip-log.txt
 set_env.bat
 
 # Spoon
-.kettle/db.cache-5.3.0.0-213
-.kettle/.spoonrc
-.kettle/.spoonrc
+.kettle/db.cache-*
 .kettle/xulSettings.properties
 .kettle/.spoonrc
 
 # H2 DB
 *.db
+
+
+snapshot/*

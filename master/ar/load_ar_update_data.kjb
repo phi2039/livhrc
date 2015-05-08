@@ -222,6 +222,9 @@
             <parameter>            <name>daysHistory</name>
             <stream_name/>
             <value>&#x24;&#x7b;daysHistory&#x7d;</value>
+            </parameter>            <parameter>            <name>makeCurrent</name>
+            <stream_name/>
+            <value>true</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
