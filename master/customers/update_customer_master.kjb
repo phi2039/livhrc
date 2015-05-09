@@ -151,8 +151,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>33</xloc>
-      <yloc>195</yloc>
+      <xloc>36</xloc>
+      <yloc>169</yloc>
       </entry>
     <entry>
       <name>Update Customer Master</name>
@@ -184,8 +184,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>739</xloc>
-      <yloc>146</yloc>
+      <xloc>742</xloc>
+      <yloc>120</yloc>
       </entry>
     <entry>
       <name>Merge Extracts</name>
@@ -217,8 +217,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>580</xloc>
-      <yloc>142</yloc>
+      <xloc>583</xloc>
+      <yloc>116</yloc>
       </entry>
     <entry>
       <name>Truncate tables</name>
@@ -239,8 +239,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>584</xloc>
-      <yloc>312</yloc>
+      <xloc>587</xloc>
+      <yloc>286</yloc>
       </entry>
     <entry>
       <name>Load Source Data</name>
@@ -271,8 +271,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>439</xloc>
-      <yloc>199</yloc>
+      <xloc>442</xloc>
+      <yloc>173</yloc>
       </entry>
     <entry>
       <name>EXT Exists</name>
@@ -284,8 +284,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>263</xloc>
-      <yloc>201</yloc>
+      <xloc>266</xloc>
+      <yloc>175</yloc>
       </entry>
     <entry>
       <name>OVER Exists</name>
@@ -297,8 +297,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>149</xloc>
-      <yloc>200</yloc>
+      <xloc>152</xloc>
+      <yloc>174</yloc>
       </entry>
     <entry>
       <name>Create EXT</name>
@@ -313,8 +313,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>261</xloc>
-      <yloc>307</yloc>
+      <xloc>264</xloc>
+      <yloc>281</yloc>
       </entry>
     <entry>
       <name>Create OVER</name>
@@ -329,8 +329,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>153</xloc>
-      <yloc>305</yloc>
+      <xloc>156</xloc>
+      <yloc>279</yloc>
       </entry>
     <entry>
       <name>Falied Creating</name>
@@ -340,8 +340,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>207</xloc>
-      <yloc>433</yloc>
+      <xloc>210</xloc>
+      <yloc>407</yloc>
       </entry>
   </entries>
   <hops>
@@ -475,8 +475,8 @@
   <notepads>
     <notepad>
       <note>Update fields in CODA extract with &#xd;&#xa;any values available from GQL</note>
-      <xloc>476</xloc>
-      <yloc>50</yloc>
+      <xloc>479</xloc>
+      <yloc>24</yloc>
       <width>246</width>
       <heigth>50</heigth>
       <fontname/>
@@ -496,8 +496,8 @@
     </notepad>
     <notepad>
       <note>Load staging tables from &#xd;&#xa;extract files</note>
-      <xloc>141</xloc>
-      <yloc>98</yloc>
+      <xloc>144</xloc>
+      <yloc>72</yloc>
       <width>181</width>
       <heigth>50</heigth>
       <fontname/>
@@ -517,8 +517,8 @@
     </notepad>
     <notepad>
       <note>Update master data table &#xd;&#xa;with changes from extracts</note>
-      <xloc>857</xloc>
-      <yloc>136</yloc>
+      <xloc>860</xloc>
+      <yloc>110</yloc>
       <width>188</width>
       <heigth>50</heigth>
       <fontname/>
@@ -538,8 +538,8 @@
     </notepad>
     <notepad>
       <note>Shrink database</note>
-      <xloc>541</xloc>
-      <yloc>380</yloc>
+      <xloc>544</xloc>
+      <yloc>354</yloc>
       <width>115</width>
       <heigth>30</heigth>
       <fontname/>

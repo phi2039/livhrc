@@ -639,7 +639,7 @@ private List getProcParams(String procName)
         <field>
         <field_name>CREATEDATE</field_name>
 
-        <field_type>Integer</field_type>
+        <field_type>Date</field_type>
 
         <field_length>-1</field_length>
 
@@ -659,7 +659,7 @@ private List getProcParams(String procName)
         <field>
         <field_name>CREDITLIM</field_name>
 
-        <field_type>Integer</field_type>
+        <field_type>Number</field_type>
 
         <field_length>-1</field_length>
 
@@ -699,7 +699,7 @@ private List getProcParams(String procName)
         <field>
         <field_name>CRLIMDATE</field_name>
 
-        <field_type>Integer</field_type>
+        <field_type>Date</field_type>
 
         <field_length>-1</field_length>
 
