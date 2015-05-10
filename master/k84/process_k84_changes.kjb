@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>set_vars_and_inj_meta</name>
+  <name>process_k84_changes</name>
     <description/>
     <extended_description/>
     <job_version/>
-    <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;05&#x2f;08 13&#x3a;10&#x3a;11.867</created_date>
+  <created_date>2015&#x2f;05&#x2f;09 17&#x3a;32&#x3a;28.884</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;05&#x2f;08 13&#x3a;10&#x3a;11.867</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;09 17&#x3a;32&#x3a;28.884</modified_date>
     <parameters>
-        <parameter>
-            <name>tableName</name>
-            <default_value/>
-            <description/>
-        </parameter>
     </parameters>
   <connection>
     <name>CODA</name>
@@ -140,52 +134,12 @@
    <shared_objects_file/>
   <entries>
     <entry>
-      <name>START</name>
-      <description/>
-      <type>SPECIAL</type>
-      <start>Y</start>
-      <dummy>N</dummy>
-      <repeat>N</repeat>
-      <schedulerType>0</schedulerType>
-      <intervalSeconds>0</intervalSeconds>
-      <intervalMinutes>60</intervalMinutes>
-      <hour>12</hour>
-      <minutes>0</minutes>
-      <weekDay>1</weekDay>
-      <DayOfMonth>1</DayOfMonth>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>135</xloc>
-      <yloc>134</yloc>
-      </entry>
-    <entry>
-      <name>Set variables</name>
-      <description/>
-      <type>SET_VARIABLES</type>
-      <replacevars>Y</replacevars>
-      <filename/>
-      <file_variable_type>JVM</file_variable_type>
-      <fields>
-        <field>
-          <variable_name>tableName</variable_name>
-          <variable_value>&#x24;&#x7b;tableName&#x7d;</variable_value>
-          <variable_type>PARENT_JOB</variable_type>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>272</xloc>
-      <yloc>134</yloc>
-      </entry>
-    <entry>
-      <name>Meta</name>
+      <name>Update AR</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;NG_Integration&#x5c;util&#x5c;inject_schema_meta.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;update_ar_k84.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -209,14 +163,44 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>422</xloc>
-      <yloc>137</yloc>
+      <xloc>288</xloc>
+      <yloc>181</yloc>
+      </entry>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>147</xloc>
+      <yloc>182</yloc>
+      </entry>
+    <entry>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>427</xloc>
+      <yloc>183</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
       <from>START</from>
-      <to>Set variables</to>
+      <to>Update AR</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -224,8 +208,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Set variables</from>
-      <to>Meta</to>
+      <from>Update AR</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -234,6 +218,48 @@
     </hop>
   </hops>
   <notepads>
+    <notepad>
+      <note>Update K84 dates&#xd;&#xa;for all AR items</note>
+      <xloc>229</xloc>
+      <yloc>98</yloc>
+      <width>129</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>TODO&#x3a; Log error&#x2f;alert when&#xd;&#xa;an item is not found</note>
+      <xloc>16</xloc>
+      <yloc>16</yloc>
+      <width>195</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>0</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
 
 </job>

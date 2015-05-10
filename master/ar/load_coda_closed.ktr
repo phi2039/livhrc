@@ -1037,7 +1037,7 @@ private List getProcParams(String procName)
 <step_name>Set Start Date</step_name>
 <step_description/>
 </info_step></info_steps><target_steps></target_steps><usage_parameters><usage_parameter><parameter_tag>procName</parameter_tag>
-<parameter_value>AR_EXTRACTS.OPEN_ITEMS_HISTORY</parameter_value>
+<parameter_value>AR_EXTRACTS.AR_ITEMS_HISTORY</parameter_value>
 <parameter_description/>
 </usage_parameter><usage_parameter><parameter_tag>connectionName</parameter_tag>
 <parameter_value>CODA</parameter_value>
