@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>extract_k84_file</name>
+    <name>export_hrc_ar_delta</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -10,8 +10,18 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
-            <name>fileName</name>
-            <default_value>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;K84 Daily&#x5c;K84 History&#x5c;lik840408.txt</default_value>
+            <name>destName</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>destPath</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>minDate</name>
+            <default_value/>
             <description/>
         </parameter>
     </parameters>
@@ -55,7 +65,7 @@
     <size_rowset>10000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
-    <unique_connections>Y</unique_connections>
+    <unique_connections>N</unique_connections>
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
@@ -72,32 +82,11 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;04&#x2f;30 16&#x3a;57&#x3a;03.777</created_date>
+  <created_date>2015&#x2f;05&#x2f;11 11&#x3a;40&#x3a;25.336</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;04&#x2f;30 16&#x3a;57&#x3a;03.777</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;11 11&#x3a;40&#x3a;25.336</modified_date>
   </info>
   <notepads>
-    <notepad>
-      <note>TODO&#x3a; Validate data&#xd;&#xa;- Err if more than one of each header</note>
-      <xloc>76</xloc>
-      <yloc>28</yloc>
-      <width>256</width>
-      <heigth>50</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>128</backgroundcolorgreen>
-      <backgroundcolorblue>255</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>CODA</name>
@@ -227,22 +216,13 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Split Line Code</from><to>Switch &#x2f; Case</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case</from><to>Others</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case</from><to>Report Detail</to><enabled>Y</enabled> </hop>
-  <hop> <from>Read Lines From File</from><to>Split Line Code</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case</from><to>Report Header</to><enabled>Y</enabled> </hop>
-  <hop> <from>Blocking Step</from><to>Join Header and Detail</to><enabled>Y</enabled> </hop>
-  <hop> <from>Report Header</from><to>Header Fields</to><enabled>Y</enabled> </hop>
-  <hop> <from>Report Detail</from><to>Detail Fields</to><enabled>Y</enabled> </hop>
-  <hop> <from>Header Fields</from><to>Blocking Step</to><enabled>Y</enabled> </hop>
-  <hop> <from>Detail Fields</from><to>Join Header and Detail</to><enabled>Y</enabled> </hop>
-  <hop> <from>Join Header and Detail</from><to>Get System Info</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get System Info</from><to>Add to Master</to><enabled>Y</enabled> </hop>
+  <hop> <from>AR Master</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values</from><to>Add Norm Curr</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Norm Curr</from><to>Output File</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Add to Master</name>
-    <type>InsertUpdate</type>
+    <name>AR Master</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -252,54 +232,23 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <commit>100</commit>
-    <update_bypassed>Y</update_bypassed>
-    <lookup>
-      <schema>MASTER_DATA</schema>
-      <table>K84_MASTER</table>
-      <key>
-        <name>det_xactId</name>
-        <field>XACTID</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>XACTID</name>
-        <rename>det_xactId</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>RPTDATE</name>
-        <rename>rpt_statementDate</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ACCTDATE</name>
-        <rename>rpt_accountingDate</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>SECID</name>
-        <rename>rpt_securityId</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>LASTMOD</name>
-        <rename>LASTMOD</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
+    <sql>SELECT &#x2a;&#xd;&#xa;FROM MASTER_DATA.AR_ITEM_MASTER&#xd;&#xa;WHERE LASTMOD &#x3e;&#x3d; &#x27;&#x24;&#x7b;minDate&#x7d;&#x27;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1209</xloc>
-      <yloc>194</yloc>
+      <xloc>77</xloc>
+      <yloc>58</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Blocking Step</name>
-    <type>BlockingStep</type>
+    <name>Add Norm Curr</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -308,280 +257,407 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <pass_all_rows>N</pass_all_rows>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>block</prefix>
-      <cache_size>5000</cache_size>
-      <compress>Y</compress>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>823</xloc>
-      <yloc>84</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Detail Fields</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>det_clientName</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>det_importerId</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>det_xactId</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>det_amounts</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>693</xloc>
-      <yloc>191</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Header Fields</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>rpt_portId</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rpt_portName</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rpt_securityName</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rpt_statementDate</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rpt_accountingDate</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rpt_securityId</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>rpt_accountingDate</name>
-        <rename>rpt_accountingDate</rename>
-        <type>Date</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask>yyyyMMdd</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>rpt_statementDate</name>
-        <rename>rpt_statementDate</rename>
-        <type>Date</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask>yyyyMMdd</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>695</xloc>
-      <yloc>83</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Join Header and Detail</name>
-    <type>JoinRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <cache_size>5000</cache_size>
-      <main/>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue/>
- <function>&#x3d;</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>923</xloc>
-      <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Others</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>560</xloc>
-      <yloc>293</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Read Lines From File</name>
-    <type>TextFileInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <accept_filenames>N</accept_filenames>
-    <passing_through_fields>N</passing_through_fields>
-    <accept_field>filename</accept_field>
-    <accept_stepname/>
-    <separator>&#x7c;</separator>
-    <enclosure/>
-    <enclosure_breaks>N</enclosure_breaks>
-    <escapechar/>
-    <header>N</header>
-    <nr_headerlines>1</nr_headerlines>
-    <footer>N</footer>
-    <nr_footerlines>1</nr_footerlines>
-    <line_wrapped>N</line_wrapped>
-    <nr_wraps>1</nr_wraps>
-    <layout_paged>N</layout_paged>
-    <nr_lines_per_page>80</nr_lines_per_page>
-    <nr_lines_doc_header>0</nr_lines_doc_header>
-    <noempty>Y</noempty>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <rownumByFile>N</rownumByFile>
-    <rownum_field/>
-    <format>DOS</format>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name>&#x24;&#x7b;fileName&#x7d;</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <type>CSV</type>
-      <compression>None</compression>
-    </file>
-    <filters>
-    </filters>
     <fields>
       <field>
-        <name>tmpLine</name>
+        <name>NORMCURR</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>USD</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>374</xloc>
+      <yloc>60</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Output File</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>&#x3b;</separator>
+    <enclosure>&#x22;</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>&#x24;&#x7b;destPath&#x7d;&#x5c;&#x24;&#x7b;destName&#x7d;</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
+      <extention>TXT</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>CMPCODE</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
         <nullif/>
-        <ifnull/>
-        <position>-1</position>
+        <trim_type>both</trim_type>
         <length>-1</length>
         <precision>-1</precision>
+      </field>
+      <field>
+        <name>CUSTID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
         <trim_type>both</trim_type>
-        <repeat>N</repeat>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>DOCTYPE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>DOCSUBTYPE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>DOCNUM</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>SOURCESYS</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>INVOICEREF</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>GLACCT</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>DOCDATE</name>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>POSTDATE</name>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>CLEARDATE</name>
+        <type>Timestamp</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>DOCDESC</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>XACTREF</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>CUSTREF</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>EXTREF5</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>DOCCURR</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>HOMECURR</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>DUALCURR</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ORGVAL_DOC</name>
+        <type>BigNumber</type>
+        <format>0.&#x23;&#x23;</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ORGVAL_HOME</name>
+        <type>BigNumber</type>
+        <format>0.&#x23;&#x23;</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ORGVAL_DUAL</name>
+        <type>BigNumber</type>
+        <format>0.&#x23;&#x23;</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ORGVAL_NORM</name>
+        <type>BigNumber</type>
+        <format>0.&#x23;&#x23;</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>OPENVAL_DOC</name>
+        <type>BigNumber</type>
+        <format>0.&#x23;&#x23;</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>OPENVAL_HOME</name>
+        <type>BigNumber</type>
+        <format>0.&#x23;&#x23;</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>OPENVAL_DUAL</name>
+        <type>BigNumber</type>
+        <format>0.&#x23;&#x23;</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>OPENVAL_NORM</name>
+        <type>BigNumber</type>
+        <format>0.&#x23;&#x23;</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>NORMCURR</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
       </field>
     </fields>
-    <limit>0</limit>
-    <error_ignored>N</error_ignored>
-    <skip_bad_files>N</skip_bad_files>
-    <file_error_field/>
-    <file_error_message_field/>
-    <error_line_skipped>N</error_line_skipped>
-    <error_count_field/>
-    <error_fields_field/>
-    <error_text_field/>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <date_format_lenient>Y</date_format_lenient>
-    <date_format_locale>en_US</date_format_locale>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>77</xloc>
-      <yloc>187</yloc>
+      <xloc>529</xloc>
+      <yloc>58</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Report Detail</name>
-    <type>StringCut</type>
+    <name>Select values</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -590,181 +666,115 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>det_clientName</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>24</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>det_importerId</out_stream_name>
-        <cut_from>24</cut_from>
-        <cut_to>39</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>det_xactId</out_stream_name>
-        <cut_from>39</cut_from>
-        <cut_to>48</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>det_amounts</out_stream_name>
-        <cut_from>48</cut_from>
-        <cut_to>130</cut_to>
-      </field>
-    </fields>
-     <cluster_schema/>
+    <fields>      <field>        <name>CMPCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CUSTID</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DOCTYPE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DOCSUBTYPE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DOCNUM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SOURCESYS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>INVOICEREF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>GLACCT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DOCDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>POSTDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CLEARDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DOCDESC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>XACTREF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CUSTREF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EXTREF5</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DOCCURR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>HOMECURR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ALTCURR</name>
+        <rename>DUALCURR</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ORGVAL_DOC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ORGVAL_HOME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ORGVAL_ALT</name>
+        <rename>ORGVAL_DUAL</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ORGVAL_NORM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>OPENVAL_DOC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>OPENVAL_HOME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>OPENVAL_ALT</name>
+        <rename>OPENVAL_DUAL</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>OPENVAL_NORM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>558</xloc>
-      <yloc>189</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Report Header</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_portId</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>4</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_portName</out_stream_name>
-        <cut_from>4</cut_from>
-        <cut_to>34</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_securityName</out_stream_name>
-        <cut_from>34</cut_from>
-        <cut_to>64</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_statementDate</out_stream_name>
-        <cut_from>64</cut_from>
-        <cut_to>72</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_accountingDate</out_stream_name>
-        <cut_from>72</cut_from>
-        <cut_to>80</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_securityId</out_stream_name>
-        <cut_from>80</cut_from>
-        <cut_to>85</cut_to>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>556</xloc>
-      <yloc>84</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Split Line Code</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>tmpLine</in_stream_name>
-        <out_stream_name>lineCode</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>4</cut_to>
-      </field>
-      <field>
-        <in_stream_name>tmpLine</in_stream_name>
-        <out_stream_name>lineData</out_stream_name>
-        <cut_from>4</cut_from>
-        <cut_to>130</cut_to>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>229</xloc>
-      <yloc>187</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Switch &#x2f; Case</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<fieldname>lineCode</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>String</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>Others</default_target_step>
-<cases><case><value>AK10</value>
-<target_step>Report Header</target_step>
-</case><case><value>AK20</value>
-<target_step>Report Detail</target_step>
-</case></cases>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>377</xloc>
-      <yloc>186</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get System Info</name>
-    <type>SystemInfo</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>LASTMOD</name>
-        <type>system date &#x28;variable&#x29;</type>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1073</xloc>
-      <yloc>191</yloc>
+      <xloc>216</xloc>
+      <yloc>59</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

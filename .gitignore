@@ -231,5 +231,5 @@ set_env.bat
 # H2 DB
 *.db
 
-
 snapshot/*
+hrc/exports/*
