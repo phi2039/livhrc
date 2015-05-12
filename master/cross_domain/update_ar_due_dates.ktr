@@ -271,7 +271,6 @@
   <hop> <from>Remove Min</from><to>Set Due Date</to><enabled>Y</enabled> </hop>
   <hop> <from>AR &#x2f; Customer Masters</from><to>Trim</to><enabled>Y</enabled> </hop>
   <hop> <from>Trim</from><to>Terms</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Timestamp</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>N</enabled> </hop>
   <hop> <from>Open</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
   <hop> <from>Month-End</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
   <hop> <from>Set Due Date</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
@@ -287,7 +286,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>TEST_H2</connection>
+    <connection>MASTER_DATA</connection>
     <sql>SELECT &#xd;&#xa;AR.CMPCODE,&#xd;&#xa;AR.DOCTYPE,&#xd;&#xa;AR.DOCNUM,&#xd;&#xa;AR.CUSTID,&#xd;&#xa;AR.DOCDATE,&#xd;&#xa;AR.DUEDATE,&#xd;&#xa;AR.K84ACCTDATE,&#xd;&#xa;C.TERMS&#xd;&#xa;FROM&#xd;&#xa;MASTER_DATA.AR_ITEM_MASTER AR&#xd;&#xa;JOIN MASTER_DATA.CUSTOMER_MASTER C&#xd;&#xa;ON AR.CUSTID &#x3d; C.CUSTID</sql>
     <limit>0</limit>
     <lookup/>
@@ -427,8 +426,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>724</xloc>
-      <yloc>282</yloc>
+      <xloc>730</xloc>
+      <yloc>311</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -444,7 +443,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>TEST_H2</connection>
+    <connection>MASTER_DATA</connection>
     <cache>Y</cache>
     <cache_load_all>Y</cache_load_all>
     <cache_size>0</cache_size>
@@ -475,8 +474,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>722</xloc>
-      <yloc>200</yloc>
+      <xloc>734</xloc>
+      <yloc>221</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -685,8 +684,8 @@
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>726</xloc>
-      <yloc>349</yloc>
+      <xloc>732</xloc>
+      <yloc>379</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -808,8 +807,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>728</xloc>
-      <yloc>427</yloc>
+      <xloc>732</xloc>
+      <yloc>470</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -825,7 +824,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>TEST_H2</connection>
+    <connection>MASTER_DATA</connection>
     <skip_lookup>Y</skip_lookup>
     <commit>1000</commit>
     <use_batch>N</use_batch>
@@ -871,25 +870,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1168</xloc>
       <yloc>346</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Dummy &#x28;do nothing&#x29;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1135</xloc>
-      <yloc>446</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
