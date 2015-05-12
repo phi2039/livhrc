@@ -219,6 +219,8 @@ pip-log.txt
 *.0
 *.1
 *.2
+*.3
+*.4
 
 #Custom
 set_env.bat
