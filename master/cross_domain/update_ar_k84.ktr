@@ -9,6 +9,11 @@
     <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
+        <parameter>
+            <name>minDate</name>
+            <default_value>2015-05-01 00&#x3a;00&#x3a;00</default_value>
+            <description/>
+        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -74,8 +79,8 @@
   <notepads>
     <notepad>
       <note>Construct transaction&#xd;&#xa;reference number</note>
-      <xloc>121</xloc>
-      <yloc>201</yloc>
+      <xloc>124</xloc>
+      <yloc>194</yloc>
       <width>150</width>
       <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
@@ -96,7 +101,7 @@
     <notepad>
       <note>Add current timestamp&#xd;&#xa;to update row LASTMOD</note>
       <xloc>263</xloc>
-      <yloc>34</yloc>
+      <yloc>32</yloc>
       <width>176</width>
       <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
@@ -115,30 +120,9 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>TODO&#x3a; Validate data&#xd;&#xa;- no duplicates&#xd;&#xa;- no updates</note>
-      <xloc>13</xloc>
-      <yloc>16</yloc>
-      <width>147</width>
-      <heigth>70</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>64</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
       <note>Set K84ACCTDATE for open&#xd;&#xa;and closed AR items&#xd;&#xa;&#x28;only where currently NULL&#x29;</note>
-      <xloc>486</xloc>
-      <yloc>198</yloc>
+      <xloc>541</xloc>
+      <yloc>30</yloc>
       <width>195</width>
       <heigth>70</heigth>
       <fontname>Segoe UI</fontname>
@@ -151,6 +135,27 @@
       <backgroundcolorred>255</backgroundcolorred>
       <backgroundcolorgreen>205</backgroundcolorgreen>
       <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>TODO&#x3a; Select&#x2f;report-on&#xd;&#xa;any k84 date mismatches&#xd;&#xa;&#x28;i.e. new, different date&#x29;</note>
+      <xloc>20</xloc>
+      <yloc>18</yloc>
+      <width>177</width>
+      <heigth>70</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>0</backgroundcolorred>
+      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
@@ -176,6 +181,33 @@
       <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DW</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>livingston_ar</database>
+    <port>3306</port>
+    <username>lii_user</username>
+    <password>Encrypted 2be98afc86aeb9b92a217a963ca9da18b</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -307,8 +339,8 @@
     <fields>
       <field>
         <name>SECID</name>
-        <type>String</type>
-        <format/>
+        <type>Integer</type>
+        <format>&#x23;</format>
         <currency/>
         <decimal/>
         <group/>
@@ -380,11 +412,11 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <sql>SELECT&#xd;&#xa;  XACTID&#xd;&#xa;, RPTDATE&#xd;&#xa;, ACCTDATE&#xd;&#xa;, SECID&#xd;&#xa;FROM MASTER_DATA.K84_MASTER&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  XACTID&#xd;&#xa;, ACCTDATE&#xd;&#xa;, SECID&#xd;&#xa;FROM MASTER_DATA.K84_MASTER</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
