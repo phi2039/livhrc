@@ -80,7 +80,7 @@
     <notepad>
       <note>Construct transaction&#xd;&#xa;reference number</note>
       <xloc>124</xloc>
-      <yloc>194</yloc>
+      <yloc>205</yloc>
       <width>150</width>
       <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
@@ -100,8 +100,8 @@
     </notepad>
     <notepad>
       <note>Add current timestamp&#xd;&#xa;to update row LASTMOD</note>
-      <xloc>263</xloc>
-      <yloc>32</yloc>
+      <xloc>269</xloc>
+      <yloc>33</yloc>
       <width>176</width>
       <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
@@ -121,8 +121,8 @@
     </notepad>
     <notepad>
       <note>Set K84ACCTDATE for open&#xd;&#xa;and closed AR items&#xd;&#xa;&#x28;only where currently NULL&#x29;</note>
-      <xloc>541</xloc>
-      <yloc>30</yloc>
+      <xloc>407</xloc>
+      <yloc>200</yloc>
       <width>195</width>
       <heigth>70</heigth>
       <fontname>Segoe UI</fontname>

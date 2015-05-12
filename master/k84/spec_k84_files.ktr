@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>create_table_snapshot_template</name>
+    <name>spec_k84_files</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -10,27 +10,17 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
-            <name>destName</name>
+            <name>endDate</name>
             <default_value/>
             <description/>
         </parameter>
         <parameter>
-            <name>destPath</name>
+            <name>k84Path</name>
             <default_value/>
             <description/>
         </parameter>
         <parameter>
-            <name>filterText</name>
-            <default_value/>
-            <description>&#x22;WHERE&#x22; clause to use when extracting data &#x28;INCLUDING&#x22;WHERE&#x22;&#x29;</description>
-        </parameter>
-        <parameter>
-            <name>schema</name>
-            <default_value/>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>tableName</name>
+            <name>startDate</name>
             <default_value/>
             <description/>
         </parameter>
@@ -92,32 +82,11 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;04&#x2f;29 16&#x3a;15&#x3a;09.073</created_date>
+  <created_date>2015&#x2f;05&#x2f;12 09&#x3a;41&#x3a;08.249</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;04&#x2f;29 16&#x3a;15&#x3a;09.073</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;12 09&#x3a;41&#x3a;08.249</modified_date>
   </info>
   <notepads>
-    <notepad>
-      <note>Guarantee at least&#xd;&#xa;one row</note>
-      <xloc>170</xloc>
-      <yloc>133</yloc>
-      <width>131</width>
-      <heigth>50</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>CODA</name>
@@ -247,12 +216,18 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Query Master Data</from><to>Prevent Empty Stream</to><enabled>Y</enabled> </hop>
-  <hop> <from>Prevent Empty Stream</from><to>Write To File</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Variables</from><to>Calc Days</to><enabled>Y</enabled> </hop>
+  <hop> <from>Build File Names</from><to>Select Files</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select Files</from><to>Send to Next</to><enabled>Y</enabled> </hop>
+  <hop> <from>Calc Rpt Dates</from><to>Build File Names</to><enabled>Y</enabled> </hop>
+  <hop> <from>Calc Days</from><to>Create Date Rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Create Date Rows</from><to>Calc Acct Dates</to><enabled>Y</enabled> </hop>
+  <hop> <from>Calc Acct Dates</from><to>Add Rpt Offset</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Rpt Offset</from><to>Calc Rpt Dates</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Query Master Data</name>
-    <type>TableInput</type>
+    <name>Add Rpt Offset</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -261,76 +236,271 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MASTER_DATA</connection>
-    <sql/>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>59</xloc>
-      <yloc>56</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Write To File</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <separator>&#x7c;</separator>
-    <enclosure/>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>&#x24;&#x7b;destPath&#x7d;&#x5c;&#x24;&#x7b;destName&#x7d;_</name>
-      <is_command>N</is_command>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>Y</SpecifyFormat>
-      <date_time_format>yyyy-MM-dd_hh-mm</date_time_format>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
     <fields>
+      <field>
+        <name>rptOffset</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>402</xloc>
-      <yloc>56</yloc>
+      <xloc>634</xloc>
+      <yloc>67</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Prevent Empty Stream</name>
-    <type>DetectEmptyStream</type>
+    <name>Build File Names</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>rptFileName</field_name>
+<formula_string>&#x5b;k84Path&#x5d; &#x26; &#x22;&#x2f;lik84&#x22; &#x26; TEXT&#x28;&#x5b;rptDate&#x5d;&#x3b;&#x22;MM&#x22;&#x29;  &#x26; TEXT&#x28;&#x5b;rptDate&#x5d;&#x3b;&#x22;dd&#x22;&#x29;  &#x26; &#x22;.txt&#x22;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>927</xloc>
+      <yloc>72</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Calc Acct Dates</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>acctDate</field_name>
+<calc_type>ADD_DAYS</calc_type>
+<field_a>startDate</field_a>
+<field_b>dayNumber</field_b>
+<field_c/>
+<value_type>Date</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>497</xloc>
+      <yloc>65</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Calc Days</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>days</field_name>
+<formula_string>DATEDIF&#x28;&#x5b;startDate&#x5d;&#x3b;&#x5b;endDate&#x5d;&#x3b;&#x22;d&#x22;&#x29; </formula_string>
+<value_type>Integer</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>240</xloc>
+      <yloc>66</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Calc Rpt Dates</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>rptDate</field_name>
+<calc_type>ADD_DAYS</calc_type>
+<field_a>acctDate</field_a>
+<field_b>rptOffset</field_b>
+<field_c/>
+<value_type>Date</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>776</xloc>
+      <yloc>70</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Create Date Rows</name>
+    <type>CloneRow</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <nrclones>0</nrclones>
+    <addcloneflag>N</addcloneflag>
+    <cloneflagfield/>
+    <nrcloneinfield>Y</nrcloneinfield>
+    <nrclonefield>days</nrclonefield>
+    <addclonenum>Y</addclonenum>
+    <clonenumfield>dayNumber</clonenumfield>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>372</xloc>
+      <yloc>65</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Variables</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>startDate</name>
+        <variable>&#x24;&#x7b;startDate&#x7d;</variable>
+        <type>Date</type>
+        <format>yyyy-MM-dd</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>endDate</name>
+        <variable>&#x24;&#x7b;endDate&#x7d;</variable>
+        <type>Date</type>
+        <format>yyyy-MM-dd</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>k84Path</name>
+        <variable>&#x24;&#x7b;k84Path&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>114</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select Files</name>
+    <type>GetFileNames</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <filter>
+      <filterfiletype>only_files</filterfiletype>
+    </filter>
+    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <rownum>N</rownum>
+    <isaddresult>N</isaddresult>
+    <filefield>Y</filefield>
+    <rownum_field/>
+    <filename_Field>rptFileName</filename_Field>
+    <wildcard_Field/>
+    <exclude_wildcard_Field/>
+    <dynamic_include_subfolders>N</dynamic_include_subfolders>
+    <limit>0</limit>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1060</xloc>
+      <yloc>73</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Send to Next</name>
+    <type>RowsToResult</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -341,8 +511,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>221</xloc>
-      <yloc>56</yloc>
+      <xloc>1192</xloc>
+      <yloc>73</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

@@ -14,6 +14,11 @@
             <default_value>2015-01-01 00&#x3a;00&#x3a;00</default_value>
             <description/>
         </parameter>
+        <parameter>
+            <name>minK84</name>
+            <default_value>2014-11-12</default_value>
+            <description/>
+        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -78,11 +83,11 @@
   </info>
   <notepads>
     <notepad>
-      <note>TODO&#x3a; How do we handle&#xd;&#xa;changing terms for a customer&#x3f;&#xd;&#xa;Ignore changes once a due date&#xd;&#xa;is calculated&#x3f;&#xd;&#xa;&#xd;&#xa;What about bogus K84 dates&#x3f;</note>
-      <xloc>22</xloc>
-      <yloc>34</yloc>
+      <note>TODO&#x3a; How do we handle&#xd;&#xa;changing terms for a customer&#x3f;&#xd;&#xa;Ignore changes once a due date&#xd;&#xa;is calculated&#x3f;&#xd;&#xa;&#xd;&#xa;What about bogus K84 dates&#x3f;&#xd;&#xa;&#xd;&#xa;Reduce input set...</note>
+      <xloc>14</xloc>
+      <yloc>46</yloc>
       <width>222</width>
-      <heigth>130</heigth>
+      <heigth>170</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -226,19 +231,50 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>TEST_H2</name>
+    <server>localhost</server>
+    <type>H2</type>
+    <access>Native</access>
+    <database>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data</database>
+    <port>6006</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>6006</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
-  <hop> <from>AR &#x2f; Customer Masters</from><to>Terms</to><enabled>Y</enabled> </hop>
   <hop> <from>Terms</from><to>Open</to><enabled>Y</enabled> </hop>
   <hop> <from>Terms</from><to>Unknown</to><enabled>Y</enabled> </hop>
   <hop> <from>Terms</from><to>Month-End</to><enabled>Y</enabled> </hop>
   <hop> <from>K84 Ref</from><to>Month-End</to><enabled>Y</enabled> </hop>
   <hop> <from>K84</from><to>K84 Ref</to><enabled>Y</enabled> </hop>
   <hop> <from>Terms</from><to>K84</to><enabled>Y</enabled> </hop>
-  <hop> <from>Month-End</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Timestamp</from><to>Update</to><enabled>Y</enabled> </hop>
-  <hop> <from>Open</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
   <hop> <from>Month-End</from><to>Missing Period</to><enabled>Y</enabled> </hop>
-  <hop> <from>K84</from><to>Not K84&#x27;d</to><enabled>Y</enabled> </hop>
+  <hop> <from>K84</from><to>Get Variables</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Variables</from><to>Old Date&#x3f;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Old Date&#x3f;</from><to>Remove Min</to><enabled>Y</enabled> </hop>
+  <hop> <from>Old Date&#x3f;</from><to>Not K84&#x27;d</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove Min</from><to>Set Due Date</to><enabled>Y</enabled> </hop>
+  <hop> <from>AR &#x2f; Customer Masters</from><to>Trim</to><enabled>Y</enabled> </hop>
+  <hop> <from>Trim</from><to>Terms</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Timestamp</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>N</enabled> </hop>
+  <hop> <from>Open</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
+  <hop> <from>Month-End</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Due Date</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>AR &#x2f; Customer Masters</name>
@@ -251,8 +287,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MASTER_DATA</connection>
-    <sql>SELECT &#xd;&#xa;AR.CMPCODE,&#xd;&#xa;AR.DOCTYPE,&#xd;&#xa;AR.DOCNUM,&#xd;&#xa;AR.CUSTID,&#xd;&#xa;AR.DOCDATE,&#xd;&#xa;AR.DUEDATE,&#xd;&#xa;AR.K84ACCTDATE,&#xd;&#xa;C.TERMS&#xd;&#xa;FROM&#xd;&#xa;MASTER_DATA.AR_ITEM_MASTER AR&#xd;&#xa;LEFT JOIN MASTER_DATA.CUSTOMER_MASTER C&#xd;&#xa;ON AR.CUSTID &#x3d; C.CUSTID&#xd;&#xa;WHERE&#xd;&#xa;&#x28;AR.LASTMOD &#x3e;&#x3d; &#x27;&#x24;&#x7b;minDate&#x7d;&#x27;&#xd;&#xa; OR C.LASTMOD &#x3e;&#x3d; &#x27;&#x24;&#x7b;minDate&#x7d;&#x27;&#x29;&#xd;&#xa;AND AR.LASTMOD &#x3c;&#x3d; SYSDATE&#xd;&#xa;AND C.LASTMOD &#x3c;&#x3d; SYSDATE</sql>
+    <connection>TEST_H2</connection>
+    <sql>SELECT &#xd;&#xa;AR.CMPCODE,&#xd;&#xa;AR.DOCTYPE,&#xd;&#xa;AR.DOCNUM,&#xd;&#xa;AR.CUSTID,&#xd;&#xa;AR.DOCDATE,&#xd;&#xa;AR.DUEDATE,&#xd;&#xa;AR.K84ACCTDATE,&#xd;&#xa;C.TERMS&#xd;&#xa;FROM&#xd;&#xa;MASTER_DATA.AR_ITEM_MASTER AR&#xd;&#xa;JOIN MASTER_DATA.CUSTOMER_MASTER C&#xd;&#xa;ON AR.CUSTID &#x3d; C.CUSTID</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -260,8 +296,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>100</xloc>
-      <yloc>241</yloc>
+      <xloc>93</xloc>
+      <yloc>281</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -285,8 +321,41 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>748</xloc>
-      <yloc>207</yloc>
+      <xloc>919</xloc>
+      <yloc>345</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Variables</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>minK84</name>
+        <variable>&#x24;&#x7b;minK84&#x7d;</variable>
+        <type>Date</type>
+        <format>yyyy-MM-dd</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>592</xloc>
+      <yloc>84</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -303,7 +372,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>K84 Ref</send_true_to>
-<send_false_to>Not K84&#x27;d</send_false_to>
+<send_false_to>Get Variables</send_false_to>
     <compare>
 <condition>
  <negated>Y</negated>
@@ -314,8 +383,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>445</xloc>
-      <yloc>65</yloc>
+      <xloc>479</xloc>
+      <yloc>156</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -339,8 +408,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>556</xloc>
-      <yloc>93</yloc>
+      <xloc>600</xloc>
+      <yloc>174</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -358,8 +427,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>731</xloc>
-      <yloc>98</yloc>
+      <xloc>724</xloc>
+      <yloc>282</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -375,7 +444,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MASTER_DATA</connection>
+    <connection>TEST_H2</connection>
     <cache>Y</cache>
     <cache_load_all>Y</cache_load_all>
     <cache_size>0</cache_size>
@@ -406,8 +475,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>605</xloc>
-      <yloc>165</yloc>
+      <xloc>722</xloc>
+      <yloc>200</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -554,8 +623,37 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>563</xloc>
-      <yloc>21</yloc>
+      <xloc>869</xloc>
+      <yloc>16</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Old Date&#x3f;</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Remove Min</send_true_to>
+<send_false_to>Not K84&#x27;d</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>DOCDATE</leftvalue>
+ <function>&#x3c;</function>
+ <rightvalue>minK84</rightvalue>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>704</xloc>
+      <yloc>44</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -587,8 +685,55 @@
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>605</xloc>
-      <yloc>250</yloc>
+      <xloc>726</xloc>
+      <yloc>349</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Remove Min</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>Y</select_unspecified>
+      <remove>        <name>minK84</name>
+      </remove>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>803</xloc>
+      <yloc>104</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Due Date</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>newDueDate</field_name>
+<formula_string>DATE&#x28;YEAR&#x28;&#x5b;DOCDATE&#x5d;&#x29;&#x3b;MONTH&#x28;&#x5b;DOCDATE&#x5d;&#x29;&#x3b;28&#x29;</formula_string>
+<value_type>Date</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>882</xloc>
+      <yloc>207</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -623,8 +768,29 @@
 <target_step>K84</target_step>
 </case></cases>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>276</xloc>
-      <yloc>241</yloc>
+      <xloc>407</xloc>
+      <yloc>283</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Trim</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>265</xloc>
+      <yloc>282</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -642,8 +808,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>569</xloc>
-      <yloc>331</yloc>
+      <xloc>728</xloc>
+      <yloc>427</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -659,9 +825,9 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MASTER_DATA</connection>
-    <skip_lookup>N</skip_lookup>
-    <commit>100</commit>
+    <connection>TEST_H2</connection>
+    <skip_lookup>Y</skip_lookup>
+    <commit>1000</commit>
     <use_batch>N</use_batch>
     <error_ignored>N</error_ignored>
     <ignore_flag_field/>
@@ -703,8 +869,27 @@
       </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>874</xloc>
-      <yloc>207</yloc>
+      <xloc>1168</xloc>
+      <yloc>346</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dummy &#x28;do nothing&#x29;</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1135</xloc>
+      <yloc>446</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

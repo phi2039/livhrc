@@ -1,39 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>create_table_snapshot_template</name>
+    <name>table_test</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
-        <parameter>
-            <name>destName</name>
-            <default_value/>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>destPath</name>
-            <default_value/>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>filterText</name>
-            <default_value/>
-            <description>&#x22;WHERE&#x22; clause to use when extracting data &#x28;INCLUDING&#x22;WHERE&#x22;&#x29;</description>
-        </parameter>
-        <parameter>
-            <name>schema</name>
-            <default_value/>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>tableName</name>
-            <default_value/>
-            <description/>
-        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -92,32 +66,11 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;04&#x2f;29 16&#x3a;15&#x3a;09.073</created_date>
+  <created_date>2015&#x2f;05&#x2f;12 13&#x3a;00&#x3a;10.203</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;04&#x2f;29 16&#x3a;15&#x3a;09.073</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;12 13&#x3a;00&#x3a;10.203</modified_date>
   </info>
   <notepads>
-    <notepad>
-      <note>Guarantee at least&#xd;&#xa;one row</note>
-      <xloc>170</xloc>
-      <yloc>133</yloc>
-      <width>131</width>
-      <heigth>50</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>CODA</name>
@@ -246,12 +199,35 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>TEST_H2</name>
+    <server>localhost</server>
+    <type>H2</type>
+    <access>Native</access>
+    <database>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</database>
+    <port>6006</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>6006</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
-  <hop> <from>Query Master Data</from><to>Prevent Empty Stream</to><enabled>Y</enabled> </hop>
-  <hop> <from>Prevent Empty Stream</from><to>Write To File</to><enabled>Y</enabled> </hop>
+  <hop> <from>AR &#x2f; Customer Masters</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Query Master Data</name>
+    <name>AR &#x2f; Customer Masters</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -261,8 +237,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MASTER_DATA</connection>
-    <sql/>
+    <connection>TEST_H2</connection>
+    <sql>SELECT &#xd;&#xa;AR.CMPCODE,&#xd;&#xa;AR.DOCTYPE,&#xd;&#xa;AR.DOCNUM,&#xd;&#xa;AR.CUSTID,&#xd;&#xa;AR.DOCDATE,&#xd;&#xa;AR.DUEDATE,&#xd;&#xa;AR.K84ACCTDATE,&#xd;&#xa;C.TERMS&#xd;&#xa;FROM&#xd;&#xa;MASTER_DATA.AR_ITEM_MASTER AR&#xd;&#xa;JOIN MASTER_DATA.CUSTOMER_MASTER C&#xd;&#xa;ON AR.CUSTID &#x3d; C.CUSTID</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -270,67 +246,15 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>59</xloc>
-      <yloc>56</yloc>
+      <xloc>111</xloc>
+      <yloc>78</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Write To File</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <separator>&#x7c;</separator>
-    <enclosure/>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>&#x24;&#x7b;destPath&#x7d;&#x5c;&#x24;&#x7b;destName&#x7d;_</name>
-      <is_command>N</is_command>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>Y</SpecifyFormat>
-      <date_time_format>yyyy-MM-dd_hh-mm</date_time_format>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>402</xloc>
-      <yloc>56</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Prevent Empty Stream</name>
-    <type>DetectEmptyStream</type>
+    <name>Dummy &#x28;do nothing&#x29;</name>
+    <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -341,8 +265,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>221</xloc>
-      <yloc>56</yloc>
+      <xloc>299</xloc>
+      <yloc>77</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
