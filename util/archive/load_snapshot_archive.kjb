@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>load_customer_updates</name>
+  <name>load_snapshot_archive</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;04&#x2f;22 08&#x3a;02&#x3a;59.592</created_date>
+  <created_date>2015&#x2f;05&#x2f;13 12&#x3a;50&#x3a;59.546</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;04&#x2f;22 08&#x3a;02&#x3a;59.592</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;13 12&#x3a;50&#x3a;59.546</modified_date>
     <parameters>
+        <parameter>
+            <name>archiveFile</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>workingDir</name>
+            <default_value>c&#x3a;&#x5c;Temp</default_value>
+            <description/>
+        </parameter>
     </parameters>
   <connection>
     <name>CODA</name>
@@ -204,16 +214,16 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>37</xloc>
-      <yloc>136</yloc>
+      <xloc>88</xloc>
+      <yloc>77</yloc>
       </entry>
     <entry>
-      <name>Update Master</name>
+      <name>Get Schema Name</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;load_cust_master.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;get_snapshot_schema_name.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -234,109 +244,166 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
+            <parameter>            <name>fileName</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;archiveFile&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>636</xloc>
-      <yloc>136</yloc>
+      <xloc>368</xloc>
+      <yloc>76</yloc>
       </entry>
     <entry>
-      <name>Merge Into Snapshot</name>
+      <name>Empty Folder</name>
       <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;extract_cust_snapshot.ktr</filename>
-      <transname/>
+      <type>DELETE_FOLDERS</type>
       <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>343</xloc>
-      <yloc>138</yloc>
-      </entry>
-    <entry>
-      <name>Truncate Extracts</name>
-      <description/>
-      <type>TRUNCATE_TABLES</type>
-      <connection>STAGING</connection>
-      <arg_from_previous>N</arg_from_previous>
+      <success_condition>success_if_no_errors</success_condition>
+      <limit_folders>10</limit_folders>
       <fields>
         <field>
-          <name>CUST_EXT_GQL</name>
-          <schemaname>STAGING</schemaname>
-        </field>
-        <field>
-          <name>CUST_EXT_CODA</name>
-          <schemaname>STAGING</schemaname>
+          <name>&#x24;&#x7b;workingDir&#x7d;&#x5c;unpack_&#x24;&#x7b;schema&#x7d;</name>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>492</xloc>
-      <yloc>141</yloc>
+      <xloc>623</xloc>
+      <yloc>75</yloc>
       </entry>
     <entry>
-      <name>Extract Source Data</name>
+      <name>Load Table Snaps</name>
       <description/>
-      <type>JOB</type>
+      <type>TRANS</type>
       <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;extract_cust_source_data.kjb</filename>
-      <jobname/>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;load_table_snapshot.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
+      <params_from_previous>Y</params_from_previous>
+      <exec_per_row>Y</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>Y</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
       <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
+            <parameter>            <name>fileName</name>
+            <stream_name>filename</stream_name>
+            <value/>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>872</xloc>
+      <yloc>75</yloc>
+      </entry>
+    <entry>
+      <name>Unzip Archive</name>
+      <description/>
+      <type>UNZIP</type>
+      <zipfilename>&#x24;&#x7b;archiveFile&#x7d;</zipfilename>
+      <wildcard/>
+      <wildcardexclude/>
+      <targetdirectory>&#x24;&#x7b;workingDir&#x7d;&#x5c;unpack_&#x24;&#x7b;schema&#x7d;</targetdirectory>
+      <movetodirectory/>
+      <afterunzip>0</afterunzip>
+      <addfiletoresult>Y</addfiletoresult>
+      <isfromprevious>N</isfromprevious>
+      <adddate>N</adddate>
+      <addtime>N</addtime>
+      <addOriginalTimestamp>N</addOriginalTimestamp>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <rootzip>N</rootzip>
+      <createfolder>Y</createfolder>
+      <nr_limit>10</nr_limit>
+      <wildcardSource/>
+      <success_condition>success_if_no_errors</success_condition>
+      <iffileexists>OVERWRITE</iffileexists>
+      <create_move_to_directory>N</create_move_to_directory>
+      <setOriginalModificationDate>N</setOriginalModificationDate>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>190</xloc>
-      <yloc>136</yloc>
+      <xloc>744</xloc>
+      <yloc>75</yloc>
+      </entry>
+    <entry>
+      <name>Confirm File</name>
+      <description/>
+      <type>FILES_EXIST</type>
+      <filename/>
+      <fields>
+        <field>
+          <name>&#x24;&#x7b;archiveFile&#x7d;</name>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>226</xloc>
+      <yloc>73</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
       <description/>
       <type>ABORT</type>
-      <message/>
+      <message>Invalid archive filename &#x28;&#x24;&#x7b;archiveFile&#x7d;&#x29;</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>493</xloc>
-      <yloc>290</yloc>
+      <xloc>226</xloc>
+      <yloc>219</yloc>
+      </entry>
+    <entry>
+      <name>Check Schema</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>schema</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue/>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>Y</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>505</xloc>
+      <yloc>76</yloc>
+      </entry>
+    <entry>
+      <name>Delete Folder</name>
+      <description/>
+      <type>DELETE_FOLDERS</type>
+      <arg_from_previous>N</arg_from_previous>
+      <success_condition>success_if_no_errors</success_condition>
+      <limit_folders>10</limit_folders>
+      <fields>
+        <field>
+          <name>&#x24;&#x7b;workingDir&#x7d;&#x5c;unpack_&#x24;&#x7b;schema&#x7d;</name>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1010</xloc>
+      <yloc>75</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -345,41 +412,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>781</xloc>
-      <yloc>135</yloc>
+      <xloc>1154</xloc>
+      <yloc>76</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>Merge Into Snapshot</from>
-      <to>Truncate Extracts</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Extract Source Data</from>
-      <to>Merge Into Snapshot</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Update Master</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>START</from>
-      <to>Extract Source Data</to>
+      <to>Confirm File</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -387,7 +427,16 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Merge Into Snapshot</from>
+      <from>Confirm File</from>
+      <to>Get Schema Name</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Confirm File</from>
       <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -396,8 +445,17 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Truncate Extracts</from>
-      <to>Update Master</to>
+      <from>Get Schema Name</from>
+      <to>Check Schema</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Check Schema</from>
+      <to>Empty Folder</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -405,16 +463,34 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Truncate Extracts</from>
-      <to>Abort job</to>
+      <from>Empty Folder</from>
+      <to>Unzip Archive</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>N</evaluation>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Update Master</from>
+      <from>Unzip Archive</from>
+      <to>Load Table Snaps</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Load Table Snaps</from>
+      <to>Delete Folder</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Delete Folder</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -424,69 +500,6 @@
     </hop>
   </hops>
   <notepads>
-    <notepad>
-      <note>Update fields in CODA extract with &#xd;&#xa;any values available from GQL and&#xd;&#xa;store result in a snapshot table</note>
-      <xloc>148</xloc>
-      <yloc>26</yloc>
-      <width>246</width>
-      <heigth>70</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Update master data table &#xd;&#xa;with changes from extracts</note>
-      <xloc>625</xloc>
-      <yloc>219</yloc>
-      <width>188</width>
-      <heigth>50</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Finished with extract&#xd;&#xa;tables. Data is now in&#xd;&#xa;snapshot</note>
-      <xloc>591</xloc>
-      <yloc>21</yloc>
-      <width>152</width>
-      <heigth>70</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
 
 </job>

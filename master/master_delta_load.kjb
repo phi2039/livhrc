@@ -254,7 +254,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>203</xloc>
+      <xloc>215</xloc>
       <yloc>39</yloc>
       </entry>
     <entry>
@@ -397,9 +397,30 @@
   <notepads>
     <notepad>
       <note>7 min for full load</note>
-      <xloc>283</xloc>
-      <yloc>259</yloc>
+      <xloc>281</xloc>
+      <yloc>279</yloc>
       <width>129</width>
+      <heigth>30</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>27 min for GQL</note>
+      <xloc>431</xloc>
+      <yloc>76</yloc>
+      <width>111</width>
       <heigth>30</heigth>
       <fontname/>
       <fontsize>-1</fontsize>

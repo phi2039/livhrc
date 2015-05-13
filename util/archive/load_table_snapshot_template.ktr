@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>extract_cust_snapshot</name>
+    <name>load_table_snapshot_template</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -9,6 +9,16 @@
     <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
+        <parameter>
+            <name>destSchema</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>fileName</name>
+            <default_value/>
+            <description/>
+        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -55,7 +65,7 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>Y</capture_step_performance>
+    <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
@@ -67,38 +77,17 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;04&#x2f;22 13&#x3a;43&#x3a;22.451</created_date>
+  <created_date>2015&#x2f;05&#x2f;13 13&#x3a;24&#x3a;41.807</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;04&#x2f;22 13&#x3a;43&#x3a;22.451</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;13 13&#x3a;24&#x3a;41.807</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>TODO&#x3a; Should we ignore &#xd;&#xa;certain fields from GQL&#x3f;&#xd;&#xa;&#x28;i.e. CRLIMDATE, INVCURR&#x29;</note>
-      <xloc>27</xloc>
-      <yloc>15</yloc>
-      <width>189</width>
+      <note>1. Get table name&#xd;&#xa;2. Extract file&#xd;&#xa;3. Load table</note>
+      <xloc>37</xloc>
+      <yloc>29</yloc>
+      <width>127</width>
       <heigth>70</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>128</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>255</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Update fields in CODA extract with &#xd;&#xa;any values available from GQL&#xd;&#xa;...do NOT add or delete new rows &#xd;&#xa;from the GQL extract</note>
-      <xloc>45</xloc>
-      <yloc>345</yloc>
-      <width>246</width>
-      <heigth>90</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -269,473 +258,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>CODA</from><to>Merge Extracts</to><enabled>Y</enabled> </hop>
-  <hop> <from>GQL</from><to>Merge Extracts</to><enabled>Y</enabled> </hop>
-  <hop> <from>Snapshot</from><to>Merge Snapshot</to><enabled>Y</enabled> </hop>
-  <hop> <from>Merge Snapshot</from><to>Synchronize after merge</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove Flag</from><to>Merge Snapshot</to><enabled>Y</enabled> </hop>
-  <hop> <from>Merge Extracts</from><to>Ignore Additions</to><enabled>Y</enabled> </hop>
-  <hop> <from>Ignore Additions</from><to>Remove Flag</to><enabled>Y</enabled> </hop>
   </order>
-  <step>
-    <name>CODA</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <sql>SELECT &#x2a; FROM STAGING.CUST_EXT_CODA&#xd;&#xa;ORDER BY CUSTID</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>72</xloc>
-      <yloc>130</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>GQL</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <sql>SELECT &#x2a; FROM STAGING.CUST_EXT_GQL&#xd;&#xa;ORDER BY CUSTID</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>71</xloc>
-      <yloc>261</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Merge Extracts</name>
-    <type>MergeRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <keys>
-      <key>CUSTID</key>
-    </keys>
-    <values>
-      <value>NAME</value>
-      <value>ADD1</value>
-      <value>ADD2</value>
-      <value>ADD3</value>
-      <value>CITY</value>
-      <value>STATEPROV</value>
-      <value>COUNTRY</value>
-      <value>POSTCODE</value>
-      <value>CREATEDATE</value>
-      <value>TERMS</value>
-      <value>CREDITLIM</value>
-      <value>TTMREV</value>
-      <value>SFID</value>
-      <value>CORPCODE</value>
-      <value>CRLIMDATE</value>
-      <value>ACCTSTAT</value>
-      <value>ACCTTYPE</value>
-      <value>BONDTYPE</value>
-      <value>PREVCO</value>
-      <value>SIC</value>
-      <value>CST</value>
-      <value>CSM</value>
-      <value>MSD</value>
-      <value>SC</value>
-      <value>WAIVERTYPE</value>
-      <value>INVCURR</value>
-      <value>CREDITCODE</value>
-      <value>LANGUAGE</value>
-      <value>PARENT</value>
-      <value>REMITTO</value>
-      <value>REMARKS1</value>
-      <value>REMARKS2</value>
-    </values>
-<flag_field>changeType</flag_field>
-<reference>CODA</reference>
-<compare>GQL</compare>
-    <compare>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>227</xloc>
-      <yloc>203</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Merge Snapshot</name>
-    <type>MergeRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <keys>
-      <key>CUSTID</key>
-    </keys>
-    <values>
-      <value>NAME</value>
-      <value>ADD1</value>
-      <value>ADD2</value>
-      <value>ADD3</value>
-      <value>CITY</value>
-      <value>STATEPROV</value>
-      <value>COUNTRY</value>
-      <value>POSTCODE</value>
-      <value>CREATEDATE</value>
-      <value>TERMS</value>
-      <value>CREDITLIM</value>
-      <value>TTMREV</value>
-      <value>SFID</value>
-      <value>CORPCODE</value>
-      <value>CRLIMDATE</value>
-      <value>ACCTSTAT</value>
-      <value>ACCTTYPE</value>
-      <value>BONDTYPE</value>
-      <value>PREVCO</value>
-      <value>SIC</value>
-      <value>CST</value>
-      <value>CSM</value>
-      <value>MSD</value>
-      <value>SC</value>
-      <value>WAIVERTYPE</value>
-      <value>INVCURR</value>
-      <value>CREDITCODE</value>
-      <value>LANGUAGE</value>
-      <value>PARENT</value>
-      <value>REMITTO</value>
-      <value>REMARKS1</value>
-      <value>REMARKS2</value>
-    </values>
-<flag_field>changeType</flag_field>
-<reference>Snapshot</reference>
-<compare>Remove Flag</compare>
-    <compare>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>637</xloc>
-      <yloc>205</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Snapshot</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <sql>SELECT&#xd;&#xa;  CUSTID&#xd;&#xa;, NAME&#xd;&#xa;, ADD1&#xd;&#xa;, ADD2&#xd;&#xa;, ADD3&#xd;&#xa;, CITY&#xd;&#xa;, STATEPROV&#xd;&#xa;, COUNTRY&#xd;&#xa;, POSTCODE&#xd;&#xa;, CREATEDATE&#xd;&#xa;, TERMS&#xd;&#xa;, CREDITLIM&#xd;&#xa;, TTMREV&#xd;&#xa;, SFID&#xd;&#xa;, CORPCODE&#xd;&#xa;, CRLIMDATE&#xd;&#xa;, ACCTSTAT&#xd;&#xa;, ACCTTYPE&#xd;&#xa;, BONDTYPE&#xd;&#xa;, PREVCO&#xd;&#xa;, SIC&#xd;&#xa;, CST&#xd;&#xa;, CSM&#xd;&#xa;, MSD&#xd;&#xa;, SC&#xd;&#xa;, WAIVERTYPE&#xd;&#xa;, INVCURR&#xd;&#xa;, CREDITCODE&#xd;&#xa;, LANGUAGE&#xd;&#xa;, PARENT&#xd;&#xa;, REMITTO&#xd;&#xa;, REMARKS1&#xd;&#xa;, REMARKS2&#xd;&#xa;FROM STAGING.CUST_SNAP&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>548</xloc>
-      <yloc>92</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Synchronize after merge</name>
-    <type>SynchronizeAfterMerge</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <commit>1000</commit>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <use_batch>N</use_batch>
-    <perform_lookup>N</perform_lookup>
-    <operation_order_field>changeType</operation_order_field>
-    <order_insert>new</order_insert>
-    <order_update>changed</order_update>
-    <order_delete/>
-    <lookup>
-      <schema>STAGING</schema>
-      <table>CUST_SNAP</table>
-      <key>
-        <name>CUSTID</name>
-        <field>CUSTID</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>CUSTID</name>
-        <rename>CUSTID</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>NAME</name>
-        <rename>NAME</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ADD1</name>
-        <rename>ADD1</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ADD2</name>
-        <rename>ADD2</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ADD3</name>
-        <rename>ADD3</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CITY</name>
-        <rename>CITY</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>STATEPROV</name>
-        <rename>STATEPROV</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>COUNTRY</name>
-        <rename>COUNTRY</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>POSTCODE</name>
-        <rename>POSTCODE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CREATEDATE</name>
-        <rename>CREATEDATE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>TERMS</name>
-        <rename>TERMS</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CREDITLIM</name>
-        <rename>CREDITLIM</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>TTMREV</name>
-        <rename>TTMREV</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>SFID</name>
-        <rename>SFID</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CORPCODE</name>
-        <rename>CORPCODE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CRLIMDATE</name>
-        <rename>CRLIMDATE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ACCTSTAT</name>
-        <rename>ACCTSTAT</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ACCTTYPE</name>
-        <rename>ACCTTYPE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>BONDTYPE</name>
-        <rename>BONDTYPE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>PREVCO</name>
-        <rename>PREVCO</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>SIC</name>
-        <rename>SIC</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CST</name>
-        <rename>CST</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CSM</name>
-        <rename>CSM</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>MSD</name>
-        <rename>MSD</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>SC</name>
-        <rename>SC</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>WAIVERTYPE</name>
-        <rename>WAIVERTYPE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>INVCURR</name>
-        <rename>INVCURR</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CREDITCODE</name>
-        <rename>CREDITCODE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>LANGUAGE</name>
-        <rename>LANGUAGE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>PARENT</name>
-        <rename>PARENT</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>REMITTO</name>
-        <rename>REMITTO</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>REMARKS1</name>
-        <rename>REMARKS1</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>REMARKS2</name>
-        <rename>REMARKS2</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>LASTSTATE</name>
-        <rename>changeType</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>797</xloc>
-      <yloc>205</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Remove Flag</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>changeType</name>
-      </remove>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>500</xloc>
-      <yloc>204</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Ignore Additions</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to/>
-<send_false_to/>
-    <compare>
-<condition>
- <negated>Y</negated>
- <leftvalue>changeType</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>new</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>371</xloc>
-      <yloc>204</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step_error_handling>
   </step_error_handling>
    <slave-step-copy-partition-distribution>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>load_ar_item_snapshot</name>
+  <name>restore_ar_from_snapshot</name>
     <description/>
     <extended_description/>
     <job_version/>
@@ -209,8 +209,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>62</xloc>
-      <yloc>67</yloc>
+      <xloc>41</xloc>
+      <yloc>40</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -219,11 +219,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>676</xloc>
-      <yloc>69</yloc>
+      <xloc>1124</xloc>
+      <yloc>47</yloc>
       </entry>
     <entry>
-      <name>Load AR Items</name>
+      <name>Restore AR Items</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -250,29 +250,29 @@
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>snapshotFile</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;snapshotFile&#x7d;</value>
+            <stream_name>filename</stream_name>
+            <value/>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>531</xloc>
-      <yloc>67</yloc>
+      <xloc>667</xloc>
+      <yloc>43</yloc>
       </entry>
     <entry>
-      <name>Verify Snapshot Filename</name>
+      <name>Verify Snapshot Folder</name>
       <description/>
       <type>FILES_EXIST</type>
       <filename/>
       <fields>
         <field>
-          <name>&#x24;&#x7b;snapshotFile&#x7d;</name>
+          <name>&#x24;&#x7b;snapshotFolder&#x7d;</name>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>212</xloc>
-      <yloc>68</yloc>
+      <xloc>191</xloc>
+      <yloc>41</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -282,8 +282,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>380</xloc>
-      <yloc>248</yloc>
+      <xloc>674</xloc>
+      <yloc>255</yloc>
       </entry>
     <entry>
       <name>Truncate Master Tables</name>
@@ -300,29 +300,124 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>379</xloc>
-      <yloc>69</yloc>
+      <xloc>358</xloc>
+      <yloc>42</yloc>
       </entry>
     <entry>
-      <name>Add filenames to result</name>
+      <name>AR Item Filename</name>
       <description/>
       <type>ADD_RESULT_FILENAMES</type>
       <arg_from_previous>N</arg_from_previous>
       <include_subfolders>N</include_subfolders>
-      <delete_all_before>N</delete_all_before>
+      <delete_all_before>Y</delete_all_before>
       <fields>
+        <field>
+          <name>&#x24;&#x7b;snapshotFolder&#x7d;</name>
+          <filemask>AR_ITEM_MASTER_.&#x2a;.txt</filemask>
+        </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>152</xloc>
-      <yloc>347</yloc>
+      <xloc>516</xloc>
+      <yloc>43</yloc>
+      </entry>
+    <entry>
+      <name>Settlement Filename</name>
+      <description/>
+      <type>ADD_RESULT_FILENAMES</type>
+      <arg_from_previous>N</arg_from_previous>
+      <include_subfolders>N</include_subfolders>
+      <delete_all_before>Y</delete_all_before>
+      <fields>
+        <field>
+          <name>&#x24;&#x7b;snapshotFolder&#x7d;</name>
+          <filemask>AR_SETTLEMENT_MASTER_.&#x2a;.txt</filemask>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>819</xloc>
+      <yloc>45</yloc>
+      </entry>
+    <entry>
+      <name>Restore Settlements</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;restore_settlements_from_snapshot.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>snapshotFile</name>
+            <stream_name>filename</stream_name>
+            <value/>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>980</xloc>
+      <yloc>45</yloc>
+      </entry>
+    <entry>
+      <name>Truncate Item Master</name>
+      <description/>
+      <type>TRUNCATE_TABLES</type>
+      <connection>MASTER_DATA</connection>
+      <arg_from_previous>N</arg_from_previous>
+      <fields>
+        <field>
+          <name>AR_ITEM_MASTER</name>
+          <schemaname>MASTER_DATA</schemaname>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>670</xloc>
+      <yloc>155</yloc>
+      </entry>
+    <entry>
+      <name>Truncate Settlement Master</name>
+      <description/>
+      <type>TRUNCATE_TABLES</type>
+      <connection>MASTER_DATA</connection>
+      <arg_from_previous>N</arg_from_previous>
+      <fields>
+        <field>
+          <name>AR_SETTLEMENT_MASTER</name>
+          <schemaname>MASTER_DATA</schemaname>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>839</xloc>
+      <yloc>149</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
       <from>START</from>
-      <to>Verify Snapshot Filename</to>
+      <to>Verify Snapshot Folder</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -330,7 +425,7 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Verify Snapshot Filename</from>
+      <from>Verify Snapshot Folder</from>
       <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -339,16 +434,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load AR Items</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Verify Snapshot Filename</from>
+      <from>Verify Snapshot Folder</from>
       <to>Truncate Master Tables</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -358,15 +444,6 @@
     </hop>
     <hop>
       <from>Truncate Master Tables</from>
-      <to>Load AR Items</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Truncate Master Tables</from>
       <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -375,13 +452,85 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load AR Items</from>
+      <from>Truncate Master Tables</from>
+      <to>AR Item Filename</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>AR Item Filename</from>
+      <to>Restore AR Items</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Restore AR Items</from>
+      <to>Settlement Filename</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Settlement Filename</from>
+      <to>Restore Settlements</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Restore Settlements</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Restore AR Items</from>
+      <to>Truncate Item Master</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Truncate Item Master</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Restore Settlements</from>
+      <to>Truncate Settlement Master</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Truncate Settlement Master</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
