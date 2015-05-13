@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>load_coda_closed</name>
+    <name>restore_coda_closed_history</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -78,11 +78,11 @@
   </info>
   <notepads>
     <notepad>
-      <note>Get the max CLEARDATE from master data. &#xd;&#xa;This will be our start date, as long as&#x3a;&#xd;&#xa;MAX&#x28;CLEARDATE&#x29; &#x3e; TODAY&#x28;&#x29; - &#x24;&#x7b;daysHistory&#x7d;</note>
+      <note>Use this transform ONLY if restoring&#xd;&#xa;all data directly from CODA</note>
       <xloc>19</xloc>
-      <yloc>119</yloc>
-      <width>317</width>
-      <heigth>70</heigth>
+      <yloc>17</yloc>
+      <width>246</width>
+      <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -214,7 +214,33 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;proc_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2041</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>STAGING</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;staging&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2040&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -228,7 +254,6 @@
   </connection>
   <order>
   <hop> <from>Calc Min Clear</from><to>Set Start Date</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Max Clear</from><to>Get Variables</to><enabled>Y</enabled> </hop>
   <hop> <from>Get System Info</from><to>Calc Min Clear</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Timestamp</from><to>Update Master</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Variables</from><to>Invert Days</to><enabled>Y</enabled> </hop>
@@ -263,34 +288,8 @@
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>544</xloc>
-      <yloc>39</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Max Clear</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>MASTER_DATA</connection>
-    <sql>SELECT MAX&#x28;CLEARDATE&#x29; &#x2b; 1 AS MAX_CLEAR,&#xd;&#xa;-1 AS P_DAYS&#xd;&#xa;FROM MASTER_DATA.AR_ITEM_MASTER&#x3b;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>92</xloc>
-      <yloc>39</yloc>
+      <xloc>394</xloc>
+      <yloc>106</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -314,8 +313,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>419</xloc>
-      <yloc>39</yloc>
+      <xloc>269</xloc>
+      <yloc>106</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -339,8 +338,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>893</xloc>
-      <yloc>39</yloc>
+      <xloc>743</xloc>
+      <yloc>106</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -372,8 +371,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>209</xloc>
-      <yloc>39</yloc>
+      <xloc>59</xloc>
+      <yloc>106</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -398,8 +397,8 @@
 </formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>307</xloc>
-      <yloc>39</yloc>
+      <xloc>157</xloc>
+      <yloc>106</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1083,8 +1082,8 @@ private List getProcParams(String procName)
 <parameter_description/>
 </usage_parameter></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>778</xloc>
-      <yloc>39</yloc>
+      <xloc>628</xloc>
+      <yloc>106</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1109,8 +1108,8 @@ private List getProcParams(String procName)
 </formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>658</xloc>
-      <yloc>39</yloc>
+      <xloc>508</xloc>
+      <yloc>106</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1314,8 +1313,8 @@ private List getProcParams(String procName)
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1033</xloc>
-      <yloc>39</yloc>
+      <xloc>883</xloc>
+      <yloc>106</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

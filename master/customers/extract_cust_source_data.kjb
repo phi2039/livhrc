@@ -1,31 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>load_k84_spec_files</name>
+  <name>extract_cust_source_data</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;05&#x2f;12 09&#x3a;39&#x3a;51.950</created_date>
+  <created_date>2015&#x2f;05&#x2f;08 15&#x3a;35&#x3a;23.395</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;05&#x2f;12 09&#x3a;39&#x3a;51.950</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;08 15&#x3a;35&#x3a;23.395</modified_date>
     <parameters>
-        <parameter>
-            <name>endDate</name>
-            <default_value/>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>k84Path</name>
-            <default_value>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;K84 Daily&#x5c;K84 History</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>startDate</name>
-            <default_value/>
-            <description/>
-        </parameter>
     </parameters>
   <connection>
     <name>CODA</name>
@@ -177,32 +162,12 @@
    <shared_objects_file/>
   <entries>
     <entry>
-      <name>START</name>
-      <description/>
-      <type>SPECIAL</type>
-      <start>Y</start>
-      <dummy>N</dummy>
-      <repeat>N</repeat>
-      <schedulerType>0</schedulerType>
-      <intervalSeconds>0</intervalSeconds>
-      <intervalMinutes>60</intervalMinutes>
-      <hour>12</hour>
-      <minutes>0</minutes>
-      <weekDay>1</weekDay>
-      <DayOfMonth>1</DayOfMonth>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>75</xloc>
-      <yloc>75</yloc>
-      </entry>
-    <entry>
-      <name>Spec Files</name>
+      <name>Load CODA</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;spec_k84_files.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;extract_cust_coda.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -223,32 +188,64 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>k84Path</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;k84Path&#x7d;</value>
-            </parameter>            <parameter>            <name>endDate</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;endDate&#x7d;</value>
-            </parameter>            <parameter>            <name>startDate</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;startDate&#x7d;</value>
-            </parameter>      </parameters>      <parallel>N</parallel>
+      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>207</xloc>
-      <yloc>74</yloc>
+      <xloc>235</xloc>
+      <yloc>204</yloc>
       </entry>
     <entry>
-      <name>Load Master Data</name>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>Y</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>96</xloc>
+      <yloc>135</yloc>
+      </entry>
+    <entry>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>367</xloc>
+      <yloc>134</yloc>
+      </entry>
+    <entry>
+      <name>Abort job</name>
+      <description/>
+      <type>ABORT</type>
+      <message>Falied to load customer data from sources</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>368</xloc>
+      <yloc>282</yloc>
+      </entry>
+    <entry>
+      <name>Load GQL</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;extract_k84_file.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;extract_cust_gql.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>Y</params_from_previous>
-      <exec_per_row>Y</exec_per_row>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
@@ -265,30 +262,17 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>fileName</name>
-            <stream_name>filename</stream_name>
-            <value/>
-            </parameter>      </parameters>      <parallel>N</parallel>
+      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>355</xloc>
-      <yloc>73</yloc>
-      </entry>
-    <entry>
-      <name>Success</name>
-      <description/>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>496</xloc>
-      <yloc>73</yloc>
+      <xloc>239</xloc>
+      <yloc>47</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
       <from>START</from>
-      <to>Spec Files</to>
+      <to>Load CODA</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -296,8 +280,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Spec Files</from>
-      <to>Load Master Data</to>
+      <from>Load CODA</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -305,12 +289,39 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load Master Data</from>
+      <from>Load CODA</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Load GQL</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Load GQL</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Load GQL</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>

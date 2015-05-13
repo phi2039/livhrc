@@ -74,8 +74,8 @@
   <notepads>
     <notepad>
       <note>Update Customer Master table&#xd;&#xa;with information in extracts.&#xd;&#xa;INSERT or UPDATE, never DELETE</note>
-      <xloc>513</xloc>
-      <yloc>42</yloc>
+      <xloc>394</xloc>
+      <yloc>59</yloc>
       <width>232</width>
       <heigth>70</heigth>
       <fontname>Segoe UI</fontname>
@@ -88,27 +88,6 @@
       <backgroundcolorred>255</backgroundcolorred>
       <backgroundcolorgreen>205</backgroundcolorgreen>
       <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>TODO&#x3a;&#xd;&#xa;- Update customer master&#xd;&#xa;with last mod date</note>
-      <xloc>31</xloc>
-      <yloc>288</yloc>
-      <width>184</width>
-      <heigth>70</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
@@ -230,7 +209,33 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;proc_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2041</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>STAGING</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;staging&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2040&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -320,7 +325,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MASTER_DATA</connection>
+    <connection>STAGING</connection>
     <sql>SELECT&#xd;&#xa;  CUSTID&#xd;&#xa;, NAME&#xd;&#xa;, ADD1&#xd;&#xa;, ADD2&#xd;&#xa;, ADD3&#xd;&#xa;, CITY&#xd;&#xa;, STATEPROV&#xd;&#xa;, COUNTRY&#xd;&#xa;, POSTCODE&#xd;&#xa;, CREATEDATE&#xd;&#xa;, TERMS&#xd;&#xa;, CREDITLIM&#xd;&#xa;, TTMREV&#xd;&#xa;, SFID&#xd;&#xa;, CORPCODE&#xd;&#xa;, CRLIMDATE&#xd;&#xa;, ACCTSTAT&#xd;&#xa;, ACCTTYPE&#xd;&#xa;, BONDTYPE&#xd;&#xa;, PREVCO&#xd;&#xa;, SIC&#xd;&#xa;, CST&#xd;&#xa;, CSM&#xd;&#xa;, MSD&#xd;&#xa;, SC&#xd;&#xa;, WAIVERTYPE&#xd;&#xa;, INVCURR&#xd;&#xa;, CREDITCODE&#xd;&#xa;, LANGUAGE&#xd;&#xa;, PARENT&#xd;&#xa;, REMITTO&#xd;&#xa;, REMARKS1&#xd;&#xa;, REMARKS2&#xd;&#xa;FROM STAGING.CUST_SNAP&#xd;&#xa;ORDER BY CUSTID</sql>
     <limit>0</limit>
     <lookup/>
@@ -589,8 +594,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>520</xloc>
-      <yloc>181</yloc>
+      <xloc>493</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>extract_k84_file</name>
+    <name>extract_cust_snapshot</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -9,11 +9,6 @@
     <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
-        <parameter>
-            <name>fileName</name>
-            <default_value>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;K84 Daily&#x5c;K84 History&#x5c;lik840408.txt</default_value>
-            <description/>
-        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -60,7 +55,7 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>N</capture_step_performance>
+    <capture_step_performance>Y</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
@@ -72,17 +67,17 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;04&#x2f;30 16&#x3a;57&#x3a;03.777</created_date>
+  <created_date>2015&#x2f;04&#x2f;22 13&#x3a;43&#x3a;22.451</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;04&#x2f;30 16&#x3a;57&#x3a;03.777</modified_date>
+  <modified_date>2015&#x2f;04&#x2f;22 13&#x3a;43&#x3a;22.451</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>TODO&#x3a; Validate data&#xd;&#xa;- Err if more than one of each header</note>
-      <xloc>76</xloc>
-      <yloc>28</yloc>
-      <width>256</width>
-      <heigth>50</heigth>
+      <note>TODO&#x3a; Should we ignore &#xd;&#xa;certain fields from GQL&#x3f;&#xd;&#xa;&#x28;i.e. CRLIMDATE, INVCURR&#x29;</note>
+      <xloc>27</xloc>
+      <yloc>15</yloc>
+      <width>189</width>
+      <heigth>70</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -90,9 +85,30 @@
       <fontcolorred>0</fontcolorred>
       <fontcolorgreen>0</fontcolorgreen>
       <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>128</backgroundcolorgreen>
+      <backgroundcolorred>128</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
       <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Update fields in CODA extract with &#xd;&#xa;any values available from GQL&#xd;&#xa;...do NOT add or delete new rows &#xd;&#xa;from the GQL extract</note>
+      <xloc>445</xloc>
+      <yloc>313</yloc>
+      <width>246</width>
+      <heigth>90</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
@@ -253,212 +269,15 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Split Line Code</from><to>Switch &#x2f; Case</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case</from><to>Others</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case</from><to>Report Detail</to><enabled>Y</enabled> </hop>
-  <hop> <from>Read Lines From File</from><to>Split Line Code</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case</from><to>Report Header</to><enabled>Y</enabled> </hop>
-  <hop> <from>Blocking Step</from><to>Join Header and Detail</to><enabled>Y</enabled> </hop>
-  <hop> <from>Report Header</from><to>Header Fields</to><enabled>Y</enabled> </hop>
-  <hop> <from>Report Detail</from><to>Detail Fields</to><enabled>Y</enabled> </hop>
-  <hop> <from>Header Fields</from><to>Blocking Step</to><enabled>Y</enabled> </hop>
-  <hop> <from>Detail Fields</from><to>Join Header and Detail</to><enabled>Y</enabled> </hop>
-  <hop> <from>Join Header and Detail</from><to>Get System Info</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get System Info</from><to>Load to Staging</to><enabled>Y</enabled> </hop>
+  <hop> <from>CODA</from><to>Merge Extracts</to><enabled>Y</enabled> </hop>
+  <hop> <from>GQL</from><to>Merge Extracts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Snapshot</from><to>Merge Snapshot</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Extracts</from><to>Merge Snapshot</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Snapshot</from><to>Synchronize after merge</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Blocking Step</name>
-    <type>BlockingStep</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <pass_all_rows>N</pass_all_rows>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>block</prefix>
-      <cache_size>5000</cache_size>
-      <compress>Y</compress>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>823</xloc>
-      <yloc>84</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Detail Fields</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>det_clientName</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>det_importerId</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>det_xactId</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>det_amounts</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>693</xloc>
-      <yloc>191</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get System Info</name>
-    <type>SystemInfo</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>LASTMOD</name>
-        <type>system date &#x28;variable&#x29;</type>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1073</xloc>
-      <yloc>191</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Header Fields</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>rpt_portId</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rpt_portName</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rpt_securityName</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rpt_statementDate</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rpt_accountingDate</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rpt_securityId</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>rpt_accountingDate</name>
-        <rename>rpt_accountingDate</rename>
-        <type>Date</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask>yyyyMMdd</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>      <meta>        <name>rpt_statementDate</name>
-        <rename>rpt_statementDate</rename>
-        <type>Date</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask>yyyyMMdd</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>695</xloc>
-      <yloc>83</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Join Header and Detail</name>
-    <type>JoinRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <cache_size>5000</cache_size>
-      <main/>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue/>
- <function>&#x3d;</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>923</xloc>
-      <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Load to Staging</name>
-    <type>TableOutput</type>
+    <name>CODA</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -468,326 +287,366 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <schema>STAGING</schema>
-    <table>K84_EXT</table>
+    <sql>SELECT &#x2a; FROM STAGING.CUST_EXT_CODA&#xd;&#xa;ORDER BY CUSTID</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>72</xloc>
+      <yloc>130</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>GQL</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <sql>SELECT &#x2a; FROM STAGING.CUST_EXT_GQL&#xd;&#xa;ORDER BY CUSTID</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>71</xloc>
+      <yloc>261</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge Extracts</name>
+    <type>MergeRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <keys>
+      <key>CUSTID</key>
+    </keys>
+    <values>
+      <value>NAME</value>
+      <value>ADD1</value>
+      <value>ADD2</value>
+      <value>ADD3</value>
+      <value>CITY</value>
+      <value>STATEPROV</value>
+      <value>COUNTRY</value>
+      <value>POSTCODE</value>
+      <value>CREATEDATE</value>
+      <value>TERMS</value>
+      <value>CREDITLIM</value>
+      <value>TTMREV</value>
+      <value>SFID</value>
+      <value>CORPCODE</value>
+      <value>CRLIMDATE</value>
+      <value>ACCTSTAT</value>
+      <value>ACCTTYPE</value>
+      <value>BONDTYPE</value>
+      <value>PREVCO</value>
+      <value>SIC</value>
+      <value>CST</value>
+      <value>CSM</value>
+      <value>MSD</value>
+      <value>SC</value>
+      <value>WAIVERTYPE</value>
+      <value>INVCURR</value>
+      <value>CREDITCODE</value>
+      <value>LANGUAGE</value>
+      <value>PARENT</value>
+      <value>REMITTO</value>
+      <value>REMARKS1</value>
+      <value>REMARKS2</value>
+    </values>
+<flag_field>changeType</flag_field>
+<reference>CODA</reference>
+<compare>GQL</compare>
+    <compare>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>227</xloc>
+      <yloc>203</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge Snapshot</name>
+    <type>MergeRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <keys>
+    </keys>
+    <values>
+    </values>
+<flag_field>changeType</flag_field>
+<reference>Snapshot</reference>
+<compare>Merge Extracts</compare>
+    <compare>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>381</xloc>
+      <yloc>202</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Snapshot</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <sql>SELECT&#xd;&#xa;  CUSTID&#xd;&#xa;, NAME&#xd;&#xa;, ADD1&#xd;&#xa;, ADD2&#xd;&#xa;, ADD3&#xd;&#xa;, CITY&#xd;&#xa;, STATEPROV&#xd;&#xa;, COUNTRY&#xd;&#xa;, POSTCODE&#xd;&#xa;, CREATEDATE&#xd;&#xa;, TERMS&#xd;&#xa;, CREDITLIM&#xd;&#xa;, TTMREV&#xd;&#xa;, SFID&#xd;&#xa;, CORPCODE&#xd;&#xa;, CRLIMDATE&#xd;&#xa;, ACCTSTAT&#xd;&#xa;, ACCTTYPE&#xd;&#xa;, BONDTYPE&#xd;&#xa;, PREVCO&#xd;&#xa;, SIC&#xd;&#xa;, CST&#xd;&#xa;, CSM&#xd;&#xa;, MSD&#xd;&#xa;, SC&#xd;&#xa;, WAIVERTYPE&#xd;&#xa;, INVCURR&#xd;&#xa;, CREDITCODE&#xd;&#xa;, LANGUAGE&#xd;&#xa;, PARENT&#xd;&#xa;, REMITTO&#xd;&#xa;, REMARKS1&#xd;&#xa;, REMARKS2&#xd;&#xa;FROM STAGING.CUST_SNAP&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>292</xloc>
+      <yloc>89</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Synchronize after merge</name>
+    <type>SynchronizeAfterMerge</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
     <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>N</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
     <tablename_in_field>N</tablename_in_field>
     <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>XACTID</column_name>
-          <stream_name>det_xactId</stream_name>
-        </field>
-        <field>
-          <column_name>RPTDATE</column_name>
-          <stream_name>rpt_statementDate</stream_name>
-        </field>
-        <field>
-          <column_name>ACCTDATE</column_name>
-          <stream_name>rpt_accountingDate</stream_name>
-        </field>
-        <field>
-          <column_name>SECID</column_name>
-          <stream_name>rpt_securityId</stream_name>
-        </field>
-    </fields>
+    <use_batch>N</use_batch>
+    <perform_lookup>N</perform_lookup>
+    <operation_order_field>changeType</operation_order_field>
+    <order_insert>new</order_insert>
+    <order_update>changed</order_update>
+    <order_delete/>
+    <lookup>
+      <schema>STAGING</schema>
+      <table>CUST_SNAP</table>
+      <key>
+        <name>CUSTID</name>
+        <field>CUSTID</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>CUSTID</name>
+        <rename>CUSTID</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>NAME</name>
+        <rename>NAME</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ADD1</name>
+        <rename>ADD1</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ADD2</name>
+        <rename>ADD2</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ADD3</name>
+        <rename>ADD3</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>CITY</name>
+        <rename>CITY</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>STATEPROV</name>
+        <rename>STATEPROV</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>COUNTRY</name>
+        <rename>COUNTRY</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>POSTCODE</name>
+        <rename>POSTCODE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>CREATEDATE</name>
+        <rename>CREATEDATE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>TERMS</name>
+        <rename>TERMS</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>CREDITLIM</name>
+        <rename>CREDITLIM</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>TTMREV</name>
+        <rename>TTMREV</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>SFID</name>
+        <rename>SFID</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>CORPCODE</name>
+        <rename>CORPCODE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>CRLIMDATE</name>
+        <rename>CRLIMDATE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ACCTSTAT</name>
+        <rename>ACCTSTAT</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ACCTTYPE</name>
+        <rename>ACCTTYPE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>BONDTYPE</name>
+        <rename>BONDTYPE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>PREVCO</name>
+        <rename>PREVCO</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>SIC</name>
+        <rename>SIC</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>CST</name>
+        <rename>CST</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>CSM</name>
+        <rename>CSM</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>MSD</name>
+        <rename>MSD</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>SC</name>
+        <rename>SC</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>WAIVERTYPE</name>
+        <rename>WAIVERTYPE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>INVCURR</name>
+        <rename>INVCURR</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>CREDITCODE</name>
+        <rename>CREDITCODE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>LANGUAGE</name>
+        <rename>LANGUAGE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>PARENT</name>
+        <rename>PARENT</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>REMITTO</name>
+        <rename>REMITTO</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>REMARKS1</name>
+        <rename>REMARKS1</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>REMARKS2</name>
+        <rename>REMARKS2</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>LASTCHANGE</name>
+        <rename>changeType</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1218</xloc>
-      <yloc>191</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Others</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>560</xloc>
-      <yloc>293</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Read Lines From File</name>
-    <type>TextFileInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <accept_filenames>N</accept_filenames>
-    <passing_through_fields>N</passing_through_fields>
-    <accept_field>filename</accept_field>
-    <accept_stepname/>
-    <separator>&#x7c;</separator>
-    <enclosure/>
-    <enclosure_breaks>N</enclosure_breaks>
-    <escapechar/>
-    <header>N</header>
-    <nr_headerlines>1</nr_headerlines>
-    <footer>N</footer>
-    <nr_footerlines>1</nr_footerlines>
-    <line_wrapped>N</line_wrapped>
-    <nr_wraps>1</nr_wraps>
-    <layout_paged>N</layout_paged>
-    <nr_lines_per_page>80</nr_lines_per_page>
-    <nr_lines_doc_header>0</nr_lines_doc_header>
-    <noempty>Y</noempty>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <rownumByFile>N</rownumByFile>
-    <rownum_field/>
-    <format>DOS</format>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name>&#x24;&#x7b;fileName&#x7d;</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <type>CSV</type>
-      <compression>None</compression>
-    </file>
-    <filters>
-    </filters>
-    <fields>
-      <field>
-        <name>tmpLine</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <error_ignored>N</error_ignored>
-    <skip_bad_files>N</skip_bad_files>
-    <file_error_field/>
-    <file_error_message_field/>
-    <error_line_skipped>N</error_line_skipped>
-    <error_count_field/>
-    <error_fields_field/>
-    <error_text_field/>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <date_format_lenient>Y</date_format_lenient>
-    <date_format_locale>en_US</date_format_locale>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>77</xloc>
-      <yloc>187</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Report Detail</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>det_clientName</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>24</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>det_importerId</out_stream_name>
-        <cut_from>24</cut_from>
-        <cut_to>39</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>det_xactId</out_stream_name>
-        <cut_from>39</cut_from>
-        <cut_to>48</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>det_amounts</out_stream_name>
-        <cut_from>48</cut_from>
-        <cut_to>130</cut_to>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>558</xloc>
-      <yloc>189</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Report Header</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_portId</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>4</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_portName</out_stream_name>
-        <cut_from>4</cut_from>
-        <cut_to>34</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_securityName</out_stream_name>
-        <cut_from>34</cut_from>
-        <cut_to>64</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_statementDate</out_stream_name>
-        <cut_from>64</cut_from>
-        <cut_to>72</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_accountingDate</out_stream_name>
-        <cut_from>72</cut_from>
-        <cut_to>80</cut_to>
-      </field>
-      <field>
-        <in_stream_name>lineData</in_stream_name>
-        <out_stream_name>rpt_securityId</out_stream_name>
-        <cut_from>80</cut_from>
-        <cut_to>85</cut_to>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>556</xloc>
-      <yloc>84</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Split Line Code</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>tmpLine</in_stream_name>
-        <out_stream_name>lineCode</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>4</cut_to>
-      </field>
-      <field>
-        <in_stream_name>tmpLine</in_stream_name>
-        <out_stream_name>lineData</out_stream_name>
-        <cut_from>4</cut_from>
-        <cut_to>130</cut_to>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>229</xloc>
-      <yloc>187</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Switch &#x2f; Case</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<fieldname>lineCode</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>String</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>Others</default_target_step>
-<cases><case><value>AK10</value>
-<target_step>Report Header</target_step>
-</case><case><value>AK20</value>
-<target_step>Report Detail</target_step>
-</case></cases>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>377</xloc>
-      <yloc>186</yloc>
+      <xloc>541</xloc>
+      <yloc>202</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

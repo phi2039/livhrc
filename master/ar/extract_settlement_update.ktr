@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>update_ar</name>
+    <name>extract_settlement_update</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -9,6 +9,11 @@
     <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
+        <parameter>
+            <name>daysHistory</name>
+            <default_value>7</default_value>
+            <description>Number of days of history to retrieve</description>
+        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -50,7 +55,7 @@
     <size_rowset>10000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
-    <unique_connections>Y</unique_connections>
+    <unique_connections>N</unique_connections>
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
@@ -67,17 +72,17 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;04&#x2f;22 15&#x3a;27&#x3a;46.529</created_date>
+  <created_date>2015&#x2f;05&#x2f;07 07&#x3a;55&#x3a;32.832</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;04&#x2f;22 15&#x3a;27&#x3a;46.529</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;07 07&#x3a;55&#x3a;32.832</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>If any errors occur, the complete&#xd;&#xa;transformation is rolled-back&#xd;&#xa;&#x28;transactional&#x29;</note>
-      <xloc>27</xloc>
-      <yloc>21</yloc>
-      <width>223</width>
-      <heigth>70</heigth>
+      <note>Fetch the max PAYDATE&#xd;&#xa;from the master table</note>
+      <xloc>19</xloc>
+      <yloc>30</yloc>
+      <width>169</width>
+      <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -94,31 +99,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>TODO&#x3a; &#xd;&#xa;- Update customer master &#xd;&#xa;with last transaction date</note>
-      <xloc>354</xloc>
-      <yloc>40</yloc>
-      <width>188</width>
-      <heigth>70</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Get the max POSTDATE&#xd;&#xa;from master data. This&#xd;&#xa;will be our start date</note>
-      <xloc>23</xloc>
-      <yloc>239</yloc>
-      <width>166</width>
+      <note>If there are no records&#xd;&#xa;in the master table, use&#xd;&#xa;&#x24;&#x7b;daysHistory&#x7d;</note>
+      <xloc>211</xloc>
+      <yloc>181</yloc>
+      <width>163</width>
       <heigth>70</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -251,7 +235,33 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;proc_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2041</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>STAGING</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;staging&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2040&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -264,12 +274,68 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Query CODA</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Parameters</from><to>Query CODA</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Timestamp</from><to>Update Master</to><enabled>Y</enabled> </hop>
+  <hop> <from>Invert Days</from><to>Get System Info</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get System Info</from><to>Calc Start Date</to><enabled>Y</enabled> </hop>
+  <hop> <from>Calc Start Date</from><to>Remove Fields</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove Fields</from><to>Merge</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Start Date</from><to>Merge</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Start</from><to>Set Days</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Start</from><to>Invert Days</to><enabled>Y</enabled> </hop>
+  <hop> <from>Query CODA</from><to>Load Staging</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Start Date</from><to>Get Variables</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Variables</from><to>Valid Start</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge</from><to>Query CODA</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Days</from><to>Set Start Date</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Get Parameters</name>
+    <name>Calc Start Date</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>P_START_DATE</field_name>
+<calc_type>ADD_DAYS</calc_type>
+<field_a>today</field_a>
+<field_b>invDays</field_b>
+<field_c/>
+<value_type>Date</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>P_DAYS</field_name>
+<calc_type>SUBSTITUTE_VARIABLE</calc_type>
+<field_a>&#x24;&#x7b;daysHistory&#x7d;</field_a>
+<field_b/>
+<field_c/>
+<value_type>None</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>697</xloc>
+      <yloc>47</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Start Date</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -280,7 +346,7 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <sql>SELECT MAX&#x28;POSTDATE&#x29; &#x2b; 1 AS P_START_DATE,&#xd;&#xa;-1 AS P_DAYS&#xd;&#xa;FROM MASTER_DATA.AR_ITEM_MASTER&#x3b;</sql>
+    <sql>SELECT MAX&#x28;PAYDATE&#x29; &#x2b; 1 AS MAX_PAY&#xd;&#xa;FROM MASTER_DATA.AR_SETTLEMENT_MASTER&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -288,14 +354,14 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>85</xloc>
-      <yloc>167</yloc>
+      <xloc>70</xloc>
+      <yloc>111</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get Timestamp</name>
+    <name>Get System Info</name>
     <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
@@ -307,14 +373,106 @@
            </partitioning>
     <fields>
       <field>
-        <name>LASTMOD</name>
-        <type>system date &#x28;variable&#x29;</type>
+        <name>today</name>
+        <type>system date &#x28;fixed&#x29;</type>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>445</xloc>
-      <yloc>167</yloc>
+      <xloc>579</xloc>
+      <yloc>46</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Invert Days</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>invDays</field_name>
+<formula_string>&#x5b;P_DAYS&#x5d; &#x2a; -1</formula_string>
+<value_type>Integer</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>460</xloc>
+      <yloc>47</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Load Staging</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <schema>STAGING</schema>
+    <table>AR_SETTLEMENT_EXT</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1239</xloc>
+      <yloc>116</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>P_START_DATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>P_DAYS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>949</xloc>
+      <yloc>116</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -691,27 +849,7 @@ private List getProcParams(String procName)
 
         </field>
         <field>
-        <field_name>CUSTID</field_name>
-
-        <field_type>String</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
         <field_name>DOCTYPE</field_name>
-
-        <field_type>String</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>DOCSUBTYPE</field_name>
 
         <field_type>String</field_type>
 
@@ -731,7 +869,7 @@ private List getProcParams(String procName)
 
         </field>
         <field>
-        <field_name>SOURCESYS</field_name>
+        <field_name>CUSTID</field_name>
 
         <field_type>String</field_type>
 
@@ -741,27 +879,7 @@ private List getProcParams(String procName)
 
         </field>
         <field>
-        <field_name>INVOICEREF</field_name>
-
-        <field_type>String</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>GLACCT</field_name>
-
-        <field_type>Integer</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>DOCDATE</field_name>
+        <field_name>PAYDATE</field_name>
 
         <field_type>Date</field_type>
 
@@ -771,59 +889,9 @@ private List getProcParams(String procName)
 
         </field>
         <field>
-        <field_name>POSTDATE</field_name>
+        <field_name>MATCHREF</field_name>
 
-        <field_type>Date</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>CLEARDATE</field_name>
-
-        <field_type>Date</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>DOCDESC</field_name>
-
-        <field_type>String</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>XACTREF</field_name>
-
-        <field_type>String</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>CUSTREF</field_name>
-
-        <field_type>String</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>EXTREF5</field_name>
-
-        <field_type>String</field_type>
+        <field_type>Number</field_type>
 
         <field_length>-1</field_length>
 
@@ -841,137 +909,7 @@ private List getProcParams(String procName)
 
         </field>
         <field>
-        <field_name>HOMECURR</field_name>
-
-        <field_type>String</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>ALTCURR</field_name>
-
-        <field_type>String</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>ORGVAL_DOC</field_name>
-
-        <field_type>Number</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>ORGVAL_HOME</field_name>
-
-        <field_type>Number</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>ORGVAL_ALT</field_name>
-
-        <field_type>Number</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>ORGVAL_NORM</field_name>
-
-        <field_type>Number</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>OPENVAL_DOC</field_name>
-
-        <field_type>Number</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>OPENVAL_HOME</field_name>
-
-        <field_type>Number</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>OPENVAL_ALT</field_name>
-
-        <field_type>Number</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>OPENVAL_NORM</field_name>
-
-        <field_type>Number</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
         <field_name>PAYVAL_DOC</field_name>
-
-        <field_type>Number</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>PAYVAL_HOME</field_name>
-
-        <field_type>Number</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>PAYVAL_ALT</field_name>
-
-        <field_type>Number</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>PAYVAL_NORM</field_name>
 
         <field_type>Number</field_type>
 
@@ -982,10 +920,10 @@ private List getProcParams(String procName)
         </field>
     </fields><clear_result_fields>N</clear_result_fields>
 <info_steps><info_step><step_tag>PARAMETERS</step_tag>
-<step_name>Get Parameters</step_name>
+<step_name>Merge</step_name>
 <step_description/>
 </info_step></info_steps><target_steps></target_steps><usage_parameters><usage_parameter><parameter_tag>procName</parameter_tag>
-<parameter_value>AR_EXTRACTS.OPEN_ITEMS_DELTA</parameter_value>
+<parameter_value>AR_EXTRACTS.SETTLED_ITEMS_DAYS</parameter_value>
 <parameter_description/>
 </usage_parameter><usage_parameter><parameter_tag>connectionName</parameter_tag>
 <parameter_value>CODA</parameter_value>
@@ -998,15 +936,15 @@ private List getProcParams(String procName)
 <parameter_description/>
 </usage_parameter></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>266</xloc>
-      <yloc>167</yloc>
+      <xloc>1092</xloc>
+      <yloc>116</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Update Master</name>
-    <type>InsertUpdate</type>
+    <name>Remove Fields</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1015,196 +953,152 @@ private List getProcParams(String procName)
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MASTER_DATA</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>MASTER_DATA</schema>
-      <table>AR_ITEM_MASTER</table>
-      <key>
-        <name>CMPCODE</name>
-        <field>CMPCODE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>DOCTYPE</name>
-        <field>DOCTYPE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>DOCNUM</name>
-        <field>DOCNUM</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>CUSTID</name>
-        <field>CUSTID</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>CMPCODE</name>
-        <rename>CMPCODE</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>CUSTID</name>
-        <rename>CUSTID</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>DOCTYPE</name>
-        <rename>DOCTYPE</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>DOCSUBTYPE</name>
-        <rename>DOCSUBTYPE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DOCNUM</name>
-        <rename>DOCNUM</rename>
-        <update>N</update>
-      </value>
-      <value>
-        <name>SOURCESYS</name>
-        <rename>SOURCESYS</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>INVOICEREF</name>
-        <rename>INVOICEREF</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>GLACCT</name>
-        <rename>GLACCT</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DOCDATE</name>
-        <rename>DOCDATE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>POSTDATE</name>
-        <rename>POSTDATE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CLEARDATE</name>
-        <rename>CLEARDATE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DOCDESC</name>
-        <rename>DOCDESC</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>XACTREF</name>
-        <rename>XACTREF</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CUSTREF</name>
-        <rename>CUSTREF</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>EXTREF5</name>
-        <rename>EXTREF5</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DOCCURR</name>
-        <rename>DOCCURR</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>HOMECURR</name>
-        <rename>HOMECURR</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ALTCURR</name>
-        <rename>ALTCURR</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ORGVAL_DOC</name>
-        <rename>ORGVAL_DOC</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ORGVAL_HOME</name>
-        <rename>ORGVAL_HOME</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ORGVAL_ALT</name>
-        <rename>ORGVAL_ALT</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ORGVAL_NORM</name>
-        <rename>ORGVAL_NORM</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>OPENVAL_DOC</name>
-        <rename>OPENVAL_DOC</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>OPENVAL_HOME</name>
-        <rename>OPENVAL_HOME</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>OPENVAL_ALT</name>
-        <rename>OPENVAL_ALT</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>OPENVAL_NORM</name>
-        <rename>OPENVAL_NORM</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>PAYVAL_DOC</name>
-        <rename>PAYVAL_DOC</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>PAYVAL_HOME</name>
-        <rename>PAYVAL_HOME</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>PAYVAL_ALT</name>
-        <rename>PAYVAL_ALT</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>PAYVAL_NORM</name>
-        <rename>PAYVAL_NORM</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>LASTMOD</name>
-        <rename>LASTMOD</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
+    <fields>      <field>        <name>P_START_DATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>P_DAYS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>815</xloc>
+      <yloc>46</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Days</name>
+    <type>SetValueConstant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <usevar>Y</usevar>
+    <fields>
+      <field>
+        <name>P_DAYS</name>
+        <value>-1</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+        </field>
+      </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>613</xloc>
-      <yloc>167</yloc>
+      <xloc>463</xloc>
+      <yloc>173</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Start Date</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>MAX_PAY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>P_DAYS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+      <meta>        <name>MAX_PAY</name>
+        <rename>P_START_DATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>821</xloc>
+      <yloc>171</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Valid Start</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Set Days</send_true_to>
+<send_false_to>Invert Days</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>MAX_PAY</leftvalue>
+ <function>IS NOT NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>321</xloc>
+      <yloc>110</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Variables</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>P_DAYS</name>
+        <variable>&#x24;&#x7b;daysHistory&#x7d;</variable>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>193</xloc>
+      <yloc>110</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
