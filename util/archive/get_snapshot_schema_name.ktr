@@ -300,8 +300,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <script><![CDATA[(?:Snapshot_)(\w+)+(?:_\d{4}_\d{2}_\d{2})]]></script>    <matcher>fileName</matcher>
-    <resultfieldname>fullText</resultfieldname>
+    <script><![CDATA[[\s\S]*\\(?:Snapshot_)(\w+)+(?:_\d{4}_\d{2}_\d{2}).zip]]></script>    <matcher>fileName</matcher>
+    <resultfieldname>match</resultfieldname>
     <usevar>N</usevar>
     <allowcapturegroups>Y</allowcapturegroups>
     <replacefields>Y</replacefields>

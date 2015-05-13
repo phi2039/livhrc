@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>load_snapshot_archive</name>
+  <name>load_single_table_snapshot</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;05&#x2f;13 12&#x3a;50&#x3a;59.546</created_date>
+  <created_date>2015&#x2f;05&#x2f;13 14&#x3a;51&#x3a;44.954</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;05&#x2f;13 12&#x3a;50&#x3a;59.546</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;13 14&#x3a;51&#x3a;44.954</modified_date>
     <parameters>
         <parameter>
-            <name>archiveFile</name>
-            <default_value>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;NG_Integration&#x5c;snapshot&#x5c;Snapshot_MASTER_DATA_2015_05_10.zip</default_value>
+            <name>fileName</name>
+            <default_value/>
             <description/>
         </parameter>
         <parameter>
-            <name>workingDir</name>
-            <default_value>c&#x3a;&#x5c;Temp</default_value>
+            <name>schema</name>
+            <default_value/>
             <description/>
         </parameter>
     </parameters>
@@ -198,6 +198,42 @@
    <shared_objects_file/>
   <entries>
     <entry>
+      <name>Get Table Name</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;get_snapshot_table_name.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>filename</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;fileName&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>237</xloc>
+      <yloc>88</yloc>
+      </entry>
+    <entry>
       <name>START</name>
       <description/>
       <type>SPECIAL</type>
@@ -214,22 +250,22 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>34</xloc>
-      <yloc>39</yloc>
+      <xloc>104</xloc>
+      <yloc>88</yloc>
       </entry>
     <entry>
-      <name>Get Schema Name</name>
+      <name>Load Snapshot</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;get_snapshot_schema_name.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;load_table_snapshot.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
+      <params_from_previous>Y</params_from_previous>
+      <exec_per_row>Y</exec_per_row>
       <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
+      <clear_files>Y</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
@@ -246,128 +282,18 @@
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>fileName</name>
             <stream_name/>
-            <value>&#x24;&#x7b;archiveFile&#x7d;</value>
+            <value>&#x24;&#x7b;fileName&#x7d;</value>
+            </parameter>            <parameter>            <name>schema</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;schema&#x7d;</value>
+            </parameter>            <parameter>            <name>tableName</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;tableName&#x7d;</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>314</xloc>
-      <yloc>38</yloc>
-      </entry>
-    <entry>
-      <name>Empty Folder</name>
-      <description/>
-      <type>DELETE_FOLDERS</type>
-      <arg_from_previous>N</arg_from_previous>
-      <success_condition>success_if_no_errors</success_condition>
-      <limit_folders>10</limit_folders>
-      <fields>
-        <field>
-          <name>&#x24;&#x7b;workingDir&#x7d;&#x5c;unpack_&#x24;&#x7b;schema&#x7d;</name>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>569</xloc>
-      <yloc>37</yloc>
-      </entry>
-    <entry>
-      <name>Unzip Archive</name>
-      <description/>
-      <type>UNZIP</type>
-      <zipfilename>&#x24;&#x7b;archiveFile&#x7d;</zipfilename>
-      <wildcard/>
-      <wildcardexclude/>
-      <targetdirectory>&#x24;&#x7b;workingDir&#x7d;&#x5c;unpack_&#x24;&#x7b;schema&#x7d;</targetdirectory>
-      <movetodirectory/>
-      <afterunzip>0</afterunzip>
-      <addfiletoresult>Y</addfiletoresult>
-      <isfromprevious>N</isfromprevious>
-      <adddate>N</adddate>
-      <addtime>N</addtime>
-      <addOriginalTimestamp>N</addOriginalTimestamp>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <rootzip>N</rootzip>
-      <createfolder>Y</createfolder>
-      <nr_limit>10</nr_limit>
-      <wildcardSource/>
-      <success_condition>success_if_no_errors</success_condition>
-      <iffileexists>OVERWRITE</iffileexists>
-      <create_move_to_directory>N</create_move_to_directory>
-      <setOriginalModificationDate>N</setOriginalModificationDate>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>687</xloc>
-      <yloc>37</yloc>
-      </entry>
-    <entry>
-      <name>Confirm File</name>
-      <description/>
-      <type>FILES_EXIST</type>
-      <filename/>
-      <fields>
-        <field>
-          <name>&#x24;&#x7b;archiveFile&#x7d;</name>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>172</xloc>
-      <yloc>35</yloc>
-      </entry>
-    <entry>
-      <name>Abort job</name>
-      <description/>
-      <type>ABORT</type>
-      <message>Invalid archive filename &#x28;&#x24;&#x7b;archiveFile&#x7d;&#x29;</message>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>172</xloc>
-      <yloc>181</yloc>
-      </entry>
-    <entry>
-      <name>Check Schema</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <valuetype>variable</valuetype>
-      <fieldname/>
-      <variablename>schema</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue/>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>different</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>451</xloc>
-      <yloc>38</yloc>
-      </entry>
-    <entry>
-      <name>Delete Folder</name>
-      <description/>
-      <type>DELETE_FOLDERS</type>
-      <arg_from_previous>N</arg_from_previous>
-      <success_condition>success_if_no_errors</success_condition>
-      <limit_folders>10</limit_folders>
-      <fields>
-        <field>
-          <name>&#x24;&#x7b;workingDir&#x7d;&#x5c;unpack_&#x24;&#x7b;schema&#x7d;</name>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>1090</xloc>
-      <yloc>41</yloc>
+      <xloc>405</xloc>
+      <yloc>88</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -376,85 +302,43 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1234</xloc>
-      <yloc>42</yloc>
+      <xloc>558</xloc>
+      <yloc>89</yloc>
       </entry>
     <entry>
-      <name>Load Table</name>
+      <name>Truncate Item Master</name>
       <description/>
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;load_single_table_snapshot.kjb</filename>
-      <jobname/>
+      <type>TRUNCATE_TABLES</type>
+      <connection>MASTER_DATA</connection>
       <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>Y</params_from_previous>
-      <exec_per_row>Y</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>fileName</name>
-            <stream_name>path</stream_name>
-            <value/>
-            </parameter>            <parameter>            <name>schema</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;schema&#x7d;</value>
-            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <fields>
+        <field>
+          <name>AR_ITEM_MASTER</name>
+          <schemaname>MASTER_DATA</schemaname>
+        </field>
+      </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>959</xloc>
-      <yloc>38</yloc>
+      <xloc>407</xloc>
+      <yloc>215</yloc>
       </entry>
     <entry>
-      <name>Select Files</name>
+      <name>Abort job</name>
       <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;select_snapshot_files.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
+      <type>ABORT</type>
+      <message/>
+      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>820</xloc>
-      <yloc>37</yloc>
+      <xloc>411</xloc>
+      <yloc>342</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
       <from>START</from>
-      <to>Confirm File</to>
+      <to>Get Table Name</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -462,52 +346,7 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Confirm File</from>
-      <to>Get Schema Name</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Confirm File</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Get Schema Name</from>
-      <to>Check Schema</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Check Schema</from>
-      <to>Empty Folder</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Empty Folder</from>
-      <to>Unzip Archive</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Delete Folder</from>
+      <from>Load Snapshot</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -516,26 +355,26 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load Table</from>
-      <to>Delete Folder</to>
+      <from>Load Snapshot</from>
+      <to>Truncate Item Master</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Unzip Archive</from>
-      <to>Select Files</to>
+      <from>Truncate Item Master</from>
+      <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Select Files</from>
-      <to>Load Table</to>
+      <from>Get Table Name</from>
+      <to>Load Snapshot</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

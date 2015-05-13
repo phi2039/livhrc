@@ -272,11 +272,6 @@
     <encoding/>
     <add_to_result_filenames>N</add_to_result_filenames>
     <file>
-      <name>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;NG_Integration&#x5c;snapshot&#x5c;AR_ITEM_MASTER_2015-05-11_11-30.txt</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
       <name>&#x24;&#x7b;snapshotFile&#x7d;</name>
       <filemask/>
       <exclude_filemask/>
@@ -832,7 +827,7 @@
     <schema>MASTER_DATA</schema>
     <table>AR_ITEM_MASTER</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>N</use_batch>
     <specify_fields>N</specify_fields>

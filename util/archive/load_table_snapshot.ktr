@@ -11,7 +11,17 @@
     <parameters>
         <parameter>
             <name>fileName</name>
-            <default_value/>
+            <default_value>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;NG_Integration&#x5c;snapshot&#x5c;AR_SETTLEMENT_MASTER_2015-05-11_11-31.txt</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>schema</name>
+            <default_value>MASTER_DATA</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>tableName</name>
+            <default_value>AR_SETTLEMENT_MASTER</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -79,8 +89,8 @@
   <notepads>
     <notepad>
       <note>Fields</note>
-      <xloc>128</xloc>
-      <yloc>45</yloc>
+      <xloc>52</xloc>
+      <yloc>303</yloc>
       <width>49</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
@@ -99,11 +109,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Filename</note>
-      <xloc>731</xloc>
-      <yloc>62</yloc>
-      <width>70</width>
-      <heigth>30</heigth>
+      <note>File name&#x2f;&#xd;&#xa;Table name</note>
+      <xloc>643</xloc>
+      <yloc>17</yloc>
+      <width>88</width>
+      <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -120,31 +130,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Query</note>
-      <xloc>499</xloc>
+      <note>Metadata</note>
+      <xloc>30</xloc>
       <yloc>32</yloc>
-      <width>50</width>
-      <heigth>30</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Format minimum width</note>
-      <xloc>253</xloc>
-      <yloc>190</yloc>
-      <width>166</width>
+      <width>74</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -317,62 +306,14 @@
   </connection>
   <order>
   <hop> <from>Get Fields</from><to>Get Field Meta</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Target</from><to>Validate Dest Path</to><enabled>Y</enabled> </hop>
-  <hop> <from>Validate Dest Path</from><to>Build Filename</to><enabled>Y</enabled> </hop>
-  <hop> <from>Build Filename</from><to>Inject Meta</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>Add SQL</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add SQL</from><to>Replace Vars</to><enabled>Y</enabled> </hop>
-  <hop> <from>Replace Vars</from><to>Inject Meta</to><enabled>Y</enabled> </hop>
-  <hop> <from>Field Type</from><to>String</to><enabled>Y</enabled> </hop>
-  <hop> <from>Field Type</from><to>Remove DUMMY</to><enabled>Y</enabled> </hop>
-  <hop> <from>String</from><to>Remove DUMMY</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove DUMMY</from><to>Inject Meta</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Source</from><to>Validate Filename</to><enabled>Y</enabled> </hop>
+  <hop> <from>Validate Filename</from><to>Inject Meta</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Field Meta</from><to>Add constants</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add constants</from><to>Field Type</to><enabled>Y</enabled> </hop>
-  <hop> <from>Field Type</from><to>Number</to><enabled>Y</enabled> </hop>
-  <hop> <from>Field Type</from><to>Integer</to><enabled>Y</enabled> </hop>
-  <hop> <from>Integer</from><to>Remove DUMMY</to><enabled>Y</enabled> </hop>
-  <hop> <from>Number</from><to>Remove DUMMY</to><enabled>Y</enabled> </hop>
-  <hop> <from>Field Type</from><to>Big Number</to><enabled>Y</enabled> </hop>
-  <hop> <from>Field Type</from><to>Timestamp</to><enabled>Y</enabled> </hop>
-  <hop> <from>Field Type</from><to>Date</to><enabled>Y</enabled> </hop>
-  <hop> <from>Big Number</from><to>Remove DUMMY</to><enabled>Y</enabled> </hop>
-  <hop> <from>Timestamp</from><to>Remove DUMMY</to><enabled>Y</enabled> </hop>
-  <hop> <from>Date</from><to>Remove DUMMY</to><enabled>Y</enabled> </hop>
+  <hop> <from>Read Header</from><to>Parse Fields</to><enabled>Y</enabled> </hop>
+  <hop> <from>Parse Fields</from><to>Lookup Meta</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Meta</from><to>Inject Meta</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add constants</from><to>Lookup Meta</to><enabled>Y</enabled> </hop>
   </order>
-  <step>
-    <name>Add SQL</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>sql</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>SELECT &#x2a; FROM &#x25;SCHEMA.&#x25;TABLE &#x25;FILTER</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>511</xloc>
-      <yloc>185</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step>
     <name>Add constants</name>
     <type>Constant</type>
@@ -400,128 +341,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>150</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Big Number</name>
-    <type>SetValueConstant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-   <usevar>N</usevar>
-    <fields>
-      <field>
-        <name>Format</name>
-        <value>0.&#x23;&#x23;&#x23;&#x23;&#x23;</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>264</xloc>
-      <yloc>323</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Build Filename</name>
-    <type>Formula</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <formula><field_name>destFile</field_name>
-<formula_string>&#x5b;destPath&#x5d; &#x26; &#x22;&#x2f;&#x22; &#x26; &#x5b;destName&#x5d; &#x26; &#x22;_&#x22;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>606</xloc>
-      <yloc>310</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Date</name>
-    <type>SetValueConstant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-   <usevar>N</usevar>
-    <fields>
-      <field>
-        <name>Format</name>
-        <value>yyyy-MM-dd</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>271</xloc>
-      <yloc>642</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Field Type</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<fieldname>Type</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>String</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>Remove DUMMY</default_target_step>
-<cases><case><value>String</value>
-<target_step>String</target_step>
-</case><case><value>Number</value>
-<target_step>Number</target_step>
-</case><case><value>Integer</value>
-<target_step>Integer</target_step>
-</case><case><value>BigNumber</value>
-<target_step>Big Number</target_step>
-</case><case><value>Timestamp</value>
-<target_step>Timestamp</target_step>
-</case><case><value>Date</value>
-<target_step>Date</target_step>
-</case></cases>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>148</xloc>
-      <yloc>391</yloc>
+      <xloc>173</xloc>
+      <yloc>220</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -541,8 +362,8 @@
     <rowcountField/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>147</xloc>
-      <yloc>195</yloc>
+      <xloc>137</xloc>
+      <yloc>138</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -567,14 +388,14 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>144</xloc>
-      <yloc>120</yloc>
+      <xloc>137</xloc>
+      <yloc>45</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get Target</name>
+    <name>Get Source</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -586,8 +407,8 @@
            </partitioning>
     <fields>
       <field>
-        <name>destName</name>
-        <variable>&#x24;&#x7b;destName&#x7d;</variable>
+        <name>srcFileName</name>
+        <variable>&#x24;&#x7b;fileName&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -597,39 +418,6 @@
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
-      <field>
-        <name>destPath</name>
-        <variable>&#x24;&#x7b;destPath&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>757</xloc>
-      <yloc>136</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Variables</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
       <field>
         <name>schema</name>
         <variable>&#x24;&#x7b;schema&#x7d;</variable>
@@ -654,23 +442,11 @@
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
-      <field>
-        <name>filterText</name>
-        <variable>&#x24;&#x7b;filterText&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>509</xloc>
-      <yloc>91</yloc>
+      <xloc>586</xloc>
+      <yloc>104</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -689,7 +465,7 @@
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;create_table_snapshot_template.ktr</filename>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;load_table_snapshot_template.ktr</filename>
     <directory_path/>
     <source_step/>
     <source_output_fields>    </source_output_fields>    <target_file/>
@@ -697,30 +473,75 @@
     <stream_source_step/>
     <stream_target_step/>
     <mappings>      <mapping>        <target_step_name>Write To File</target_step_name>
-        <target_attribute_key>OUTPUT_FIELDNAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Remove DUMMY</source_step>
-        <source_field>Fieldname</source_field>
-      </mapping>      <mapping>        <target_step_name>Write To File</target_step_name>
         <target_attribute_key>OUTPUT_TYPE</target_attribute_key>
         <target_detail>Y</target_detail>
         <source_step>Remove DUMMY</source_step>
         <source_field>Type</source_field>
+      </mapping>      <mapping>        <target_step_name>Write To File</target_step_name>
+        <target_attribute_key>OUTPUT_FIELDNAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Remove DUMMY</source_step>
+        <source_field>Fieldname</source_field>
+      </mapping>      <mapping>        <target_step_name>Source File</target_step_name>
+        <target_attribute_key>FIELD_LENGTH</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Lookup Meta</source_step>
+        <source_field>Length</source_field>
+      </mapping>      <mapping>        <target_step_name>Source File</target_step_name>
+        <target_attribute_key>FIELD_PRECISION</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Lookup Meta</source_step>
+        <source_field>Precision</source_field>
+      </mapping>      <mapping>        <target_step_name>Source File</target_step_name>
+        <target_attribute_key>FIELD_FORMAT</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Lookup Meta</source_step>
+        <source_field>Format</source_field>
+      </mapping>      <mapping>        <target_step_name>Load Master</target_step_name>
+        <target_attribute_key>TARGET_TABLE</target_attribute_key>
+        <target_detail>N</target_detail>
+        <source_step>Validate Filename</source_step>
+        <source_field>tableName</source_field>
+      </mapping>      <mapping>        <target_step_name>Source File</target_step_name>
+        <target_attribute_key>FIELD_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Lookup Meta</source_step>
+        <source_field>fieldName</source_field>
+      </mapping>      <mapping>        <target_step_name>Source File</target_step_name>
+        <target_attribute_key>FIELD_POSITION</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Lookup Meta</source_step>
+        <source_field>Position</source_field>
+      </mapping>      <mapping>        <target_step_name>Source File</target_step_name>
+        <target_attribute_key>FILENAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Validate Filename</source_step>
+        <source_field>filename</source_field>
+      </mapping>      <mapping>        <target_step_name>Load Master</target_step_name>
+        <target_attribute_key>TARGET_SCHEMA</target_attribute_key>
+        <target_detail>N</target_detail>
+        <source_step>Validate Filename</source_step>
+        <source_field>schema</source_field>
       </mapping>      <mapping>        <target_step_name>Query Master Data</target_step_name>
         <target_attribute_key>SQL</target_attribute_key>
         <target_detail>N</target_detail>
         <source_step>Replace Vars</source_step>
         <source_field>sql</source_field>
-      </mapping>      <mapping>        <target_step_name>Write To File</target_step_name>
-        <target_attribute_key>FILENAME</target_attribute_key>
-        <target_detail>N</target_detail>
-        <source_step>Build Filename</source_step>
-        <source_field>destFile</source_field>
+      </mapping>      <mapping>        <target_step_name>Source File</target_step_name>
+        <target_attribute_key>FIELD_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Lookup Meta</source_step>
+        <source_field>Type</source_field>
       </mapping>      <mapping>        <target_step_name>Write To File</target_step_name>
         <target_attribute_key>OUTPUT_LENGTH</target_attribute_key>
         <target_detail>Y</target_detail>
         <source_step>Remove DUMMY</source_step>
         <source_field>Length</source_field>
+      </mapping>      <mapping>        <target_step_name>Write To File</target_step_name>
+        <target_attribute_key>FILENAME</target_attribute_key>
+        <target_detail>N</target_detail>
+        <source_step>Build Filename</source_step>
+        <source_field>destFile</source_field>
       </mapping>      <mapping>        <target_step_name>Write To File</target_step_name>
         <target_attribute_key>OUTPUT_PRECISION</target_attribute_key>
         <target_detail>Y</target_detail>
@@ -733,209 +554,14 @@
         <source_field>Format</source_field>
       </mapping>    </mappings>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>515</xloc>
-      <yloc>389</yloc>
+      <xloc>446</xloc>
+      <yloc>265</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Integer</name>
-    <type>SetValueConstant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-   <usevar>N</usevar>
-    <fields>
-      <field>
-        <name>Format</name>
-        <value>&#x23;</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>270</xloc>
-      <yloc>512</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Number</name>
-    <type>SetValueConstant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-   <usevar>N</usevar>
-    <fields>
-      <field>
-        <name>Format</name>
-        <value>0.&#x23;&#x23;</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>267</xloc>
-      <yloc>253</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Remove DUMMY</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Inject Meta</send_true_to>
-<send_false_to/>
-    <compare>
-<condition>
- <negated>Y</negated>
- <leftvalue>Fieldname</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>DUMMY</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>391</xloc>
-      <yloc>393</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Replace Vars</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>sql</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&#x25;SCHEMA</replace_string>
-        <replace_by_string>&#x24;&#x7b;schema&#x7d;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-      <field>
-        <in_stream_name>sql</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&#x25;TABLE</replace_string>
-        <replace_by_string>&#x24;&#x7b;tableName&#x7d;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-      <field>
-        <in_stream_name>sql</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&#x25;FILTER</replace_string>
-        <replace_by_string>&#x24;&#x7b;filterText&#x7d;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>511</xloc>
-      <yloc>277</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>String</name>
-    <type>SetValueConstant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-   <usevar>N</usevar>
-    <fields>
-      <field>
-        <name>Length</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>268</xloc>
-      <yloc>440</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Timestamp</name>
-    <type>SetValueConstant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-   <usevar>N</usevar>
-    <fields>
-      <field>
-        <name>Format</name>
-        <value>yyyy-MM-dd hh&#x3a;mm&#x3a;ss.SSS</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>270</xloc>
-      <yloc>575</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Validate Dest Path</name>
+    <name>Validate Filename</name>
     <type>GetFileNames</type>
     <description/>
     <distribute>Y</distribute>
@@ -953,22 +579,218 @@
     <isaddresult>Y</isaddresult>
     <filefield>Y</filefield>
     <rownum_field/>
-    <filename_Field>destPath</filename_Field>
+    <filename_Field>srcFileName</filename_Field>
     <wildcard_Field/>
     <exclude_wildcard_Field/>
     <dynamic_include_subfolders>N</dynamic_include_subfolders>
     <limit>0</limit>
     <file>
-      <name>c&#x3a;&#x5c;temp</name>
+      <name/>
       <filemask/>
       <exclude_filemask/>
-      <file_required>Y</file_required>
+      <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
     </file>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>681</xloc>
-      <yloc>210</yloc>
+      <xloc>524</xloc>
+      <yloc>195</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Read Header</name>
+    <type>TextFileInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <accept_filenames>N</accept_filenames>
+    <passing_through_fields>N</passing_through_fields>
+    <accept_field/>
+    <accept_stepname/>
+    <separator>&#x3b;</separator>
+    <enclosure/>
+    <enclosure_breaks>N</enclosure_breaks>
+    <escapechar/>
+    <header>N</header>
+    <nr_headerlines>1</nr_headerlines>
+    <footer>N</footer>
+    <nr_footerlines>1</nr_footerlines>
+    <line_wrapped>N</line_wrapped>
+    <nr_wraps>1</nr_wraps>
+    <layout_paged>N</layout_paged>
+    <nr_lines_per_page>80</nr_lines_per_page>
+    <nr_lines_doc_header>0</nr_lines_doc_header>
+    <noempty>Y</noempty>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <rownumByFile>N</rownumByFile>
+    <rownum_field/>
+    <format>DOS</format>
+    <encoding/>
+    <add_to_result_filenames>N</add_to_result_filenames>
+    <file>
+      <name>&#x24;&#x7b;fileName&#x7d;</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+      <type>CSV</type>
+      <compression>None</compression>
+    </file>
+    <filters>
+    </filters>
+    <fields>
+      <field>
+        <name>header</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>1</limit>
+    <error_ignored>N</error_ignored>
+    <skip_bad_files>N</skip_bad_files>
+    <file_error_field/>
+    <file_error_message_field/>
+    <error_line_skipped>N</error_line_skipped>
+    <error_count_field/>
+    <error_fields_field/>
+    <error_text_field/>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <date_format_lenient>Y</date_format_lenient>
+    <date_format_locale>en_US</date_format_locale>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>122</xloc>
+      <yloc>361</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Parse Fields</name>
+    <type>SplitFieldToRows3</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <splitfield>header</splitfield>
+   <delimiter>&#x7c;</delimiter>
+   <newfield>fieldName</newfield>
+   <rownum>N</rownum>
+   <rownum_field/>
+   <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>232</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Meta</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <from>Add constants</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>fieldName</name>
+        <field>Fieldname</field>
+      </key>
+      <value>
+        <name>Position</name>
+        <rename>Position</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>Comments</name>
+        <rename>Comments</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Type</name>
+        <rename>Type</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Length</name>
+        <rename>Length</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>Precision</name>
+        <rename>Precision</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>Origin</name>
+        <rename>Origin</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Format</name>
+        <rename>Format</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>326</xloc>
+      <yloc>264</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
