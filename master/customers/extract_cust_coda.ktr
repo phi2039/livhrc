@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>load_gql_from db</name>
+    <name>extract_cust_coda</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -50,7 +50,7 @@
     <size_rowset>10000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
-    <unique_connections>Y</unique_connections>
+    <unique_connections>N</unique_connections>
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
@@ -72,69 +72,6 @@
   <modified_date>2015&#x2f;04&#x2f;28 19&#x3a;12&#x3a;00.162</modified_date>
   </info>
   <notepads>
-    <notepad>
-      <note>Set the file names to be &#xd;&#xa;used to load the SQL &#xd;&#xa;statements to be executed</note>
-      <xloc>65</xloc>
-      <yloc>29</yloc>
-      <width>185</width>
-      <heigth>70</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Load the overlay data&#xd;&#xa;into staging table</note>
-      <xloc>587</xloc>
-      <yloc>29</yloc>
-      <width>154</width>
-      <heigth>50</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>TODO&#x3a; Fix CREATEDATE&#x2f;&#xd;&#xa;CRLIMDATE handling&#xd;&#xa;so we can include them</note>
-      <xloc>363</xloc>
-      <yloc>30</yloc>
-      <width>175</width>
-      <heigth>70</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>128</backgroundcolorgreen>
-      <backgroundcolorblue>255</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>CODA</name>
@@ -155,6 +92,33 @@
       <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DW</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>livingston_ar</database>
+    <port>3306</port>
+    <username>lii_user</username>
+    <password>Encrypted 2be98afc86aeb9b92a217a963ca9da18b</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -237,56 +201,10 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Get File Names</from><to>Read From GQL</to><enabled>Y</enabled> </hop>
-  <hop> <from>Read From GQL</from><to>Remove Broken Fields</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove Broken Fields</from><to>Load Overlay</to><enabled>Y</enabled> </hop>
+  <hop> <from>Query CODA</from><to>Load Staging</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Get File Names</name>
-    <type>GetFileNames</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <filter>
-      <filterfiletype>all_files</filterfiletype>
-    </filter>
-    <doNotFailIfNoFile>N</doNotFailIfNoFile>
-    <rownum>N</rownum>
-    <isaddresult>N</isaddresult>
-    <filefield>N</filefield>
-    <rownum_field/>
-    <filename_Field/>
-    <wildcard_Field/>
-    <exclude_wildcard_Field/>
-    <dynamic_include_subfolders>N</dynamic_include_subfolders>
-    <limit>0</limit>
-    <file>
-      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;tools&#x5c;sql&#x5c;CustomerOverlay_GQLAccount_FULL.sql</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x5c;tools&#x5c;sql&#x5c;CustomerOverlay_GQLClient_FULL.sql</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>153</xloc>
-      <yloc>135</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Load Overlay</name>
+    <name>Load Staging</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -298,7 +216,7 @@
            </partitioning>
     <connection>MASTER_DATA</connection>
     <schema>STAGING</schema>
-    <table>CUST_OVER_LOAD</table>
+    <table>CUST_EXT_CODA</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -317,14 +235,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>651</xloc>
-      <yloc>139</yloc>
+      <xloc>280</xloc>
+      <yloc>54</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Read From GQL</name>
+    <name>Query CODA</name>
     <type>UserDefinedJavaClass</type>
     <description/>
     <distribute>Y</distribute>
@@ -345,103 +263,158 @@
 import org.pentaho.di.core.variables.*;
 import org.pentaho.di.trans.*;
 import java.sql.*;
-import java.util.*;
 import java.io.*;
- 
-private Database db = null;
-private Queue sqlScripts = new LinkedList();
-private Queue sqlFiles = new LinkedList();
-private int readCount = 0;
-private int failCount = 0;
-private ResultSet resultSet = null;
-private int maxRows = 0;
-private int fetchSize = 0;
+import java.util.*;
+import oracle.jdbc.driver.*;
 
+private final int MAX_PARAMS = 20;
+private int[] paramIndexes = null;
+private int[] outputIndexes = null;
+private RowMetaInterface infoMeta = null;
+private Database db = null;
+private int maxRows = 0;
+private int rowCount = 0;
+private int fetchSize = 0;
+private String procName = null;
+private List procParams = null; 
+private int cursorParamIndex = 0;
+private RowSet infoStream = null;
+private boolean stopFlag = false;
+
+// Overrides
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
-	Object[] row = null;
-  if (first) {
-    // Get the list of files to read for sql statements
-    FieldHelper fileField = get(Fields.Info, "filename");
-    RowSet infoStream = findInfoRowSet("sqlFiles");
+  Object[] infoRow = null;
 
-    // Loop through each row coming from the info step
-    Object[] infoRow = null;
-    while((infoRow = getRowFrom(infoStream)) != null) {
-      String sqlFile = fileField.getString(infoRow);
-      // Open the file and read the SQL statement			
-      try {
-        File f = new File(sqlFile);
-        String sql = new Scanner(f).useDelimiter("\\Z").next(); // Read a single "token"
-        // Store the statement and filename
-        sqlFiles.add(sqlFile);
-        sqlScripts.add(sql);
-        logDetailed("Read SQL from " + sqlFile);
-        logDebug(sql);
-      } catch (IOException e) {
-              logError("Failed to open input file " + sqlFile + " [" + e.getMessage() + "]");
+  if (first) {
+    if (procParams.size() > 0) {
+      // Locate parameter value source
+      infoStream = findInfoRowSet("PARAMETERS");
+      
+      if (infoStream == null) {
+        // Can't continue without parameter values
+        logError("Unable to find PARAMETERS InfoStream");
+        setErrors(1);
+        setOutputDone();
+        return false;
       }
     }
-    first = false; // Done with initialization
+
+    // Done with initialization
+    first = false;
   }
-  
-  RowMetaInterface rowMeta = null;
-  DatabaseMeta dbMeta = null;
-
-	// If we don't have a resultset, try to get one
-	while (resultSet == null && sqlScripts.size() > 0) {
-		// Execute the next script
-		try {
-			logDetailed("Executing SQL from " + sqlFiles.element());
-			String sql = (String) sqlScripts.remove(); // Pop from queue
-			resultSet = db.openQuery(sql); // Execute SQL
+  else {
+    // We only run once for procedures with no parameters
+    if (procParams.size() == 0) {
+      setOutputDone();
+      return false;    
+    }
+  }
+   
+  // If this procedure requires parameters, fetch values for them
+  if (procParams.size() > 0) {
+    // Get next set of parameter values (from InfoStep)
+    logDebug("Fetching " + procParams.size() + " parameter values from PARAMETERS");
+    infoRow = getRowFrom(infoStream);
+    // Quit if none are available
+    if (infoRow == null) {
+      logDetailed("No more parameter values available from PARAMETERS");
+      setOutputDone();
+      return false;
+    }
+    
+    if (infoMeta == null) {
+      // Fetch parameter stream meta information
+      infoMeta = infoStream.getRowMeta();
+      if (infoMeta == null) {
+        setErrors(1);
+        logError("Unable to retrieve meta information from PARAMETERS");
+        setOutputDone();
+        return false;
+      }
       
-      dbMeta = db.getDatabaseMeta();
-			rowMeta = db.getQueryFields(sql, false); // Database row metadata
-			
-			logDetailed("Fetched " + rowMeta.size() + " fields");
-			
-		} catch (KettleDatabaseException e){
-      logError("Error executing script in " + sqlFiles.element() + " " + e.getMessage());
-      setErrors(1);
-		} catch (SQLException ex){
-      logError("Error fetching resultset meta data for " + sqlFiles.element() + " " + ex.getMessage());
-      setErrors(1);
-		}
-		sqlFiles.remove(0); // Remove filename from result
-	}
+      // For each procedure parameter, identify the index in the info stream
+      paramIndexes = new int[procParams.size()];
+      logDebug("Mapping " + procParams.size() + " parameters");
+      for (int p = 0; p < paramIndexes.length; p++) {
+        // Use each parameter's name to look up its index in the info stream
+        String paramName = (String) procParams.get(p);
+        logDebug("    Mapping " + paramName);
+        paramIndexes[p] = infoMeta.indexOfValue(paramName);
+      }
+    }
+  }
+  else {
+    infoRow = new Object[0]; // Empty array for procedures with no parameters
+  }
 
-	// If we still don't have a resultset, we're done...
-	if (resultSet == null) {
-		logDetailed("No more files to process");
-		setOutputDone();
-		return false;
-	}
+  CallableStatement stmt=null;
+  ResultSet rs=null;
+  rowCount = 0;
 
-	// At this point, we have a valid db connection and a valid resultset
-	try {
-		// Fetch the next row
-		for (row = db.getRow(resultSet); (row != null) && ((readCount < maxRows) || maxRows == 0); row = db.getRow(resultSet)) {
-			readCount++;
-			// Now we have a row, so do something with it...
-			
-      // Allocate an output row array
-      Object[] outputRow = RowDataUtil.allocateRowData(rowMeta.size());
-			
-      // Set output values
-      for (int f = 0; f < rowMeta.size(); f++) {
-        ValueMetaInterface fromMeta = rowMeta.getValueMeta(f);
-        ValueMetaInterface toMeta = data.outputRowMeta.getValueMeta(f);
-        Object val = row[f];
+  try
+  {
+    // Create a callable statement
+    stmt = createStatement();
+  
+    // Execute the statement and fetch the result set
+    rs = getResultSet(stmt, infoRow);
+    rs.setFetchSize(fetchSize);
+    rs.setFetchDirection(ResultSet.FETCH_FORWARD);
+    logDetailed("Query completed. Fetching results...");
 
-        // Convert to output type
-        if (val != null) {
-          if (val instanceof String) // Trim any string values before converting
-            val = ((String)val).trim();
-          outputRow[f] = toMeta.convertData(fromMeta, val);
+    RowMetaInterface rowMeta = null;
+    DatabaseMeta dbMeta = null;
+    
+    // Fetch the first row from the result set
+    while (rs.next() && ((rowCount < maxRows) || maxRows == 0) && (stopFlag == false)) {
+     
+      // Fetch the database row meta information from the first row
+      if (rowMeta == null) {
+        logDebug("Retrieving row meta information");
+        dbMeta = db.getDatabaseMeta();
+        if (dbMeta == null)
+          logError("Unable to fetch database meta");
+        rowMeta = db.getMetaFromRow(null, rs.getMetaData()); // getMetaFromRow does not use the provided row (as of PDI 5.1)
+        if (rowMeta == null)
+          logError("Unable to fetch database row meta");
+
+        // For each result column, identify the index in the output stream
+        outputIndexes = new int[rowMeta.size()];
+        logDebug("Mapping " + rowMeta.size() + " columns");
+        String[] columns = rowMeta.getFieldNames();
+        for (int c = 0; c < outputIndexes.length; c++) {
+          // Use each column's name to look up its index in the output stream
+          logDebug("    Mapping " + columns[c]);
+          outputIndexes[c] = data.outputRowMeta.indexOfValue(columns[c]);
         }
-        else
-          outputRow[f] = null;
+      }
+      
+      // Allocate an output row array
+      Object[] outputRow = RowDataUtil.allocateRowData(data.outputRowMeta.size());
+      
+      // For each result field, map and convert to an output field (or ignore it)
+      for (int f = 0; f < rowMeta.size(); f++) {
+        int outIndex = outputIndexes[f];
+        if (outIndex >= 0) { // Only set mapped field values
+          // Get field value
+          ValueMetaInterface fromMeta = rowMeta.getValueMeta(f);
+          ValueMetaInterface toMeta = data.outputRowMeta.getValueMeta(f);
+          if (toMeta == null) {
+            logError("Unable to fetch output value meta for column " + f);
+          }
+          Object val = dbMeta.getValueFromResultSet(rs, fromMeta, f);
+
+          // Convert to output type and set output value
+          if (val != null) {
+            if (val instanceof String) { // Trim any string values before converting
+              val = ((String)val).trim();
+            }
+            outputRow[outIndex] = toMeta.convertData(fromMeta, val);
+          }
+          else
+            outputRow[outIndex] = null;
+        }
       }
 
       // Write the row to the log
@@ -449,69 +422,183 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
       // Pass the row to the next step
       putRow(data.outputRowMeta, outputRow);
-		}
+      rowCount++;
+    }
+  } catch(Exception e) {
+    throw new KettleException("Unable to execute stored procedure", e);
+  } finally {
+    if (rs != null) db.closeQuery(rs);
+    if (stmt != null) db.closePreparedStatement(stmt);
+  }
 
-		// All done with this resultset
-		logDetailed("Finished with result set");
-		db.closeQuery(resultSet);
-		resultSet = null;
-	} catch (KettleDatabaseException e){
-    logError("Error fetching next row " + e.getMessage());
-    setErrors(1);
-		failCount++;
-		// Give up on this resultset
-		db.closeQuery(resultSet);
-		resultSet = null;
-	}
-
-	if (readCount >= maxRows && maxRows > 0) {
-		logDetailed("Maximum rows reached [" + maxRows + "]");
-		setOutputDone();
-		return false;
-	}
-
-  return true;
+  // Signal that we are ready for more
+	return true;
 }
- 
+
 public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface)
 {
-    if (parent.initImpl(stepMetaInterface, stepDataInterface)){
-		String maxRowsParam = getParameter("maxRows");
-		if (maxRowsParam != null && maxRowsParam.trim().length() > 0) {
-			maxRows = Integer.parseInt(maxRowsParam);
-			logDetailed("Max rows = " + maxRows);
-		}
-		String fetchSizeParam = getParameter("fetchSize");
-		if (fetchSizeParam != null && fetchSizeParam.trim().length() > 0) {
-			fetchSize = Integer.parseInt(fetchSizeParam);
-			logDetailed("Fetch size = " + fetchSize);
-		}
-	    String connectionName = getParameter("connectionName");
-        try{
-		 	// Connect to the source database
-            db = new Database(this.parent, getTransMeta().findDatabase(connectionName));
-            db.shareVariablesWith(this.parent);
-            db.connect();
-			logDetailed("Connected to database [" + connectionName + "]");
-            return true;
-        }
-        catch(KettleDatabaseException e){
-            logError("Error connecting to " + connectionName + " " + e.getMessage());
-            setErrors(1);
-            stopAll();
-        }
+  if (parent.initImpl(stepMetaInterface, stepDataInterface)) 
+  {
+    // Retrieve the name of the procedure to execute
+    procName = getParameter("procName");
+    if (procName != null && procName.trim().length() > 0) {
+      
+      // Check for maxRows parameter - limits number of rows returned
+      String maxRowsParam = getParameter("maxRows");
+      if (maxRowsParam != null && maxRowsParam.trim().length() > 0) {
+        maxRows = Integer.parseInt(maxRowsParam);
+        logDetailed("Max rows = " + maxRows);
+      }
+      
+      // Check for fetchSize parameter - sets number of rows to fetch on each round-trip
+      String fetchSizeParam = getParameter("fetchSize");
+      if (fetchSizeParam != null && fetchSizeParam.trim().length() > 0) {
+        fetchSize = Integer.parseInt(fetchSizeParam);
+        logDetailed("Fetch size = " + fetchSize);
+      }
+
+      // Connect to the source database
+      String connectionName = getParameter("connectionName");
+      try{
+        db = new Database(this.parent, getTransMeta().findDatabase(connectionName));
+        db.shareVariablesWith(this.parent);
+        db.connect();
+        logDetailed("Connected to database [" + connectionName + "]");
+
+        // Fetch parameter information for procedure
+        logDetailed("Fetching Parameter Information for " + procName);
+        procParams = getProcParams(procName);
+        if (procParams != null)
+
+        return true;
+      }
+      catch(KettleDatabaseException e){
+          logError("Error connecting to " + connectionName + " - " + e.getMessage());
+      }
     }
-    return false;
-     
+  }
+
+  // Something went wrong...
+  setErrors(1);
+  stopAll();
+  return false;
 }
- 
+
+public void stopRunning(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface)  throws KettleException {
+  stopFlag = true;
+  parent.stopRunningImpl(stepMetaInterface, stepDataInterface);
+}
+
 public void dispose(StepMetaInterface smi, StepDataInterface sdi)
 {
-    if (db != null) {
-        db.disconnect();
-    }
+    if (db != null) 
+      db.disconnect();
     parent.disposeImpl(smi, sdi);
-}]]></class_source>
+}
+
+// Private members
+
+private CallableStatement createStatement() throws Exception {
+
+  // Assemble the query string
+  String query = "{call " + procName + "(";
+  for (int p = 0; p < procParams.size(); p++)
+    query += "?,";    
+  query += "?)}"; // Output parameter
+ 
+	logDetailed("Query: '" + query + "'");
+
+	// Create a callable statement.
+	CallableStatement stmt = db.getConnection().prepareCall(query);
+
+	return stmt;
+}
+
+private ResultSet getResultSet(CallableStatement stmt, Object[] r) throws Exception {
+
+  // Set the output type to an Oracle Cursor
+  stmt.registerOutParameter(cursorParamIndex + 1, OracleTypes.CURSOR);
+
+  String paramValues = "";
+	// Set the parameters...
+	for (int p = 0; p < procParams.size(); p++) {
+    int index = paramIndexes[p];
+		ValueMetaInterface valueMeta = infoMeta.getValueMeta(index);
+    Object valueData = r[index];
+    db.setValue(stmt, valueMeta, valueData, p + 1);
+    paramValues += valueData + "|";
+	}
+
+  if (fetchSize > 0) {
+    logDetailed("Set fetch size : " + fetchSize);
+    stmt.setFetchSize(fetchSize);
+  }
+  
+ 	// Execute the stored procedure...
+	logDetailed("Parameter Values: " + paramValues);
+	logDetailed("Executing : " + procName);
+	stmt.execute();
+
+	// Get the results...
+  ResultSet rs = (ResultSet)stmt.getObject(cursorParamIndex + 1);
+
+	return rs;
+}
+
+private List getProcParams(String procName)
+{
+  String[] nameParts = procName.split("\\.");
+  if (nameParts.length > 2) {
+    logError("Invalid procedure name: " + procName);
+    return null;
+  }
+  procName = nameParts[nameParts.length - 1];
+
+  // Fetch parameter information from the database
+  ResultSet paramSet = null;
+  String sql = "SELECT ARGUMENT_NAME, POSITION, DATA_TYPE, IN_OUT FROM USER_ARGUMENTS WHERE OBJECT_NAME = '" + procName + "' ";
+  if (nameParts.length == 2)
+    sql += " AND PACKAGE_NAME = '" + nameParts[0] + "' ";
+  sql += " ORDER BY POSITION ASC";
+  logDebug("Executing: " + sql);
+  try {
+    paramSet = db.openQuery(sql); // Execute SQL
+  } catch(KettleDatabaseException e){
+    logError("Error retrieving procedure parameters for " + procName + " - " + e.getMessage());
+  }  
+  
+  List params = new ArrayList(MAX_PARAMS);
+  try {
+    for (Object[] row = db.getRow(paramSet); row != null; row = db.getRow(paramSet)) {
+      if (row[3].equals("OUT")) {
+        if (row[2].equals("REF CURSOR")) {
+        cursorParamIndex = params.size();
+        logDebug("Found Output Parameter at: " + cursorParamIndex);
+        return params; // We don't support any more input parameters after this...
+        }
+        else {
+          logError("Invalid output parameter type for procedure " + procName + " at position: " + row[1]);
+          break;
+        }
+      }
+      else {
+        logDebug("Parameter " + params.size() + ": " + row[0]);
+        params.add(row[0]);
+      }
+    }
+    if (params.size() == 0)
+      logError("Invalid procedure: " + procName);
+    else // If we got here, we didn't find an OUT parameter...
+      logError("Failed to find suitable output parameter type for procedure " + procName);
+  } catch(KettleDatabaseException e){
+    logError("Error retrieving procedure parameters for " + procName + " - " + e.getMessage());  
+  } finally {
+    db.closeQuery(paramSet);
+  }
+  
+  return null;  
+}
+]]></class_source>
         </definition>
     </definitions>
     <fields>
@@ -608,7 +695,7 @@ public void dispose(StepMetaInterface smi, StepDataInterface sdi)
         <field>
         <field_name>CREATEDATE</field_name>
 
-        <field_type>Integer</field_type>
+        <field_type>Date</field_type>
 
         <field_length>-1</field_length>
 
@@ -628,7 +715,7 @@ public void dispose(StepMetaInterface smi, StepDataInterface sdi)
         <field>
         <field_name>CREDITLIM</field_name>
 
-        <field_type>Integer</field_type>
+        <field_type>Number</field_type>
 
         <field_length>-1</field_length>
 
@@ -668,7 +755,7 @@ public void dispose(StepMetaInterface smi, StepDataInterface sdi)
         <field>
         <field_name>CRLIMDATE</field_name>
 
-        <field_type>Integer</field_type>
+        <field_type>Date</field_type>
 
         <field_length>-1</field_length>
 
@@ -846,61 +933,27 @@ public void dispose(StepMetaInterface smi, StepDataInterface sdi)
 
         </field>
     </fields><clear_result_fields>N</clear_result_fields>
-<info_steps><info_step><step_tag>sqlFiles</step_tag>
-<step_name>Get File Names</step_name>
-<step_description/>
-</info_step></info_steps><target_steps></target_steps><usage_parameters><usage_parameter><parameter_tag>connectionName</parameter_tag>
-<parameter_value>GQL</parameter_value>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters><usage_parameter><parameter_tag>procName</parameter_tag>
+<parameter_value>AR_EXTRACTS.CUSTOMER_MASTER_FULL</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>connectionName</parameter_tag>
+<parameter_value>CODA</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>fetchSize</parameter_tag>
+<parameter_value>10000</parameter_value>
 <parameter_description/>
 </usage_parameter><usage_parameter><parameter_tag>maxRows</parameter_tag>
 <parameter_value>0</parameter_value>
 <parameter_description/>
-</usage_parameter><usage_parameter><parameter_tag>fetchSize</parameter_tag>
-<parameter_value>0</parameter_value>
-<parameter_description/>
 </usage_parameter></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>326</xloc>
-      <yloc>134</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Remove Broken Fields</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>Y</select_unspecified>
-      <remove>        <name>CREATEDATE</name>
-      </remove>      <remove>        <name>CRLIMDATE</name>
-      </remove>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>479</xloc>
-      <yloc>136</yloc>
+      <xloc>80</xloc>
+      <yloc>54</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step_error_handling>
-      <error>
-        <source_step>Read From GQL</source_step>
-        <target_step/>
-        <is_enabled>N</is_enabled>
-        <nr_valuename/>
-        <descriptions_valuename/>
-        <fields_valuename/>
-        <codes_valuename/>
-        <max_errors/>
-        <max_pct_errors/>
-        <min_pct_rows/>
-      </error>
   </step_error_handling>
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>

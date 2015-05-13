@@ -119,6 +119,33 @@
     </attributes>
   </connection>
   <connection>
+    <name>DW</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>livingston_ar</database>
+    <port>3306</port>
+    <username>lii_user</username>
+    <password>Encrypted 2be98afc86aeb9b92a217a963ca9da18b</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>GQL</name>
     <server/>
     <type>ORACLERDB</type>
@@ -156,7 +183,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -299,6 +326,7 @@ private String procName = null;
 private List procParams = null; 
 private int cursorParamIndex = 0;
 private RowSet infoStream = null;
+private boolean stopFlag = false;
 
 // Overrides
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
@@ -386,7 +414,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     DatabaseMeta dbMeta = null;
     
     // Fetch the first row from the result set
-    while (rs.next() && ((rowCount < maxRows) || maxRows == 0)) {
+    while (rs.next() && ((rowCount < maxRows) || maxRows == 0) && (stopFlag == false)) {
      
       // Fetch the database row meta information from the first row
       if (rowMeta == null) {
@@ -503,6 +531,11 @@ public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepD
   return false;
 }
 
+public void stopRunning(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface)  throws KettleException {
+  stopFlag = true;
+  parent.stopRunningImpl(stepMetaInterface, stepDataInterface);
+}
+
 public void dispose(StepMetaInterface smi, StepDataInterface sdi)
 {
     if (db != null) 
@@ -533,12 +566,14 @@ private ResultSet getResultSet(CallableStatement stmt, Object[] r) throws Except
   // Set the output type to an Oracle Cursor
   stmt.registerOutParameter(cursorParamIndex + 1, OracleTypes.CURSOR);
 
+  String paramValues = "";
 	// Set the parameters...
 	for (int p = 0; p < procParams.size(); p++) {
     int index = paramIndexes[p];
 		ValueMetaInterface valueMeta = infoMeta.getValueMeta(index);
     Object valueData = r[index];
     db.setValue(stmt, valueMeta, valueData, p + 1);
+    paramValues += valueData + "|";
 	}
 
   if (fetchSize > 0) {
@@ -547,6 +582,7 @@ private ResultSet getResultSet(CallableStatement stmt, Object[] r) throws Except
   }
   
  	// Execute the stored procedure...
+	logDetailed("Parameter Values: " + paramValues);
 	logDetailed("Executing : " + procName);
 	stmt.execute();
 

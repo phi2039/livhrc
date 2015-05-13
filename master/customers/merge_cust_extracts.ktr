@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>process_customers</name>
+    <name>merge_cust_extracts</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -50,7 +50,7 @@
     <size_rowset>10000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
-    <unique_connections>Y</unique_connections>
+    <unique_connections>N</unique_connections>
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
@@ -67,17 +67,38 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;04&#x2f;22 14&#x3a;25&#x3a;05.500</created_date>
+  <created_date>2015&#x2f;04&#x2f;22 13&#x3a;43&#x3a;22.451</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;04&#x2f;22 14&#x3a;25&#x3a;05.500</modified_date>
+  <modified_date>2015&#x2f;04&#x2f;22 13&#x3a;43&#x3a;22.451</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>Update Customer Master table&#xd;&#xa;with information in extracts.&#xd;&#xa;INSERT or UPDATE, never DELETE</note>
-      <xloc>513</xloc>
-      <yloc>42</yloc>
-      <width>232</width>
+      <note>TODO&#x3a; Should we ignore &#xd;&#xa;certain fields from GQL&#x3f;&#xd;&#xa;&#x28;i.e. CRLIMDATE, INVCURR&#x29;</note>
+      <xloc>27</xloc>
+      <yloc>15</yloc>
+      <width>189</width>
       <heigth>70</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>128</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Update fields in CODA extract with &#xd;&#xa;any values available from GQL&#xd;&#xa;...do NOT add or delete new rows &#xd;&#xa;from the GQL extract</note>
+      <xloc>445</xloc>
+      <yloc>313</yloc>
+      <width>246</width>
+      <heigth>90</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -88,27 +109,6 @@
       <backgroundcolorred>255</backgroundcolorred>
       <backgroundcolorgreen>205</backgroundcolorgreen>
       <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>TODO&#x3a;&#xd;&#xa;- Update customer master&#xd;&#xa;with last mod date</note>
-      <xloc>31</xloc>
-      <yloc>288</yloc>
-      <width>184</width>
-      <heigth>70</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
@@ -243,13 +243,66 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Extract Data</from><to>Compare</to><enabled>Y</enabled> </hop>
-  <hop> <from>Master Data</from><to>Compare</to><enabled>Y</enabled> </hop>
-  <hop> <from>Compare</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Timestamp</from><to>Synchronize after merge</to><enabled>Y</enabled> </hop>
+  <hop> <from>CODA</from><to>Merge Extracts</to><enabled>Y</enabled> </hop>
+  <hop> <from>GQL</from><to>Merge Extracts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Snapshot</from><to>Merge Snapshot</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Extracts</from><to>Merge Snapshot</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Snapshot</from><to>Synchronize after merge</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Compare</name>
+    <name>CODA</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MASTER_DATA</connection>
+    <sql>SELECT &#x2a; FROM STAGING.CUST_EXT_CODA&#xd;&#xa;ORDER BY CUSTID</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>72</xloc>
+      <yloc>130</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>GQL</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MASTER_DATA</connection>
+    <sql>SELECT &#x2a; FROM STAGING.CUST_EXT_GQL&#xd;&#xa;ORDER BY CUSTID</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>71</xloc>
+      <yloc>261</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge Extracts</name>
     <type>MergeRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -297,91 +350,14 @@
       <value>REMARKS2</value>
     </values>
 <flag_field>changeType</flag_field>
-<reference>Master Data</reference>
-<compare>Extract Data</compare>
+<reference>CODA</reference>
+<compare>GQL</compare>
     <compare>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>206</xloc>
-      <yloc>179</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Extract Data</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>MASTER_DATA</connection>
-    <sql>SELECT &#x2a; FROM STAGING.CUST_EXT_LOAD&#xd;&#xa;ORDER BY CUSTID</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>56</xloc>
-      <yloc>180</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Timestamp</name>
-    <type>SystemInfo</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>LASTMOD</name>
-        <type>system date &#x28;variable&#x29;</type>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>329</xloc>
-      <yloc>180</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Master Data</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>MASTER_DATA</connection>
-    <sql>SELECT&#xd;&#xa;  CUSTID&#xd;&#xa;, NAME&#xd;&#xa;, ADD1&#xd;&#xa;, ADD2&#xd;&#xa;, ADD3&#xd;&#xa;, CITY&#xd;&#xa;, STATEPROV&#xd;&#xa;, COUNTRY&#xd;&#xa;, POSTCODE&#xd;&#xa;, CREATEDATE&#xd;&#xa;, TERMS&#xd;&#xa;, CREDITLIM&#xd;&#xa;, TTMREV&#xd;&#xa;, SFID&#xd;&#xa;, CORPCODE&#xd;&#xa;, CRLIMDATE&#xd;&#xa;, ACCTSTAT&#xd;&#xa;, ACCTTYPE&#xd;&#xa;, BONDTYPE&#xd;&#xa;, PREVCO&#xd;&#xa;, SIC&#xd;&#xa;, CST&#xd;&#xa;, CSM&#xd;&#xa;, MSD&#xd;&#xa;, SC&#xd;&#xa;, WAIVERTYPE&#xd;&#xa;, INVCURR&#xd;&#xa;, CREDITCODE&#xd;&#xa;, LANGUAGE&#xd;&#xa;, PARENT&#xd;&#xa;, REMITTO&#xd;&#xa;, REMARKS1&#xd;&#xa;, REMARKS2&#xd;&#xa;FROM MASTER_DATA.CUSTOMER_MASTER&#xd;&#xa;ORDER BY CUSTID&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>207</xloc>
-      <yloc>35</yloc>
+      <xloc>227</xloc>
+      <yloc>203</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -398,7 +374,7 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <commit>100</commit>
+    <commit>1000</commit>
     <tablename_in_field>N</tablename_in_field>
     <tablename_field/>
     <use_batch>N</use_batch>
@@ -408,8 +384,8 @@
     <order_update>changed</order_update>
     <order_delete/>
     <lookup>
-      <schema>MASTER_DATA</schema>
-      <table>CUSTOMER_MASTER</table>
+      <schema>STAGING</schema>
+      <table>CUST_SNAP</table>
       <key>
         <name>CUSTID</name>
         <field>CUSTID</field>
@@ -582,15 +558,69 @@
         <update>Y</update>
       </value>
       <value>
-        <name>LASTMOD</name>
-        <rename>LASTMOD</rename>
+        <name>LASTCHANGE</name>
+        <rename>changeType</rename>
         <update>Y</update>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>520</xloc>
-      <yloc>181</yloc>
+      <xloc>541</xloc>
+      <yloc>202</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Snapshot</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MASTER_DATA</connection>
+    <sql>SELECT&#xd;&#xa;  CUSTID&#xd;&#xa;, NAME&#xd;&#xa;, ADD1&#xd;&#xa;, ADD2&#xd;&#xa;, ADD3&#xd;&#xa;, CITY&#xd;&#xa;, STATEPROV&#xd;&#xa;, COUNTRY&#xd;&#xa;, POSTCODE&#xd;&#xa;, CREATEDATE&#xd;&#xa;, TERMS&#xd;&#xa;, CREDITLIM&#xd;&#xa;, TTMREV&#xd;&#xa;, SFID&#xd;&#xa;, CORPCODE&#xd;&#xa;, CRLIMDATE&#xd;&#xa;, ACCTSTAT&#xd;&#xa;, ACCTTYPE&#xd;&#xa;, BONDTYPE&#xd;&#xa;, PREVCO&#xd;&#xa;, SIC&#xd;&#xa;, CST&#xd;&#xa;, CSM&#xd;&#xa;, MSD&#xd;&#xa;, SC&#xd;&#xa;, WAIVERTYPE&#xd;&#xa;, INVCURR&#xd;&#xa;, CREDITCODE&#xd;&#xa;, LANGUAGE&#xd;&#xa;, PARENT&#xd;&#xa;, REMITTO&#xd;&#xa;, REMARKS1&#xd;&#xa;, REMARKS2&#xd;&#xa;FROM STAGING.CUST_SNAP&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>292</xloc>
+      <yloc>89</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge Snapshot</name>
+    <type>MergeRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <keys>
+    </keys>
+    <values>
+    </values>
+<flag_field>changeType</flag_field>
+<reference>Snapshot</reference>
+<compare>Merge Extracts</compare>
+    <compare>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>381</xloc>
+      <yloc>202</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

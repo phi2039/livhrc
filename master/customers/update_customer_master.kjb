@@ -182,7 +182,7 @@
       <yloc>169</yloc>
       </entry>
     <entry>
-      <name>Update Customer Master</name>
+      <name>Update Master</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -211,16 +211,16 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>742</xloc>
-      <yloc>120</yloc>
+      <xloc>635</xloc>
+      <yloc>169</yloc>
       </entry>
     <entry>
-      <name>Merge Extracts</name>
+      <name>Merge Into Snapshot</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;merge_sources.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;merge_cust_extracts.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -244,33 +244,33 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>583</xloc>
-      <yloc>116</yloc>
+      <xloc>342</xloc>
+      <yloc>171</yloc>
       </entry>
     <entry>
-      <name>Truncate tables</name>
+      <name>Truncate Extracts</name>
       <description/>
       <type>TRUNCATE_TABLES</type>
       <connection>MASTER_DATA</connection>
       <arg_from_previous>N</arg_from_previous>
       <fields>
         <field>
-          <name>CUST_EXT_LOAD</name>
+          <name>CUST_EXT_GQL</name>
           <schemaname>STAGING</schemaname>
         </field>
         <field>
-          <name>CUST_OVER_LOAD</name>
+          <name>CUST_EXT_CODA</name>
           <schemaname>STAGING</schemaname>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>587</xloc>
-      <yloc>286</yloc>
+      <xloc>490</xloc>
+      <yloc>168</yloc>
       </entry>
     <entry>
-      <name>Load Source Data</name>
+      <name>Load Extracts</name>
       <description/>
       <type>JOB</type>
       <specification_method>filename</specification_method>
@@ -298,77 +298,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>442</xloc>
-      <yloc>173</yloc>
-      </entry>
-    <entry>
-      <name>EXT Exists</name>
-      <description/>
-      <type>TABLE_EXISTS</type>
-      <tablename>CUST_EXT_LOAD</tablename>
-      <schemaname>STAGING</schemaname>
-      <connection>MASTER_DATA</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>266</xloc>
-      <yloc>175</yloc>
-      </entry>
-    <entry>
-      <name>OVER Exists</name>
-      <description/>
-      <type>TABLE_EXISTS</type>
-      <tablename>CUST_OVER_LOAD</tablename>
-      <schemaname>STAGING</schemaname>
-      <connection>MASTER_DATA</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>152</xloc>
-      <yloc>174</yloc>
-      </entry>
-    <entry>
-      <name>Create EXT</name>
-      <description/>
-      <type>SQL</type>
-      <sql/>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>T</sqlfromfile>
-      <sqlfilename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;tools&#x5c;sql&#x5c;create_cust_ext.sql</sqlfilename>
-      <sendOneStatement>T</sendOneStatement>
-      <connection>MASTER_DATA</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>264</xloc>
-      <yloc>281</yloc>
-      </entry>
-    <entry>
-      <name>Create OVER</name>
-      <description/>
-      <type>SQL</type>
-      <sql/>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>T</sqlfromfile>
-      <sqlfilename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;tools&#x5c;sql&#x5c;create_cust_ext.sql</sqlfilename>
-      <sendOneStatement>T</sendOneStatement>
-      <connection>MASTER_DATA</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>156</xloc>
-      <yloc>279</yloc>
-      </entry>
-    <entry>
-      <name>Falied Creating</name>
-      <description/>
-      <type>ABORT</type>
-      <message>Failed to confirm&#x2f;create staging tables</message>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>210</xloc>
-      <yloc>407</yloc>
+      <xloc>189</xloc>
+      <yloc>169</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -378,14 +309,24 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>741</xloc>
-      <yloc>287</yloc>
+      <xloc>492</xloc>
+      <yloc>323</yloc>
+      </entry>
+    <entry>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>780</xloc>
+      <yloc>168</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>Merge Extracts</from>
-      <to>Update Customer Master</to>
+      <from>Merge Into Snapshot</from>
+      <to>Truncate Extracts</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -393,17 +334,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Merge Extracts</from>
-      <to>Truncate tables</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Load Source Data</from>
-      <to>Merge Extracts</to>
+      <from>Load Extracts</from>
+      <to>Merge Into Snapshot</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -411,106 +343,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load Source Data</from>
-      <to>Truncate tables</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Update Customer Master</from>
-      <to>Truncate tables</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>EXT Exists</from>
-      <to>Create EXT</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>OVER Exists</from>
-      <to>Create OVER</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Create OVER</from>
-      <to>EXT Exists</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>OVER Exists</from>
-      <to>EXT Exists</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>START</from>
-      <to>OVER Exists</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>EXT Exists</from>
-      <to>Load Source Data</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Create OVER</from>
-      <to>Falied Creating</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Create EXT</from>
-      <to>Falied Creating</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Create EXT</from>
-      <to>Load Source Data</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Update Customer Master</from>
+      <from>Update Master</from>
       <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -518,12 +351,57 @@
       <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>START</from>
+      <to>Load Extracts</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Merge Into Snapshot</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Truncate Extracts</from>
+      <to>Update Master</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Truncate Extracts</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Update Master</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
       <note>Update fields in CODA extract with &#xd;&#xa;any values available from GQL</note>
-      <xloc>479</xloc>
-      <yloc>24</yloc>
+      <xloc>135</xloc>
+      <yloc>68</yloc>
       <width>246</width>
       <heigth>50</heigth>
       <fontname/>
@@ -542,30 +420,9 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Load staging tables from &#xd;&#xa;extract files</note>
-      <xloc>144</xloc>
-      <yloc>72</yloc>
-      <width>181</width>
-      <heigth>50</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
       <note>Update master data table &#xd;&#xa;with changes from extracts</note>
-      <xloc>860</xloc>
-      <yloc>110</yloc>
+      <xloc>624</xloc>
+      <yloc>252</yloc>
       <width>188</width>
       <heigth>50</heigth>
       <fontname/>
@@ -584,13 +441,13 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Shrink database</note>
-      <xloc>544</xloc>
-      <yloc>354</yloc>
-      <width>115</width>
-      <heigth>30</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
+      <note>Finished with extract&#xd;&#xa;tables. Data is now in&#xd;&#xa;snapshot</note>
+      <xloc>438</xloc>
+      <yloc>57</yloc>
+      <width>152</width>
+      <heigth>70</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>

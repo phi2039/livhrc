@@ -13,6 +13,7 @@ private int failCount = 0;
 private ResultSet resultSet = null;
 private int maxRows = 0;
 private int fetchSize = 0;
+private boolean stopFlag = false;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
@@ -78,7 +79,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 	// At this point, we have a valid db connection and a valid resultset
 	try {
 		// Fetch the next row
-		for (row = db.getRow(resultSet); (row != null) && ((readCount < maxRows) || maxRows == 0); row = db.getRow(resultSet)) {
+		for (row = db.getRow(resultSet); (row != null) && (stopFlag == false) && ((readCount < maxRows) || maxRows == 0); row = db.getRow(resultSet)) {
 			readCount++;
 			// Now we have a row, so do something with it...
 			
@@ -160,6 +161,11 @@ public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepD
     }
     return false;
      
+}
+
+public void stopRunning(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface)  throws KettleException {
+  stopFlag = true;
+  parent.stopRunningImpl(stepMetaInterface, stepDataInterface);
 }
  
 public void dispose(StepMetaInterface smi, StepDataInterface sdi)

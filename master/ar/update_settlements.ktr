@@ -520,6 +520,7 @@ private String procName = null;
 private List procParams = null; 
 private int cursorParamIndex = 0;
 private RowSet infoStream = null;
+private boolean stopFlag = false;
 
 // Overrides
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
@@ -607,7 +608,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     DatabaseMeta dbMeta = null;
     
     // Fetch the first row from the result set
-    while (rs.next() && ((rowCount < maxRows) || maxRows == 0)) {
+    while (rs.next() && ((rowCount < maxRows) || maxRows == 0) && (stopFlag == false)) {
      
       // Fetch the database row meta information from the first row
       if (rowMeta == null) {
@@ -722,6 +723,11 @@ public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepD
   setErrors(1);
   stopAll();
   return false;
+}
+
+public void stopRunning(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface)  throws KettleException {
+  stopFlag = true;
+  parent.stopRunningImpl(stepMetaInterface, stepDataInterface);
 }
 
 public void dispose(StepMetaInterface smi, StepDataInterface sdi)
@@ -1180,6 +1186,35 @@ private List getProcParams(String procName)
     </step>
 
   <step>
+    <name>Valid Start</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Set Days</send_true_to>
+<send_false_to>Invert Days</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>MAX_PAY</leftvalue>
+ <function>IS NOT NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>435</xloc>
+      <yloc>167</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Validate</name>
     <type>Validator</type>
     <description/>
@@ -1223,35 +1258,6 @@ private List getProcParams(String procName)
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1050</xloc>
       <yloc>112</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Valid Start</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Set Days</send_true_to>
-<send_false_to>Invert Days</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>MAX_PAY</leftvalue>
- <function>IS NOT NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>435</xloc>
-      <yloc>167</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

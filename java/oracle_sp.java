@@ -18,6 +18,7 @@ private String procName = null;
 private List procParams = null; 
 private int cursorParamIndex = 0;
 private RowSet infoStream = null;
+private boolean stopFlag = false;
 
 // Overrides
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
@@ -105,7 +106,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     DatabaseMeta dbMeta = null;
     
     // Fetch the first row from the result set
-    while (rs.next() && ((rowCount < maxRows) || maxRows == 0)) {
+    while (rs.next() && ((rowCount < maxRows) || maxRows == 0) && (stopFlag == false)) {
      
       // Fetch the database row meta information from the first row
       if (rowMeta == null) {
@@ -220,6 +221,11 @@ public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepD
   setErrors(1);
   stopAll();
   return false;
+}
+
+public void stopRunning(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface)  throws KettleException {
+  stopFlag = true;
+  parent.stopRunningImpl(stepMetaInterface, stepDataInterface);
 }
 
 public void dispose(StepMetaInterface smi, StepDataInterface sdi)

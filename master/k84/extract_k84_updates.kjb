@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>load_k84_updates</name>
+  <name>extract_k84_updates</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;05&#x2f;04 11&#x3a;47&#x3a;32.338</created_date>
+  <created_date>2015&#x2f;05&#x2f;12 17&#x3a;34&#x3a;55.152</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;05&#x2f;04 11&#x3a;47&#x3a;32.338</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;12 17&#x3a;34&#x3a;55.152</modified_date>
     <parameters>
         <parameter>
             <name>k84Path</name>
-            <default_value>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;K84 Daily&#x5c;K84 History</default_value>
+            <default_value/>
             <description/>
         </parameter>
         <parameter>
@@ -41,6 +41,33 @@
       <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DW</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>livingston_ar</database>
+    <port>3306</port>
+    <username>lii_user</username>
+    <password>Encrypted 2be98afc86aeb9b92a217a963ca9da18b</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -161,8 +188,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>37</xloc>
-      <yloc>192</yloc>
+      <xloc>68</xloc>
+      <yloc>62</yloc>
       </entry>
     <entry>
       <name>Select Files</name>
@@ -200,16 +227,16 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>190</xloc>
-      <yloc>192</yloc>
+      <xloc>361</xloc>
+      <yloc>62</yloc>
       </entry>
     <entry>
-      <name>Load Master Data</name>
+      <name>Extract To Staging</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;extract_k84_file.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;extract_k84_file_2.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>Y</params_from_previous>
@@ -236,8 +263,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>352</xloc>
-      <yloc>193</yloc>
+      <xloc>514</xloc>
+      <yloc>61</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -246,50 +273,41 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>637</xloc>
-      <yloc>195</yloc>
+      <xloc>669</xloc>
+      <yloc>63</yloc>
       </entry>
     <entry>
-      <name>Maintain Master</name>
+      <name>Truncate Staging</name>
       <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;maintain_k84_data.ktr</filename>
-      <transname/>
+      <type>TRUNCATE_TABLES</type>
+      <connection>MASTER_DATA</connection>
       <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>monthsHistory</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;monthsHistory&#x7d;</value>
-            </parameter>      </parameters>      <parallel>N</parallel>
+      <fields>
+        <field>
+          <name>K84_EXT</name>
+          <schemaname>STAGING</schemaname>
+        </field>
+      </fields>
+      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>490</xloc>
-      <yloc>193</yloc>
+      <xloc>217</xloc>
+      <yloc>62</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
       <from>Select Files</from>
-      <to>Load Master Data</to>
+      <to>Extract To Staging</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Extract To Staging</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -298,7 +316,7 @@
     </hop>
     <hop>
       <from>START</from>
-      <to>Select Files</to>
+      <to>Truncate Staging</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -306,130 +324,16 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Load Master Data</from>
-      <to>Maintain Master</to>
+      <from>Truncate Staging</from>
+      <to>Select Files</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Maintain Master</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
-    <notepad>
-      <note>Load new K84 data&#xd;&#xa;into master table. &#xd;&#xa;N.B. This transformation &#xd;&#xa;runs once for every input&#xd;&#xa;row</note>
-      <xloc>276</xloc>
-      <yloc>34</yloc>
-      <width>174</width>
-      <heigth>110</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Identify K84 files created&#xd;&#xa;since last run</note>
-      <xloc>119</xloc>
-      <yloc>269</yloc>
-      <width>174</width>
-      <heigth>50</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Maintain master data&#xd;&#xa;table&#x28;s&#x29;. Trim, etc...</note>
-      <xloc>428</xloc>
-      <yloc>269</yloc>
-      <width>151</width>
-      <heigth>50</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>NOTE&#x3a; This job should be &#xd;&#xa;executed AFTER AR updates&#xd;&#xa;are loaded, so that items &#xd;&#xa;previously K84&#x27;d can be&#xd;&#xa;updated correctly</note>
-      <xloc>26</xloc>
-      <yloc>18</yloc>
-      <width>197</width>
-      <heigth>110</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>128</backgroundcolorgreen>
-      <backgroundcolorblue>255</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>TODO&#x3a; Add check for duplicates &#xd;&#xa;before&#x2f;after master update</note>
-      <xloc>37</xloc>
-      <yloc>374</yloc>
-      <width>227</width>
-      <heigth>50</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>64</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
 
 </job>
