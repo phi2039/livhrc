@@ -248,13 +248,6 @@
 <value_precision>-1</value_precision>
 <replace_field/>
 </formula>
-       <formula><field_name>minLastMod</field_name>
-<formula_string>TEXT&#x28;&#x5b;endDate&#x5d;&#x3b;&#x22;yyyy-MM-dd hh&#x3a;mm&#x3a;ss&#x22;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>267</xloc>
@@ -275,10 +268,6 @@
            <schema_name/>
            </partitioning>
     <fields>
-      <field>
-        <name>endDate</name>
-        <type>job start date range</type>
-        </field>
       <field>
         <name>today</name>
         <type>system date &#x28;fixed&#x29;</type>
@@ -336,12 +325,6 @@
            <schema_name/>
            </partitioning>
     <fields>
-      <field>
-        <field_name>minLastMod</field_name>
-        <variable_name>minLastMod</variable_name>
-        <variable_type>PARENT_JOB</variable_type>
-        <default_value/>
-        </field>
       <field>
         <field_name>fileNamePrefix</field_name>
         <variable_name>fileNamePrefix</variable_name>
