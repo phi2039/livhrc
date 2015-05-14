@@ -268,7 +268,7 @@
     <fields>
       <field>
         <field_name>MINK84</field_name>
-        <variable_name>minK84</variable_name>
+        <variable_name>mink84</variable_name>
         <variable_type>PARENT_JOB</variable_type>
         <default_value/>
         </field>
