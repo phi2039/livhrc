@@ -219,8 +219,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>68</xloc>
-      <yloc>128</yloc>
+      <xloc>57</xloc>
+      <yloc>57</yloc>
       </entry>
     <entry>
       <name>Delta Load</name>
@@ -260,8 +260,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>408</xloc>
-      <yloc>124</yloc>
+      <xloc>397</xloc>
+      <yloc>53</yloc>
       </entry>
     <entry>
       <name>Install Package</name>
@@ -292,8 +292,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>288</xloc>
-      <yloc>124</yloc>
+      <xloc>277</xloc>
+      <yloc>53</yloc>
       </entry>
     <entry>
       <name>Process Updates</name>
@@ -324,8 +324,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>539</xloc>
-      <yloc>126</yloc>
+      <xloc>528</xloc>
+      <yloc>55</yloc>
       </entry>
     <entry>
       <name>HRC Extract</name>
@@ -356,8 +356,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>664</xloc>
-      <yloc>127</yloc>
+      <xloc>653</xloc>
+      <yloc>56</yloc>
       </entry>
     <entry>
       <name>Check Conn</name>
@@ -379,12 +379,17 @@
           <waitfor>10</waitfor>
           <waittime>minute</waittime>
         </connection>
+        <connection>
+          <name>PROC_DATA</name>
+          <waitfor>10</waitfor>
+          <waittime>minute</waittime>
+        </connection>
       </connections>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>172</xloc>
-      <yloc>127</yloc>
+      <xloc>161</xloc>
+      <yloc>56</yloc>
       </entry>
     <entry>
       <name>Snapshot</name>
@@ -415,8 +420,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>796</xloc>
-      <yloc>131</yloc>
+      <xloc>785</xloc>
+      <yloc>60</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -425,8 +430,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>917</xloc>
-      <yloc>134</yloc>
+      <xloc>906</xloc>
+      <yloc>63</yloc>
       </entry>
   </entries>
   <hops>
@@ -496,10 +501,10 @@
   </hops>
   <notepads>
     <notepad>
-      <note>TODO&#x3a; Get cutoff date</note>
-      <xloc>592</xloc>
-      <yloc>59</yloc>
-      <width>158</width>
+      <note>0 min</note>
+      <xloc>267</xloc>
+      <yloc>134</yloc>
+      <width>48</width>
       <heigth>30</heigth>
       <fontname/>
       <fontsize>-1</fontsize>
@@ -517,10 +522,94 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>TODO&#x3a; SFTP</note>
-      <xloc>639</xloc>
-      <yloc>213</yloc>
-      <width>90</width>
+      <note>x min</note>
+      <xloc>390</xloc>
+      <yloc>132</yloc>
+      <width>47</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>x min</note>
+      <xloc>516</xloc>
+      <yloc>138</yloc>
+      <width>47</width>
+      <heigth>30</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>TODO&#x3a; &#xd;&#xa;Set logging vars&#xd;&#xa;Manage archives&#xd;&#xa;Manage exports&#xd;&#xa;Update DW</note>
+      <xloc>36</xloc>
+      <yloc>149</yloc>
+      <width>122</width>
+      <heigth>110</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>x min</note>
+      <xloc>647</xloc>
+      <yloc>139</yloc>
+      <width>47</width>
+      <heigth>30</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>x min</note>
+      <xloc>777</xloc>
+      <yloc>143</yloc>
+      <width>47</width>
       <heigth>30</heigth>
       <fontname/>
       <fontsize>-1</fontsize>

@@ -235,3 +235,5 @@ set_env.bat
 
 snapshot/*
 hrc/exports/*
+hrc/log/*
+*.properties
