@@ -233,6 +233,7 @@
   </connection>
   <order>
   <hop> <from>AR Item Snapshot</from><to>Load Master</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get files from result</from><to>AR Item Snapshot</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>AR Item Snapshot</name>
@@ -245,10 +246,10 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <accept_filenames>N</accept_filenames>
+    <accept_filenames>Y</accept_filenames>
     <passing_through_fields>N</passing_through_fields>
-    <accept_field/>
-    <accept_stepname/>
+    <accept_field>path</accept_field>
+    <accept_stepname>Get files from result</accept_stepname>
     <separator>&#x7c;</separator>
     <enclosure/>
     <enclosure_breaks>N</enclosure_breaks>
@@ -272,7 +273,7 @@
     <encoding/>
     <add_to_result_filenames>N</add_to_result_filenames>
     <file>
-      <name>&#x24;&#x7b;snapshotFile&#x7d;</name>
+      <name/>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -806,8 +807,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>88</xloc>
-      <yloc>61</yloc>
+      <xloc>262</xloc>
+      <yloc>59</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -844,8 +845,27 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>283</xloc>
-      <yloc>60</yloc>
+      <xloc>457</xloc>
+      <yloc>58</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get files from result</name>
+    <type>FilesFromResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>85</xloc>
+      <yloc>59</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

@@ -13,7 +13,7 @@
     <parameters>
         <parameter>
             <name>snapshotFolder</name>
-            <default_value/>
+            <default_value>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_Collections Initiative - Athena&#x5c;Data&#x5c;NG_Integration&#x5c;snapshot</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -209,8 +209,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>41</xloc>
-      <yloc>40</yloc>
+      <xloc>61</xloc>
+      <yloc>52</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -219,8 +219,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1124</xloc>
-      <yloc>47</yloc>
+      <xloc>977</xloc>
+      <yloc>51</yloc>
       </entry>
     <entry>
       <name>Restore AR Items</name>
@@ -231,7 +231,7 @@
       <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;restore_ar_items_from_snapshot.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
+      <params_from_previous>Y</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
@@ -255,8 +255,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>667</xloc>
-      <yloc>43</yloc>
+      <xloc>520</xloc>
+      <yloc>47</yloc>
       </entry>
     <entry>
       <name>Verify Snapshot Folder</name>
@@ -271,8 +271,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>191</xloc>
-      <yloc>41</yloc>
+      <xloc>211</xloc>
+      <yloc>53</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -282,26 +282,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>674</xloc>
-      <yloc>255</yloc>
-      </entry>
-    <entry>
-      <name>Truncate Master Tables</name>
-      <description/>
-      <type>TRUNCATE_TABLES</type>
-      <connection>MASTER_DATA</connection>
-      <arg_from_previous>N</arg_from_previous>
-      <fields>
-        <field>
-          <name>AR_ITEM_MASTER</name>
-          <schemaname>MASTER_DATA</schemaname>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>358</xloc>
-      <yloc>42</yloc>
+      <xloc>530</xloc>
+      <yloc>297</yloc>
       </entry>
     <entry>
       <name>AR Item Filename</name>
@@ -319,8 +301,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>516</xloc>
-      <yloc>43</yloc>
+      <xloc>369</xloc>
+      <yloc>47</yloc>
       </entry>
     <entry>
       <name>Settlement Filename</name>
@@ -338,8 +320,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>819</xloc>
-      <yloc>45</yloc>
+      <xloc>672</xloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
       <name>Restore Settlements</name>
@@ -350,7 +332,7 @@
       <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;restore_settlements_from_snapshot.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
+      <params_from_previous>Y</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
@@ -374,8 +356,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>980</xloc>
-      <yloc>45</yloc>
+      <xloc>833</xloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
       <name>Truncate Item Master</name>
@@ -392,8 +374,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>670</xloc>
-      <yloc>155</yloc>
+      <xloc>523</xloc>
+      <yloc>159</yloc>
       </entry>
     <entry>
       <name>Truncate Settlement Master</name>
@@ -410,8 +392,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>839</xloc>
-      <yloc>149</yloc>
+      <xloc>692</xloc>
+      <yloc>153</yloc>
       </entry>
   </entries>
   <hops>
@@ -432,33 +414,6 @@
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
       <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Verify Snapshot Folder</from>
-      <to>Truncate Master Tables</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Truncate Master Tables</from>
-      <to>Abort job</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Truncate Master Tables</from>
-      <to>AR Item Filename</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
     </hop>
     <hop>
       <from>AR Item Filename</from>
@@ -531,6 +486,15 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Verify Snapshot Folder</from>
+      <to>AR Item Filename</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
