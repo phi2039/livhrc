@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>update_ar_due_dates</name>
+    <name>get_min_k84_date</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
-        <parameter>
-            <name>minK84</name>
-            <default_value/>
-            <description/>
-        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -60,7 +54,7 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>Y</capture_step_performance>
+    <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
@@ -72,53 +66,11 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;05&#x2f;11 15&#x3a;58&#x3a;00.846</created_date>
+  <created_date>2015&#x2f;05&#x2f;13 21&#x3a;30&#x3a;38.154</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;05&#x2f;11 15&#x3a;58&#x3a;00.846</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;13 21&#x3a;30&#x3a;38.154</modified_date>
   </info>
   <notepads>
-    <notepad>
-      <note>What about bogus K84 dates&#x3f;</note>
-      <xloc>36</xloc>
-      <yloc>182</yloc>
-      <width>209</width>
-      <heigth>30</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>0</backgroundcolorred>
-      <backgroundcolorgreen>128</backgroundcolorgreen>
-      <backgroundcolorblue>255</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>This calculates due dates for&#xd;&#xa;items with DUEDATE &#x3d;&#x3d; NULL.&#xd;&#xa;N.B. Due dates are not changed&#xd;&#xa;once calculated, even if customer&#xd;&#xa;terms change.</note>
-      <xloc>32</xloc>
-      <yloc>43</yloc>
-      <width>231</width>
-      <heigth>110</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>CODA</name>
@@ -274,26 +226,10 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Terms</from><to>Open</to><enabled>Y</enabled> </hop>
-  <hop> <from>Terms</from><to>Unknown</to><enabled>Y</enabled> </hop>
-  <hop> <from>Terms</from><to>Month-End</to><enabled>Y</enabled> </hop>
-  <hop> <from>K84 Ref</from><to>Month-End</to><enabled>Y</enabled> </hop>
-  <hop> <from>K84</from><to>K84 Ref</to><enabled>Y</enabled> </hop>
-  <hop> <from>Terms</from><to>K84</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Timestamp</from><to>Update</to><enabled>Y</enabled> </hop>
-  <hop> <from>Month-End</from><to>Missing Period</to><enabled>Y</enabled> </hop>
-  <hop> <from>Old Doc</from><to>Remove Min</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove Min</from><to>Set Due Date</to><enabled>Y</enabled> </hop>
-  <hop> <from>Open</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
-  <hop> <from>Month-End</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set Due Date</from><to>Get Timestamp</to><enabled>Y</enabled> </hop>
-  <hop> <from>AR &#x2f; Customer Masters</from><to>Terms</to><enabled>Y</enabled> </hop>
-  <hop> <from>Old Doc</from><to>Not K84&#x27;d</to><enabled>Y</enabled> </hop>
-  <hop> <from>K84</from><to>Get Variables</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>Old Doc</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Min K84</from><to>Set Variables</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>AR &#x2f; Customer Masters</name>
+    <name>Get Min K84</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -304,23 +240,23 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <sql>SELECT &#xd;&#xa;AR.CMPCODE,&#xd;&#xa;AR.DOCTYPE,&#xd;&#xa;AR.DOCNUM,&#xd;&#xa;AR.CUSTID,&#xd;&#xa;AR.DOCDATE,&#xd;&#xa;AR.DUEDATE,&#xd;&#xa;AR.K84ACCTDATE,&#xd;&#xa;C.TERMS&#xd;&#xa;FROM&#xd;&#xa;MASTER_DATA.AR_ITEM_MASTER AR&#xd;&#xa;JOIN MASTER_DATA.CUSTOMER_MASTER C&#xd;&#xa;ON AR.CUSTID &#x3d; C.CUSTID&#xd;&#xa;WHERE DUEDATE IS NULL</sql>
+    <sql>SELECT MIN&#x28;ACCTDATE&#x29; AS MINK84&#xd;&#xa;FROM MASTER_DATA.K84_MASTER</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
+    <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>117</xloc>
-      <yloc>350</yloc>
+      <xloc>108</xloc>
+      <yloc>57</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get Timestamp</name>
-    <type>SystemInfo</type>
+    <name>Set Variables</name>
+    <type>SetVariable</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -331,429 +267,22 @@
            </partitioning>
     <fields>
       <field>
-        <name>LASTMOD</name>
-        <type>system date &#x28;variable&#x29;</type>
+        <field_name>MINK84</field_name>
+        <variable_name>minK84</variable_name>
+        <variable_type>PARENT_JOB</variable_type>
+        <default_value/>
         </field>
       </fields>
+    <use_formatting>Y</use_formatting>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>767</xloc>
-      <yloc>407</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Variables</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>mink84</name>
-        <variable>&#x24;&#x7b;minK84&#x7d;</variable>
-        <type>Date</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>476</xloc>
-      <yloc>155</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>K84</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>K84 Ref</send_true_to>
-<send_false_to>Get Variables</send_false_to>
-    <compare>
-<condition>
- <negated>Y</negated>
- <leftvalue>K84ACCTDATE</leftvalue>
- <function>IS NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>362</xloc>
-      <yloc>216</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>K84 Ref</name>
-    <type>SetValueField</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>DOCDATE</name>
-        <replaceby>K84ACCTDATE</replaceby>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>448</xloc>
-      <yloc>236</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Missing Period</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>578</xloc>
-      <yloc>373</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Month-End</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>MASTER_DATA</connection>
-    <cache>Y</cache>
-    <cache_load_all>Y</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>MASTER_DATA</schema>
-      <table>MONTH_END_CAL</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>Y</eat_row_on_failure>
-      <key>
-        <name>DOCDATE</name>
-        <field>STARTDATE</field>
-        <condition>&#x3c;&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>DOCDATE</name>
-        <field>CUTOFFDATE</field>
-        <condition>&#x3e;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>CLOSEDATE</name>
-        <rename>newDueDate</rename>
-        <default/>
-        <type>Date</type>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>582</xloc>
-      <yloc>283</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Not K84&#x27;d</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>701</xloc>
-      <yloc>87</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Old Doc</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Remove Min</send_true_to>
-<send_false_to>Not K84&#x27;d</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>DOCDATE</leftvalue>
- <function>&#x3c;</function>
- <rightvalue>MINK84</rightvalue>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>572</xloc>
-      <yloc>117</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Open</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>newDueDate</field_name>
-<calc_type>ADD_DAYS</calc_type>
-<field_a>DOCDATE</field_a>
-<field_b>TERMS</field_b>
-<field_c/>
-<value_type>None</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>580</xloc>
-      <yloc>441</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Remove Min</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>Y</select_unspecified>
-      <remove>        <name>minK84</name>
-      </remove>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>680</xloc>
-      <yloc>194</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set Due Date</name>
-    <type>Formula</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <formula><field_name>newDueDate</field_name>
-<formula_string>DATE&#x28;YEAR&#x28;&#x5b;DOCDATE&#x5d;&#x29;&#x3b;MONTH&#x28;&#x5b;DOCDATE&#x5d;&#x29;&#x3b;28&#x29;</formula_string>
-<value_type>Date</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>737</xloc>
-      <yloc>282</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Terms</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<fieldname>TERMS</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>Integer</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>Open</default_target_step>
-<cases><case><value>-1</value>
-<target_step>Unknown</target_step>
-</case><case><value>96</value>
-<target_step>Month-End</target_step>
-</case><case><value>98</value>
-<target_step>Month-End</target_step>
-</case><case><value>22</value>
-<target_step>K84</target_step>
-</case><case><value>99</value>
-<target_step>K84</target_step>
-</case></cases>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>255</xloc>
-      <yloc>345</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Unknown</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>580</xloc>
-      <yloc>532</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Update</name>
-    <type>Update</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>MASTER_DATA</connection>
-    <skip_lookup>Y</skip_lookup>
-    <commit>1000</commit>
-    <use_batch>N</use_batch>
-    <error_ignored>N</error_ignored>
-    <ignore_flag_field/>
-    <lookup>
-      <schema>MASTER_DATA</schema>
-      <table>AR_ITEM_MASTER</table>
-      <key>
-        <name>CMPCODE</name>
-        <field>CMPCODE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-        </key>
-      <key>
-        <name>DOCTYPE</name>
-        <field>DOCTYPE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-        </key>
-      <key>
-        <name>DOCNUM</name>
-        <field>DOCNUM</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-        </key>
-      <key>
-        <name>CUSTID</name>
-        <field>CUSTID</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-        </key>
-      <value>
-        <name>DUEDATE</name>
-        <rename>newDueDate</rename>
-        </value>
-      <value>
-        <name>LASTMOD</name>
-        <rename>LASTMOD</rename>
-        </value>
-      </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>955</xloc>
-      <yloc>409</yloc>
+      <xloc>254</xloc>
+      <yloc>58</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step_error_handling>
-      <error>
-        <source_step>Month-End</source_step>
-        <target_step>Missing Period</target_step>
-        <is_enabled>Y</is_enabled>
-        <nr_valuename/>
-        <descriptions_valuename/>
-        <fields_valuename/>
-        <codes_valuename/>
-        <max_errors/>
-        <max_pct_errors/>
-        <min_pct_rows/>
-      </error>
   </step_error_handling>
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>
