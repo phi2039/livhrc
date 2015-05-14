@@ -204,8 +204,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>46</xloc>
-      <yloc>137</yloc>
+      <xloc>52</xloc>
+      <yloc>78</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -214,8 +214,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1019</xloc>
-      <yloc>132</yloc>
+      <xloc>1025</xloc>
+      <yloc>73</yloc>
       </entry>
     <entry>
       <name>Export Settlements</name>
@@ -253,8 +253,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>321</xloc>
-      <yloc>130</yloc>
+      <xloc>327</xloc>
+      <yloc>71</yloc>
       </entry>
     <entry>
       <name>Export AR Delta</name>
@@ -292,8 +292,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>634</xloc>
-      <yloc>131</yloc>
+      <xloc>640</xloc>
+      <yloc>72</yloc>
       </entry>
     <entry>
       <name>Export Customer Delta</name>
@@ -331,8 +331,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>481</xloc>
-      <yloc>131</yloc>
+      <xloc>487</xloc>
+      <yloc>72</yloc>
       </entry>
     <entry>
       <name>Set Variables</name>
@@ -347,8 +347,8 @@
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
-      <set_logfile>Y</set_logfile>
-      <logfile>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;log&#x5c;hrc_export_log</logfile>
+      <set_logfile>N</set_logfile>
+      <logfile/>
       <logext>txt</logext>
       <add_date>Y</add_date>
       <add_time>N</add_time>
@@ -358,14 +358,14 @@
       <set_append_logfile>Y</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>Y</create_parent_folder>
+      <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>185</xloc>
-      <yloc>136</yloc>
+      <xloc>191</xloc>
+      <yloc>77</yloc>
       </entry>
     <entry>
       <name>Map Upload</name>
@@ -397,44 +397,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>769</xloc>
-      <yloc>134</yloc>
-      </entry>
-    <entry>
-      <name>Test</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;filename_test.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>Y</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>searchPath</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;exports</value>
-            </parameter>      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>485</xloc>
-      <yloc>23</yloc>
+      <xloc>775</xloc>
+      <yloc>75</yloc>
       </entry>
     <entry>
       <name>Upload</name>
@@ -474,8 +438,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>894</xloc>
-      <yloc>132</yloc>
+      <xloc>900</xloc>
+      <yloc>73</yloc>
       </entry>
   </entries>
   <hops>
@@ -523,24 +487,6 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Set Variables</from>
-      <to>Test</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>N</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Test</from>
-      <to>Map Upload</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>N</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Map Upload</from>
