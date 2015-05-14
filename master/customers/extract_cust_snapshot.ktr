@@ -330,6 +330,35 @@
     </step>
 
   <step>
+    <name>Ignore Additions</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to/>
+<send_false_to/>
+    <compare>
+<condition>
+ <negated>Y</negated>
+ <leftvalue>changeType</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>new</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>371</xloc>
+      <yloc>204</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Merge Extracts</name>
     <type>MergeRows</type>
     <description/>
@@ -452,6 +481,27 @@
     </step>
 
   <step>
+    <name>Remove Flag</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>changeType</name>
+      </remove>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>500</xloc>
+      <yloc>204</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Snapshot</name>
     <type>TableInput</type>
     <description/>
@@ -463,7 +513,7 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>SELECT&#xd;&#xa;  CUSTID&#xd;&#xa;, NAME&#xd;&#xa;, ADD1&#xd;&#xa;, ADD2&#xd;&#xa;, ADD3&#xd;&#xa;, CITY&#xd;&#xa;, STATEPROV&#xd;&#xa;, COUNTRY&#xd;&#xa;, POSTCODE&#xd;&#xa;, CREATEDATE&#xd;&#xa;, TERMS&#xd;&#xa;, CREDITLIM&#xd;&#xa;, TTMREV&#xd;&#xa;, SFID&#xd;&#xa;, CORPCODE&#xd;&#xa;, CRLIMDATE&#xd;&#xa;, ACCTSTAT&#xd;&#xa;, ACCTTYPE&#xd;&#xa;, BONDTYPE&#xd;&#xa;, PREVCO&#xd;&#xa;, SIC&#xd;&#xa;, CST&#xd;&#xa;, CSM&#xd;&#xa;, MSD&#xd;&#xa;, SC&#xd;&#xa;, WAIVERTYPE&#xd;&#xa;, INVCURR&#xd;&#xa;, CREDITCODE&#xd;&#xa;, LANGUAGE&#xd;&#xa;, PARENT&#xd;&#xa;, REMITTO&#xd;&#xa;, REMARKS1&#xd;&#xa;, REMARKS2&#xd;&#xa;FROM STAGING.CUST_SNAP&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  CUSTID&#xd;&#xa;, NAME&#xd;&#xa;, ADD1&#xd;&#xa;, ADD2&#xd;&#xa;, ADD3&#xd;&#xa;, CITY&#xd;&#xa;, STATEPROV&#xd;&#xa;, COUNTRY&#xd;&#xa;, POSTCODE&#xd;&#xa;, CREATEDATE&#xd;&#xa;, TERMS&#xd;&#xa;, CREDITLIM&#xd;&#xa;, TTMREV&#xd;&#xa;, SFID&#xd;&#xa;, CORPCODE&#xd;&#xa;, CRLIMDATE&#xd;&#xa;, ACCTSTAT&#xd;&#xa;, ACCTTYPE&#xd;&#xa;, BONDTYPE&#xd;&#xa;, PREVCO&#xd;&#xa;, SIC&#xd;&#xa;, CST&#xd;&#xa;, CSM&#xd;&#xa;, MSD&#xd;&#xa;, SC&#xd;&#xa;, WAIVERTYPE&#xd;&#xa;, INVCURR&#xd;&#xa;, CREDITCODE&#xd;&#xa;, LANGUAGE&#xd;&#xa;, PARENT&#xd;&#xa;, REMITTO&#xd;&#xa;, REMARKS1&#xd;&#xa;, REMARKS2&#xd;&#xa;FROM STAGING.CUST_SNAP&#xd;&#xa;ORDER BY CUSTID ASC</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -682,56 +732,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>797</xloc>
       <yloc>205</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Remove Flag</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>changeType</name>
-      </remove>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>500</xloc>
-      <yloc>204</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Ignore Additions</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to/>
-<send_false_to/>
-    <compare>
-<condition>
- <negated>Y</negated>
- <leftvalue>changeType</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>new</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>371</xloc>
-      <yloc>204</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
