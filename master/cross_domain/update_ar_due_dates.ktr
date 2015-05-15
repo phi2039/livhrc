@@ -359,7 +359,7 @@
         <name>mink84</name>
         <variable>&#x24;&#x7b;minK84&#x7d;</variable>
         <type>Date</type>
-        <format>yyyy-MM-dd hh&#x3a;mm&#x3a;ss.SSS</format>
+        <format>yyyy&#x2f;MM&#x2f;dd hh&#x3a;mm&#x3a;ss.SSS</format>
         <currency/>
         <decimal/>
         <group/>

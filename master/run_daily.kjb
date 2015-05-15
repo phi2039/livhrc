@@ -219,8 +219,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>57</xloc>
-      <yloc>57</yloc>
+      <xloc>79</xloc>
+      <yloc>163</yloc>
       </entry>
     <entry>
       <name>Delta Load</name>
@@ -260,8 +260,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>397</xloc>
-      <yloc>53</yloc>
+      <xloc>419</xloc>
+      <yloc>159</yloc>
       </entry>
     <entry>
       <name>Install Package</name>
@@ -292,8 +292,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>277</xloc>
-      <yloc>53</yloc>
+      <xloc>299</xloc>
+      <yloc>159</yloc>
       </entry>
     <entry>
       <name>Process Updates</name>
@@ -324,8 +324,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>528</xloc>
-      <yloc>55</yloc>
+      <xloc>550</xloc>
+      <yloc>161</yloc>
       </entry>
     <entry>
       <name>HRC Extract</name>
@@ -356,8 +356,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>653</xloc>
-      <yloc>56</yloc>
+      <xloc>675</xloc>
+      <yloc>162</yloc>
       </entry>
     <entry>
       <name>Check Conn</name>
@@ -388,8 +388,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>161</xloc>
-      <yloc>56</yloc>
+      <xloc>183</xloc>
+      <yloc>162</yloc>
       </entry>
     <entry>
       <name>Snapshot</name>
@@ -420,8 +420,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>785</xloc>
-      <yloc>60</yloc>
+      <xloc>807</xloc>
+      <yloc>166</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -430,8 +430,107 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>906</xloc>
-      <yloc>63</yloc>
+      <xloc>1009</xloc>
+      <yloc>168</yloc>
+      </entry>
+    <entry>
+      <name>Abort job</name>
+      <description/>
+      <type>ABORT</type>
+      <message/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>497</xloc>
+      <yloc>436</yloc>
+      </entry>
+    <entry>
+      <name>Mail Failure</name>
+      <description/>
+      <type>MAIL</type>
+      <server>smtp.gmail.com</server>
+      <port>465</port>
+      <destination>clance&#x40;ssaandco.com</destination>
+      <destinationCc/>
+      <destinationBCc/>
+      <replyto>climber2039&#x40;gmail.com</replyto>
+      <replytoname>KeyStone Data Platform</replytoname>
+      <subject>&#x24;&#x7b;Internal.Job.Name&#x7d; failed</subject>
+      <include_date>Y</include_date>
+      <contact_person/>
+      <contact_phone/>
+      <comment>See attached log for details</comment>
+      <include_files>Y</include_files>
+      <zip_files>N</zip_files>
+      <zip_name/>
+      <use_auth>Y</use_auth>
+      <use_secure_auth>Y</use_secure_auth>
+      <auth_user>climber2039&#x40;gmail.com</auth_user>
+      <auth_password>Encrypted 2be98afc86aa7f2e4990cad7ed199ff8a</auth_password>
+      <only_comment>N</only_comment>
+      <use_HTML>Y</use_HTML>
+      <use_Priority>N</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>normal</priority>
+      <importance>normal</importance>
+      <sensitivity>normal</sensitivity>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses>climber2039&#x40;gmail.com</replyToAddresses>
+      <filetypes>        <filetype>LOG</filetype>
+        <filetype>ERRORLINE</filetype>
+        <filetype>ERROR</filetype>
+        <filetype>WARNING</filetype>
+      </filetypes>      <embeddedimages>
+      </embeddedimages>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>494</xloc>
+      <yloc>314</yloc>
+      </entry>
+    <entry>
+      <name>Mail Success</name>
+      <description/>
+      <type>MAIL</type>
+      <server>smtp.gmail.com</server>
+      <port>465</port>
+      <destination>clance&#x40;ssaandco.com</destination>
+      <destinationCc/>
+      <destinationBCc/>
+      <replyto>climber2039&#x40;gmail.com</replyto>
+      <replytoname>KeyStone Data Platform</replytoname>
+      <subject>&#x24;&#x7b;Internal.Job.Name&#x7d; completed successfully</subject>
+      <include_date>Y</include_date>
+      <contact_person/>
+      <contact_phone/>
+      <comment/>
+      <include_files>N</include_files>
+      <zip_files>N</zip_files>
+      <zip_name/>
+      <use_auth>Y</use_auth>
+      <use_secure_auth>Y</use_secure_auth>
+      <auth_user>climber2039&#x40;gmail.com</auth_user>
+      <auth_password>Encrypted 2be98afc86aa7f2e4990cad7ed199ff8a</auth_password>
+      <only_comment>N</only_comment>
+      <use_HTML>Y</use_HTML>
+      <use_Priority>N</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>normal</priority>
+      <importance>normal</importance>
+      <sensitivity>normal</sensitivity>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses>climber2039&#x40;gmail.com</replyToAddresses>
+      <filetypes>        <filetype>LOG</filetype>
+        <filetype>ERRORLINE</filetype>
+        <filetype>ERROR</filetype>
+        <filetype>WARNING</filetype>
+      </filetypes>      <embeddedimages>
+      </embeddedimages>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>912</xloc>
+      <yloc>169</yloc>
       </entry>
   </entries>
   <hops>
@@ -490,7 +589,79 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Check Conn</from>
+      <to>Mail Failure</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Install Package</from>
+      <to>Mail Failure</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Delta Load</from>
+      <to>Mail Failure</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Process Updates</from>
+      <to>Mail Failure</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>HRC Extract</from>
+      <to>Mail Failure</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Snapshot</from>
+      <to>Mail Failure</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Mail Failure</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Snapshot</from>
+      <to>Mail Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Mail Success</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -498,76 +669,22 @@
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>Mail Success</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
-      <note>0 min</note>
-      <xloc>267</xloc>
-      <yloc>134</yloc>
-      <width>48</width>
-      <heigth>30</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>x min</note>
-      <xloc>390</xloc>
-      <yloc>132</yloc>
-      <width>47</width>
-      <heigth>30</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>x min</note>
-      <xloc>516</xloc>
-      <yloc>138</yloc>
-      <width>47</width>
-      <heigth>30</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>TODO&#x3a; &#xd;&#xa;Set logging vars&#xd;&#xa;Manage archives&#xd;&#xa;Manage exports&#xd;&#xa;Update DW</note>
-      <xloc>36</xloc>
-      <yloc>149</yloc>
-      <width>122</width>
+      <note>TODO&#x3a; &#xd;&#xa;Set logging vars globally&#xd;&#xa;Manage archives&#xd;&#xa;Manage exports&#xd;&#xa;Update DW</note>
+      <xloc>26</xloc>
+      <yloc>11</yloc>
+      <width>176</width>
       <heigth>110</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -579,48 +696,6 @@
       <backgroundcolorred>255</backgroundcolorred>
       <backgroundcolorgreen>255</backgroundcolorgreen>
       <backgroundcolorblue>128</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>x min</note>
-      <xloc>647</xloc>
-      <yloc>139</yloc>
-      <width>47</width>
-      <heigth>30</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>x min</note>
-      <xloc>777</xloc>
-      <yloc>143</yloc>
-      <width>47</width>
-      <heigth>30</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
