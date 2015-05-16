@@ -214,8 +214,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1025</xloc>
-      <yloc>73</yloc>
+      <xloc>1125</xloc>
+      <yloc>72</yloc>
       </entry>
     <entry>
       <name>Export Settlements</name>
@@ -292,7 +292,7 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>640</xloc>
+      <xloc>760</xloc>
       <yloc>72</yloc>
       </entry>
     <entry>
@@ -397,8 +397,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>775</xloc>
-      <yloc>75</yloc>
+      <xloc>875</xloc>
+      <yloc>74</yloc>
       </entry>
     <entry>
       <name>Upload</name>
@@ -438,23 +438,39 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>900</xloc>
-      <yloc>73</yloc>
+      <xloc>1000</xloc>
+      <yloc>72</yloc>
+      </entry>
+    <entry>
+      <name>Dumy Overlay</name>
+      <description/>
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>N</overwrite_files>
+      <include_subfolders>N</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>Y</add_result_filesname>
+      <destination_is_a_file>Y</destination_is_a_file>
+      <create_destination_folder>N</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;exports&#x5c;DUMMY_CUST_OVERLAY.txt</source_filefolder>
+          <destination_filefolder>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;exports&#x5c;&#x24;&#x7b;fileNamePrefix&#x7d;_CUST_OVERLAY.TXT</destination_filefolder>
+          <wildcard/>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>632</xloc>
+      <yloc>71</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
       <from>Export Settlements</from>
       <to>Export Customer Delta</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Export Customer Delta</from>
-      <to>Export AR Delta</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -480,15 +496,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Export AR Delta</from>
-      <to>Map Upload</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>Map Upload</from>
       <to>Upload</to>
       <from_nr>0</from_nr>
@@ -500,6 +507,33 @@
     <hop>
       <from>Upload</from>
       <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Export AR Delta</from>
+      <to>Map Upload</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>N</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Export Customer Delta</from>
+      <to>Dumy Overlay</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Dumy Overlay</from>
+      <to>Export AR Delta</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

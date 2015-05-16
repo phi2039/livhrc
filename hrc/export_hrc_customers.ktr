@@ -253,7 +253,7 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <sql>SELECT &#x2a;&#xd;&#xa;FROM MASTER_DATA.CUSTOMER_MASTER&#xd;&#xa;WHERE LASTMOD &#x3e; &#x3f;</sql>
+    <sql>SELECT &#x2a;&#xd;&#xa;FROM MASTER_DATA.CUSTOMER_MASTER&#xd;&#xa;WHERE LASTMOD &#x3e; &#x3f;&#xd;&#xa;-- Also ignore old&#x2f;inactive entries&#xd;&#xa;AND LASTMOD &#x3e; DATE &#x27;2013-12-31&#x27;</sql>
     <limit>0</limit>
     <lookup>Get System Info</lookup>
     <execute_each_row>N</execute_each_row>
@@ -262,6 +262,31 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>178</xloc>
+      <yloc>37</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get System Info</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>minDate</name>
+        <type>start date range</type>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>52</xloc>
       <yloc>37</yloc>
       <draw>Y</draw>
       </GUI>
@@ -623,7 +648,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>INVCURR</name>
+        <name>ALTCURR</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -831,7 +856,7 @@
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>INVCURR</name>
-        <rename/>
+        <rename>ALTCURR</rename>
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>CREDITCODE</name>
@@ -863,31 +888,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>317</xloc>
       <yloc>38</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get System Info</name>
-    <type>SystemInfo</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>minDate</name>
-        <type>start date range</type>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>52</xloc>
-      <yloc>37</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
