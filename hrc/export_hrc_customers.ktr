@@ -320,7 +320,7 @@
       <name>&#x24;&#x7b;destPath&#x7d;&#x5c;&#x24;&#x7b;destName&#x7d;</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>TXT</extention>
       <append>N</append>
       <split>N</split>
