@@ -1,31 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>run_daily</name>
+  <name>maintain_db</name>
     <description/>
     <extended_description/>
     <job_version/>
-    <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;05&#x2f;13 21&#x3a;54&#x3a;10.005</created_date>
+  <created_date>2015&#x2f;05&#x2f;15 10&#x3a;03&#x3a;44.507</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;05&#x2f;13 21&#x3a;54&#x3a;10.005</modified_date>
+  <modified_date>2015&#x2f;05&#x2f;15 10&#x3a;03&#x3a;44.507</modified_date>
     <parameters>
-        <parameter>
-            <name>arDaysHistory</name>
-            <default_value>7</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>k84MonthsHistory</name>
-            <default_value>6</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>k84Path</name>
-            <default_value/>
-            <description/>
-        </parameter>
     </parameters>
   <connection>
     <name>CODA</name>
@@ -182,12 +166,12 @@
   </connection>
     <slaveservers>
     </slaveservers>
-<job-log-table><connection>PROC_DATA</connection>
-<schema>PROC_DATA</schema>
-<table>JOB_LOG</table>
+<job-log-table><connection/>
+<schema/>
+<table/>
 <size_limit_lines/>
 <interval/>
-<timeout_days>30</timeout_days>
+<timeout_days/>
 <field><id>ID_JOB</id><enabled>Y</enabled><name>ID_JOB</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>JOBNAME</id><enabled>Y</enabled><name>JOBNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field><field><id>EXECUTING_SERVER</id><enabled>N</enabled><name>EXECUTING_SERVER</name></field><field><id>EXECUTING_USER</id><enabled>N</enabled><name>EXECUTING_USER</name></field><field><id>START_JOB_ENTRY</id><enabled>N</enabled><name>START_JOB_ENTRY</name></field><field><id>CLIENT</id><enabled>N</enabled><name>CLIENT</name></field></job-log-table>
 <jobentry-log-table><connection/>
 <schema/>
@@ -219,209 +203,40 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>79</xloc>
-      <yloc>163</yloc>
+      <xloc>76</xloc>
+      <yloc>62</yloc>
       </entry>
     <entry>
-      <name>Delta Load</name>
+      <name>Defrag Master</name>
       <description/>
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;master_delta_load.kjb</filename>
-      <jobname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>arDays</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;arDaysHistory&#x7d;</value>
-            </parameter>            <parameter>            <name>k84Months</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;k84MonthsHistory&#x7d;</value>
-            </parameter>            <parameter>            <name>k84Path</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;k84Path&#x7d;</value>
-            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <type>SQL</type>
+      <sql>SHUTDOWN DEFRAG&#x3b;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>T</sendOneStatement>
+      <connection>MASTER_DATA</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>419</xloc>
-      <yloc>159</yloc>
+      <xloc>201</xloc>
+      <yloc>63</yloc>
       </entry>
     <entry>
-      <name>Install Package</name>
+      <name>Defrag Staging</name>
       <description/>
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;..&#x5c;util&#x5c;coda&#x5c;install_coda_package.kjb</filename>
-      <jobname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <type>SQL</type>
+      <sql>SHUTDOWN DEFRAG&#x3b;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>T</sendOneStatement>
+      <connection>STAGING</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>299</xloc>
-      <yloc>159</yloc>
-      </entry>
-    <entry>
-      <name>Process Updates</name>
-      <description/>
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;process_master_updates.kjb</filename>
-      <jobname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>550</xloc>
-      <yloc>161</yloc>
-      </entry>
-    <entry>
-      <name>HRC Extract</name>
-      <description/>
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;..&#x5c;hrc&#x5c;create_hrc_export.kjb</filename>
-      <jobname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>675</xloc>
-      <yloc>162</yloc>
-      </entry>
-    <entry>
-      <name>Check Conn</name>
-      <description/>
-      <type>CHECK_DB_CONNECTIONS</type>
-      <connections>
-        <connection>
-          <name>MASTER_DATA</name>
-          <waitfor>1</waitfor>
-          <waittime>second</waittime>
-        </connection>
-        <connection>
-          <name>STAGING</name>
-          <waitfor>1</waitfor>
-          <waittime>second</waittime>
-        </connection>
-        <connection>
-          <name>CODA</name>
-          <waitfor>1</waitfor>
-          <waittime>second</waittime>
-        </connection>
-        <connection>
-          <name>PROC_DATA</name>
-          <waitfor>1</waitfor>
-          <waittime>second</waittime>
-        </connection>
-      </connections>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>183</xloc>
-      <yloc>162</yloc>
-      </entry>
-    <entry>
-      <name>Snapshot</name>
-      <description/>
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;..&#x5c;util&#x5c;archive&#x5c;create_snapshot_archive.kjb</filename>
-      <jobname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>794</xloc>
-      <yloc>162</yloc>
+      <xloc>331</xloc>
+      <yloc>63</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -430,73 +245,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1047</xloc>
-      <yloc>166</yloc>
-      </entry>
-    <entry>
-      <name>Maintain DB</name>
-      <description/>
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;maintain_db.kjb</filename>
-      <jobname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>916</xloc>
-      <yloc>166</yloc>
+      <xloc>457</xloc>
+      <yloc>64</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>Install Package</from>
-      <to>Delta Load</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Delta Load</from>
-      <to>Process Updates</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Process Updates</from>
-      <to>HRC Extract</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>START</from>
-      <to>Check Conn</to>
+      <to>Defrag Master</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -504,49 +260,31 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Check Conn</from>
-      <to>Install Package</to>
+      <from>Defrag Master</from>
+      <to>Defrag Staging</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>HRC Extract</from>
-      <to>Snapshot</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Snapshot</from>
-      <to>Maintain DB</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
+      <evaluation>N</evaluation>
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Maintain DB</from>
+      <from>Defrag Staging</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
+      <evaluation>N</evaluation>
       <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
     <notepad>
-      <note>TODO&#x3a; &#xd;&#xa;Set logging vars globally&#xd;&#xa;Manage archives&#xd;&#xa;Update DW</note>
-      <xloc>26</xloc>
-      <yloc>11</yloc>
-      <width>176</width>
-      <heigth>90</heigth>
+      <note>This will report an error,&#xd;&#xa;even when successful,&#xd;&#xa;because the database is&#xd;&#xa;shut-down and the&#xd;&#xa;connection closed.</note>
+      <xloc>187</xloc>
+      <yloc>151</yloc>
+      <width>169</width>
+      <heigth>110</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -555,8 +293,8 @@
       <fontcolorgreen>0</fontcolorgreen>
       <fontcolorblue>0</fontcolorblue>
       <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>128</backgroundcolorblue>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
