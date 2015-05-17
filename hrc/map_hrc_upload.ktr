@@ -323,6 +323,10 @@
         <source_value>AR_EXTRACT</source_value>
         <target_value>arextract</target_value>
       </field>
+      <field>
+        <source_value>CUST_OVERLAY</source_value>
+        <target_value>custextract</target_value>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
