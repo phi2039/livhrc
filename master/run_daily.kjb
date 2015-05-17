@@ -397,7 +397,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;..&#x5c;util&#x5c;archive&#x5c;create_snapshot_archive.kjb</filename>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;util&#x5c;archive&#x5c;create_snapshot_archive.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -416,12 +416,18 @@
       <pass_export>N</pass_export>
       <force_separate_logging>N</force_separate_logging>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
+            <parameter>            <name>dbName</name>
+            <stream_name/>
+            <value>MASTER_DATA</value>
+            </parameter>            <parameter>            <name>destPath</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;snapshot</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>794</xloc>
-      <yloc>162</yloc>
+      <yloc>164</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -526,7 +532,7 @@
       <to>Maintain DB</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
     </hop>

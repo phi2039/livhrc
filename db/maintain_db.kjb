@@ -281,8 +281,8 @@
   <notepads>
     <notepad>
       <note>This will report an error,&#xd;&#xa;even when successful,&#xd;&#xa;because the database is&#xd;&#xa;shut-down and the&#xd;&#xa;connection closed.</note>
-      <xloc>187</xloc>
-      <yloc>151</yloc>
+      <xloc>195</xloc>
+      <yloc>160</yloc>
       <width>169</width>
       <heigth>110</heigth>
       <fontname>Segoe UI</fontname>

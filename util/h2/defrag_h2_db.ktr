@@ -10,7 +10,7 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
-            <name>dbname</name>
+            <name>dbfile</name>
             <default_value/>
             <description/>
         </parameter>
@@ -167,7 +167,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;&#x24;&#x7b;dbname&#x7d;&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;dbfile&#x7d;&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -275,7 +275,7 @@
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>SELECT &#x2a; FROM INFORMATION_SCHEMA.CATALOGS&#x3b;&#xd;&#xa;SHUTDOWN DEFRAG&#x3b;</sql>
+    <sql>SHUTDOWN DEFRAG&#x3b;</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -285,8 +285,8 @@
     </arguments>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>169</xloc>
-      <yloc>92</yloc>
+      <xloc>134</xloc>
+      <yloc>58</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
