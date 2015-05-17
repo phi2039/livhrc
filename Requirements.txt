@@ -1,8 +1,8 @@
 LII_SALESDB DSN (for GQL Customer data)
 PDI_PATH set to PDI installation directory
 PENTAHO_JAVA_HOME set to jre7 directory
+JRE 7 (for zip functionality)
 Custom jdbcodbc.jar installed -- not for J2SE 7
 jdbcodbc.dll installed in libswt/<arch> -- not for J2SE 7
-ojdbc.jar installed in lib
+ojdbc.jar installed in lib (Oracle JDBC)
 Latest H2 driver in lib
-JRE 7 (for zip functionality)
