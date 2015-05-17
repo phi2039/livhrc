@@ -226,7 +226,7 @@
       <proxyUsername/>
       <proxyPassword>Encrypted </proxyPassword>
       <createRemoteFolder>N</createRemoteFolder>
-      <aftersftpput>nothing</aftersftpput>
+      <aftersftpput>delete</aftersftpput>
       <destinationfolder/>
       <createdestinationfolder>N</createdestinationfolder>
       <successWhenNoFile>N</successWhenNoFile>
