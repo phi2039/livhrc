@@ -1,5 +1,5 @@
 #Kettle Properties file
-#Mon May 18 09:54:20 EDT 2015
+#Mon May 18 10:04:19 EDT 2015
 AskAboutReplacingDatabases=N
 AutoCollapseCoreObjectsTree=Y
 AutoSave=Y
@@ -1417,7 +1417,7 @@ tabfile6=file\:///C\:/Users/CLANCE/Documents/Syncplicity Folders/Livingston/_Col
 tabfile7=file\:///C\:/Users/CLANCE/Documents/Syncplicity Folders/Livingston/_Collections Initiative - Athena/Data/NG_Integration/master\\k84\\load_k84_updates.kjb
 tabfile8=file\:///C\:/Users/CLANCE/Documents/Syncplicity Folders/Livingston/_Collections Initiative - Athena/Data/NG_Integration/hrc\\set_hrc_export_vars.ktr
 tabfile9=C\:\\Users\\CLANCE\\Documents\\Syncplicity Folders\\Livingston\\_Collections Initiative - Athena\\Data\\NG_Integration\\util\\archive\\get_snapshot_schema_name.ktr
-tabfiles=2
+tabfiles=1
 tabopened1=Y
 tabopened2=Y
 tabopened3=Y
