@@ -222,12 +222,13 @@ pip-log.txt
 *.3
 *.4
 
-#Custom
+# Managed by hand (per host)
 set_env.bat
 
 # Spoon
 .kettle/db.cache-*
 .kettle/xulSettings.properties
+.kettle/.spoonrc
 
 # H2 DB
 *.db
