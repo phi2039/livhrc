@@ -228,7 +228,6 @@ set_env.bat
 # Spoon
 .kettle/db.cache-*
 .kettle/xulSettings.properties
-.kettle/.spoonrc
 
 # H2 DB
 *.db
@@ -236,4 +235,3 @@ set_env.bat
 snapshot/*
 hrc/exports/*
 hrc/log/*
-*.properties
