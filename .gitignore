@@ -236,3 +236,4 @@ set_env.bat
 snapshot/*
 hrc/exports/*
 hrc/log/*
+.kettle/.spoonrc
