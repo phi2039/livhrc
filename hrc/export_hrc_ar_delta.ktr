@@ -490,7 +490,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>K84ACCTDATE</name>
+        <name>K84DATE</name>
         <type>Date</type>
         <format>yyyy-MM-dd</format>
         <currency/>
