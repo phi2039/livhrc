@@ -251,7 +251,7 @@
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>attachmentPath</name>
             <stream_name/>
-            <value>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x2f;tasks&#x2f;daily.log</value>
+            <value>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x2f;tasks&#x2f;daily_log.txt</value>
             </parameter>            <parameter>            <name>ccEmail</name>
             <stream_name/>
             <value/>
