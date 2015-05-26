@@ -237,3 +237,4 @@ snapshot/*
 hrc/exports/*
 hrc/log/*
 .kettle/.spoonrc
+tasks/daily_log.txt
