@@ -433,7 +433,7 @@
             <value/>
             </parameter>            <parameter>            <name>remotePath</name>
             <stream_name/>
-            <value>&#x2f;inbound&#x2f;test</value>
+            <value>&#x2f;inbound&#x2f;prod</value>
             </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
