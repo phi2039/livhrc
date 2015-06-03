@@ -434,6 +434,18 @@
             </parameter>            <parameter>            <name>remotePath</name>
             <stream_name/>
             <value>&#x2f;inbound&#x2f;prod</value>
+            </parameter>            <parameter>            <name>hostAddress</name>
+            <stream_name/>
+            <value>sftp.receivablesradius.com</value>
+            </parameter>            <parameter>            <name>hostPort</name>
+            <stream_name/>
+            <value>22</value>
+            </parameter>            <parameter>            <name>userName</name>
+            <stream_name/>
+            <value>livingston</value>
+            </parameter>            <parameter>            <name>userPassword</name>
+            <stream_name/>
+            <value>livingston145</value>
             </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
