@@ -5,4 +5,5 @@ JRE 7 (for zip functionality)
 Custom jdbcodbc.jar installed -- not for J2SE 7
 jdbcodbc.dll installed in libswt/<arch> -- not for J2SE 7
 ojdbc.jar installed in lib (Oracle JDBC)
+ODBC DSN for GQL
 Latest H2 driver in lib
