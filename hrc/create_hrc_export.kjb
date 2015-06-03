@@ -14,7 +14,7 @@
     </parameters>
   <connection>
     <name>CODA</name>
-    <server>10.253.133.145</server>
+    <server>10.253.133.144</server>
     <type>ORACLE</type>
     <access>Native</access>
     <database>codaprod</database>
