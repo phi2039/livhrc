@@ -75,8 +75,8 @@
     <access>ODBC</access>
     <database>LII_SALESDB</database>
     <port>1521</port>
-    <username>DBTEST_XXX</username>
-    <password>Encrypted 2be98afc86aa7f2e48d3080248fc78cf6</password>
+    <username>FINADMIN</username>
+    <password>Encrypted 2be98afc86ae1bbaa8a378d558acaff88</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -297,7 +297,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;cross_domain&#x5c;update_ar_due_dates.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;..&#x5c;cross_domain&#x5c;update_ar_due_dates.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
