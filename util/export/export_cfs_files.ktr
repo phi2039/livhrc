@@ -236,58 +236,6 @@
   <hop> <from>Customer Master</from><to>Customer Extract</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>AR Master</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>MASTER_DATA</connection>
-    <sql>SELECT &#x2a; FROM MASTER_DATA.AR_ITEM_MASTER</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>116</xloc>
-      <yloc>52</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Customer Master</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>MASTER_DATA</connection>
-    <sql>SELECT &#x2a; FROM MASTER_DATA.CUSTOMER_MASTER</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>115</xloc>
-      <yloc>155</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>AR Extract</name>
     <type>TextFileOutput</type>
     <description/>
@@ -429,7 +377,7 @@
       <field>
         <name>DOCDATE</name>
         <type>Date</type>
-        <format>yyyy-MM-dd</format>
+        <format>MM&#x2f;dd&#x2f;yyyy</format>
         <currency/>
         <decimal/>
         <group/>
@@ -441,7 +389,7 @@
       <field>
         <name>POSTDATE</name>
         <type>Date</type>
-        <format>yyyy-MM-dd</format>
+        <format>MM&#x2f;dd&#x2f;yyyy</format>
         <currency/>
         <decimal/>
         <group/>
@@ -453,7 +401,7 @@
       <field>
         <name>CLEARDATE</name>
         <type>Timestamp</type>
-        <format>yyyy-MM-dd</format>
+        <format>MM&#x2f;dd&#x2f;yyyy</format>
         <currency/>
         <decimal/>
         <group/>
@@ -693,7 +641,7 @@
       <field>
         <name>K84ACCTDATE</name>
         <type>Date</type>
-        <format>yyyy-MM-dd</format>
+        <format>MM&#x2f;dd&#x2f;yyyy</format>
         <currency/>
         <decimal/>
         <group/>
@@ -705,7 +653,7 @@
       <field>
         <name>DUEDATE</name>
         <type>Date</type>
-        <format>yyyy-MM-dd</format>
+        <format>MM&#x2f;dd&#x2f;yyyy</format>
         <currency/>
         <decimal/>
         <group/>
@@ -717,7 +665,7 @@
       <field>
         <name>LASTMOD</name>
         <type>Timestamp</type>
-        <format>yyyy-MM-dd hh&#x3a;mm&#x3a;ss</format>
+        <format>MM&#x2f;dd&#x2f;yyyy HH&#x3a;mm&#x3a;ss</format>
         <currency/>
         <decimal/>
         <group/>
@@ -731,6 +679,32 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>301</xloc>
       <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>AR Master</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MASTER_DATA</connection>
+    <sql>SELECT &#x2a; FROM MASTER_DATA.AR_ITEM_MASTER</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>116</xloc>
+      <yloc>52</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -889,7 +863,7 @@
       <field>
         <name>CREATEDATE</name>
         <type>Date</type>
-        <format>yyyy-MM-dd</format>
+        <format>MM&#x2f;dd&#x2f;yyyy</format>
         <currency/>
         <decimal/>
         <group/>
@@ -961,7 +935,7 @@
       <field>
         <name>CRLIMDATE</name>
         <type>Date</type>
-        <format>yyyy-MM-dd</format>
+        <format>MM&#x2f;dd&#x2f;yyyy</format>
         <currency/>
         <decimal/>
         <group/>
@@ -1189,7 +1163,7 @@
       <field>
         <name>LASTMOD</name>
         <type>Timestamp</type>
-        <format>yyyy-MM-dd hh&#x3a;mm&#x3a;ss</format>
+        <format>MM&#x2f;dd&#x2f;yyyy HH&#x3a;mm&#x3a;ss</format>
         <currency/>
         <decimal/>
         <group/>
@@ -1203,6 +1177,32 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>300</xloc>
       <yloc>154</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Customer Master</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>MASTER_DATA</connection>
+    <sql>SELECT &#x2a; FROM MASTER_DATA.CUSTOMER_MASTER</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>115</xloc>
+      <yloc>155</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
