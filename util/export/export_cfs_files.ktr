@@ -272,7 +272,7 @@
       <add_time>N</add_time>
       <SpecifyFormat>Y</SpecifyFormat>
       <date_time_format>yyyy-MM-dd</date_time_format>
-      <add_to_result_filenames>Y</add_to_result_filenames>
+      <add_to_result_filenames>N</add_to_result_filenames>
       <pad>N</pad>
       <fast_dump>N</fast_dump>
       <splitevery>0</splitevery>
@@ -746,7 +746,7 @@
       <add_time>N</add_time>
       <SpecifyFormat>Y</SpecifyFormat>
       <date_time_format>yyyy-MM-dd</date_time_format>
-      <add_to_result_filenames>Y</add_to_result_filenames>
+      <add_to_result_filenames>N</add_to_result_filenames>
       <pad>N</pad>
       <fast_dump>N</fast_dump>
       <splitevery>0</splitevery>
