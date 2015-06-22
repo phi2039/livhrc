@@ -14,7 +14,7 @@
     </parameters>
   <connection>
     <name>CODA</name>
-    <server>10.253.133.145</server>
+    <server>10.253.133.144</server>
     <type>ORACLE</type>
     <access>Native</access>
     <database>codaprod</database>
@@ -70,8 +70,8 @@
     <access>ODBC</access>
     <database>LII_SALESDB</database>
     <port>1521</port>
-    <username>DBTEST_XXX</username>
-    <password>Encrypted 2be98afc86aa7f2e48d3080248fc78cf6</password>
+    <username>FINADMIN</username>
+    <password>Encrypted 2be98afc86ae1bbaa8a378d558acaff88</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -240,8 +240,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>202</xloc>
-      <yloc>120</yloc>
+      <xloc>555</xloc>
+      <yloc>121</yloc>
       </entry>
     <entry>
       <name>Update AR Due Dates</name>
@@ -276,8 +276,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>509</xloc>
-      <yloc>121</yloc>
+      <xloc>850</xloc>
+      <yloc>122</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -286,8 +286,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>653</xloc>
-      <yloc>120</yloc>
+      <xloc>994</xloc>
+      <yloc>121</yloc>
       </entry>
     <entry>
       <name>Get Min K84</name>
@@ -319,20 +319,60 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>354</xloc>
-      <yloc>121</yloc>
+      <xloc>695</xloc>
+      <yloc>122</yloc>
+      </entry>
+    <entry>
+      <name>Update Customer AR Dates</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;cross_domain&#x5c;update_customer_ar_dates.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>204</xloc>
+      <yloc>120</yloc>
+      </entry>
+    <entry>
+      <name>Reactivate Customers</name>
+      <description/>
+      <type>SQL</type>
+      <sql>update master_data.customer_master&#xd;&#xa;set lastaract&#x3d;lastmod, lastmod&#x3d;sysdate&#xd;&#xa;where lastmod &#x3d; &#x27;2013-12-31&#x27; and lastaract &#x3e; &#x27;2013-12-31&#x27;&#x3b;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>MASTER_DATA</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>393</xloc>
+      <yloc>120</yloc>
       </entry>
   </entries>
   <hops>
-    <hop>
-      <from>START</from>
-      <to>Update AR K84</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
     <hop>
       <from>Update AR Due Dates</from>
       <to>Success</to>
@@ -360,12 +400,39 @@
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
     </hop>
+    <hop>
+      <from>START</from>
+      <to>Update Customer AR Dates</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Update Customer AR Dates</from>
+      <to>Reactivate Customers</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Reactivate Customers</from>
+      <to>Update AR K84</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
       <note>Update K84ACCTDATE for&#xd;&#xa;new K84 records and new&#xd;&#xa;docs previously K84&#x27;d</note>
-      <xloc>124</xloc>
-      <yloc>23</yloc>
+      <xloc>550</xloc>
+      <yloc>9</yloc>
       <width>185</width>
       <heigth>70</heigth>
       <fontname/>
@@ -385,8 +452,8 @@
     </notepad>
     <notepad>
       <note>Calculate due dates for&#xd;&#xa;new items and newly K84&#x27;d&#xd;&#xa;items</note>
-      <xloc>406</xloc>
-      <yloc>16</yloc>
+      <xloc>794</xloc>
+      <yloc>11</yloc>
       <width>189</width>
       <heigth>70</heigth>
       <fontname/>
