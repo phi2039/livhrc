@@ -79,8 +79,8 @@
   <notepads>
     <notepad>
       <note>What about bogus K84 dates&#x3f;</note>
-      <xloc>36</xloc>
-      <yloc>182</yloc>
+      <xloc>77</xloc>
+      <yloc>183</yloc>
       <width>209</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
@@ -100,8 +100,8 @@
     </notepad>
     <notepad>
       <note>This calculates due dates for&#xd;&#xa;items with DUEDATE &#x3d;&#x3d; NULL.&#xd;&#xa;N.B. Due dates are not changed&#xd;&#xa;once calculated, even if customer&#xd;&#xa;terms change.</note>
-      <xloc>32</xloc>
-      <yloc>43</yloc>
+      <xloc>73</xloc>
+      <yloc>45</yloc>
       <width>231</width>
       <heigth>110</heigth>
       <fontname>Segoe UI</fontname>
@@ -122,7 +122,7 @@
   </notepads>
   <connection>
     <name>CODA</name>
-    <server>10.253.133.145</server>
+    <server>10.253.133.144</server>
     <type>ORACLE</type>
     <access>Native</access>
     <database>codaprod</database>
@@ -178,8 +178,8 @@
     <access>ODBC</access>
     <database>LII_SALESDB</database>
     <port>1521</port>
-    <username>DBTEST_XXX</username>
-    <password>Encrypted 2be98afc86aa7f2e48d3080248fc78cf6</password>
+    <username>FINADMIN</username>
+    <password>Encrypted 2be98afc86ae1bbaa8a378d558acaff88</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -209,7 +209,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2039&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;master_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -235,7 +235,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;proc_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2041</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;proc_data&#x3b;AUTO_SERVER&#x3d;true&#x3b;</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -261,7 +261,7 @@
     <index_tablespace/>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;staging&#x3b;AUTO_SERVER&#x3d;true&#x3b;AUTO_SERVER_PORT&#x3d;2040&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;staging&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -312,8 +312,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>117</xloc>
-      <yloc>350</yloc>
+      <xloc>104</xloc>
+      <yloc>346</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -337,8 +337,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>767</xloc>
-      <yloc>407</yloc>
+      <xloc>808</xloc>
+      <yloc>408</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -370,8 +370,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>476</xloc>
-      <yloc>155</yloc>
+      <xloc>517</xloc>
+      <yloc>156</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -399,8 +399,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>362</xloc>
-      <yloc>216</yloc>
+      <xloc>403</xloc>
+      <yloc>217</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -424,8 +424,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>448</xloc>
-      <yloc>236</yloc>
+      <xloc>489</xloc>
+      <yloc>237</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -443,8 +443,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>578</xloc>
-      <yloc>373</yloc>
+      <xloc>619</xloc>
+      <yloc>374</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -491,8 +491,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>582</xloc>
-      <yloc>283</yloc>
+      <xloc>623</xloc>
+      <yloc>284</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -510,8 +510,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>701</xloc>
-      <yloc>87</yloc>
+      <xloc>742</xloc>
+      <yloc>88</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -539,8 +539,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>572</xloc>
-      <yloc>117</yloc>
+      <xloc>613</xloc>
+      <yloc>118</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -572,8 +572,8 @@
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>580</xloc>
-      <yloc>441</yloc>
+      <xloc>621</xloc>
+      <yloc>442</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -593,8 +593,8 @@
       <remove>        <name>minK84</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>680</xloc>
-      <yloc>194</yloc>
+      <xloc>721</xloc>
+      <yloc>195</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -619,8 +619,8 @@
 </formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>737</xloc>
-      <yloc>282</yloc>
+      <xloc>778</xloc>
+      <yloc>283</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -655,8 +655,8 @@
 <target_step>K84</target_step>
 </case></cases>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>255</xloc>
-      <yloc>345</yloc>
+      <xloc>296</xloc>
+      <yloc>346</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -674,8 +674,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>580</xloc>
-      <yloc>532</yloc>
+      <xloc>621</xloc>
+      <yloc>533</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -735,8 +735,8 @@
       </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>955</xloc>
-      <yloc>409</yloc>
+      <xloc>996</xloc>
+      <yloc>410</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
