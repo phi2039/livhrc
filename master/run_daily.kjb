@@ -512,7 +512,7 @@
             <value>HighRadius Integration Log</value>
             </parameter>            <parameter>            <name>recipEmail</name>
             <stream_name/>
-            <value>&#x24;&#x7b;recipEmail&#x7d;</value>
+            <value>clance&#x40;livingstonintil.com</value>
             </parameter>            <parameter>            <name>senderEmail</name>
             <stream_name/>
             <value>autoreport&#x40;livingstonintl.com</value>
@@ -572,7 +572,7 @@
             <value>HighRadius Integration Log</value>
             </parameter>            <parameter>            <name>recipEmail</name>
             <stream_name/>
-            <value>&#x24;&#x7b;recipEmail&#x7d;</value>
+            <value>clance&#x40;livingstonintil.com</value>
             </parameter>            <parameter>            <name>senderEmail</name>
             <stream_name/>
             <value>autoreport&#x40;livingstonintl.com</value>
@@ -746,6 +746,27 @@
       <backgroundcolorred>255</backgroundcolorred>
       <backgroundcolorgreen>255</backgroundcolorgreen>
       <backgroundcolorblue>128</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>The Maintain DB step &#xd;&#xa;generates an error when&#xd;&#xa;it tries to disconnect, but &#xd;&#xa;this is expected, since the &#xd;&#xa;DB is being shutdown in the &#xd;&#xa;SQL command</note>
+      <xloc>820</xloc>
+      <yloc>241</yloc>
+      <width>200</width>
+      <heigth>130</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
