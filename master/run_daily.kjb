@@ -512,7 +512,7 @@
             <value>HighRadius Integration Log</value>
             </parameter>            <parameter>            <name>recipEmail</name>
             <stream_name/>
-            <value>clance&#x40;livingstonintil.com</value>
+            <value>clance&#x40;livingstonintl.com</value>
             </parameter>            <parameter>            <name>senderEmail</name>
             <stream_name/>
             <value>autoreport&#x40;livingstonintl.com</value>
@@ -572,7 +572,7 @@
             <value>HighRadius Integration Log</value>
             </parameter>            <parameter>            <name>recipEmail</name>
             <stream_name/>
-            <value>clance&#x40;livingstonintil.com</value>
+            <value>clance&#x40;livingstonintl.com</value>
             </parameter>            <parameter>            <name>senderEmail</name>
             <stream_name/>
             <value>autoreport&#x40;livingstonintl.com</value>
