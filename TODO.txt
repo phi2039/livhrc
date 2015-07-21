@@ -1,0 +1,2 @@
+Manage snapshot directory
+Truncate daily log

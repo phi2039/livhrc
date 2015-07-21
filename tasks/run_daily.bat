@@ -1,3 +1,5 @@
+del %CD%\tasks\daily_log_prev.txt
+move %CD%\tasks\daily_log.txt %CD%\tasks\daily_log_prev.txt
 call set_env.bat
 call %PDI_PATH%\kitchen.bat -file:%CD%\master\run_daily.kjb "-param:k84path=z:\Input" -logfile:%CD%\tasks\daily_log.txt
 REM call %PDI_PATH%\kitchen.bat -file:%CD%\master\send_log.kjb "-param:recipEmail=clance@livingstonintl.com"
