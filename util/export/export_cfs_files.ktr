@@ -695,7 +695,7 @@
            <schema_name/>
            </partitioning>
     <connection>MASTER_DATA</connection>
-    <sql>SELECT &#x2a; FROM MASTER_DATA.AR_ITEM_MASTER</sql>
+    <sql>SELECT &#x2a; FROM MASTER_DATA.AR_ITEM_MASTER&#xd;&#xa;WHERE CLEARDATE IS NULL</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
