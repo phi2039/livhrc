@@ -436,8 +436,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1127</xloc>
-      <yloc>166</yloc>
+      <xloc>1260</xloc>
+      <yloc>165</yloc>
       </entry>
     <entry>
       <name>Maintain DB</name>
@@ -468,8 +468,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>906</xloc>
-      <yloc>165</yloc>
+      <xloc>1039</xloc>
+      <yloc>164</yloc>
       </entry>
     <entry>
       <name>Send Failure</name>
@@ -588,8 +588,43 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1017</xloc>
-      <yloc>165</yloc>
+      <xloc>1150</xloc>
+      <yloc>164</yloc>
+      </entry>
+    <entry>
+      <name>Prune Snapshots</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>filename</specification_method>
+      <job_object_id/>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x2f;util&#x2f;archive&#x2f;prune_snapshots.kjb</filename>
+      <jobname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <force_separate_logging>N</force_separate_logging>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>daysToKeep</name>
+            <stream_name/>
+            <value>31</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>911</xloc>
+      <yloc>163</yloc>
       </entry>
   </entries>
   <hops>
@@ -646,15 +681,6 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Snapshot</from>
-      <to>Maintain DB</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
     </hop>
     <hop>
       <from>Snapshot</from>
@@ -728,14 +754,32 @@
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
     </hop>
+    <hop>
+      <from>Snapshot</from>
+      <to>Prune Snapshots</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Prune Snapshots</from>
+      <to>Maintain DB</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
-      <note>TODO&#x3a; &#xd;&#xa;Set logging vars globally&#xd;&#xa;Manage archives&#xd;&#xa;Update DW</note>
+      <note>TODO&#x3a; &#xd;&#xa;Set logging vars globally&#xd;&#xa;Update DW</note>
       <xloc>26</xloc>
       <yloc>11</yloc>
       <width>176</width>
-      <heigth>90</heigth>
+      <heigth>70</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -753,8 +797,8 @@
     </notepad>
     <notepad>
       <note>The Maintain DB step &#xd;&#xa;generates an error when&#xd;&#xa;it tries to disconnect, but &#xd;&#xa;this is expected, since the &#xd;&#xa;DB is being shutdown in the &#xd;&#xa;SQL command</note>
-      <xloc>820</xloc>
-      <yloc>241</yloc>
+      <xloc>989</xloc>
+      <yloc>261</yloc>
       <width>200</width>
       <heigth>130</heigth>
       <fontname/>
