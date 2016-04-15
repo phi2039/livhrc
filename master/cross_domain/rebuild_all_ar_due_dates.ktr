@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>update_ar_due_dates</name>
+    <name>rebuild_all_ar_due_dates</name>
     <description/>
     <extended_description/>
     <trans_version/>
