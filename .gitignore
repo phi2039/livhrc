@@ -235,7 +235,9 @@ set_env.bat
 
 snapshot/*
 hrc/exports/*
+hrc/failed/*
 hrc/log/*
 .kettle/.spoonrc
 tasks/daily_log.txt
+tasks/daily_log_prev.txt
 util/export/results/*
